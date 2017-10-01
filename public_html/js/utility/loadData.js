@@ -1,0 +1,158 @@
+/**
+ * Created by sunny on 2/8/16.
+ */
+//todo modify this function to load different
+//database data
+define(["redCapData"],function(redCapData){
+
+    var instrumentData;
+    var recordsData;
+    var metadataData;
+    var eventData;
+
+    /**
+     * This class is responsible for the modifiying the intruments
+     * on the ui
+     * @type {null}
+     */
+
+    var instance = null;
+
+    /**
+     * 1. Check if instance is null then throw error
+     * 2. Calls the load ui related to this class
+     * @constructor
+     */
+    function LoadData() {
+        var self = this;
+        //if instance is not null then throw an error
+        if (instance !== null) {
+            throw new Error("Cannot instantiate more than one LoadData, use LoadData.getInstance()");
+        }
+    }
+
+    /**
+     * this function returns the instance of this
+     * class if not created
+     * @returns {*}
+     */
+    LoadData.getInstance = function () {
+        // gets an instance of the singleton. It is better to use
+        if (instance === null) {
+            instance = new LoadData();
+        }
+        return instance;
+    };
+
+    /**
+     *
+     * @param isEvent
+     * @param isRecords
+     * @param isMetaData
+     * @param isInstruments
+     */
+    LoadData.prototype.actionOnLoad = function(isEvent, isRecords, isMetaData, isInstruments){
+        var self = this;
+
+        if(isEvent && isRecords && isMetaData && isInstruments){
+            self.registeredCallBack.call(this,self.parentIns);
+        }
+    }
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+
+
+        name = name.replace(/[\[\]]/g, "\\$;");
+        var regex = new RegExp("[?;]" + name + "(=([^;#]*)|;|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
+
+    /**
+     *
+     */
+    LoadData.prototype.init = function(_callback, _instance) {
+        var self = this;
+
+        self.isEvent = false;
+        self.isRecords = false;
+        self.isMetaData = false;
+        self.isInstruments = false;
+        self.parentIns = _instance;
+
+        //read the url and token from the
+        //settings from the modal
+        var encodedURL = $("#url").val();
+        var token = $("#token").val();
+        var pid = getParameterByName("pid")
+
+        console.log(window.location.href, pid);
+
+
+        //this function will register the call back
+        //which will wait for all the functions to
+        //get registered
+        self.registeredCallBack = _callback;
+
+        //this function will make the AJAX cal to load the data
+        //to the javascript library
+        var xmlhttpRecData = new XMLHttpRequest();
+        xmlhttpRecData.onreadystatechange = function () {
+            if (xmlhttpRecData.readyState == 4 && xmlhttpRecData.status == 200) {
+                recordsData = xmlhttpRecData.responseText;
+                redCapData.setRecordsJSON(JSON.parse(recordsData.replace(new RegExp(",,", 'g'), ",")));
+                self.isRecords = true;
+                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+            }
+        };
+        xmlhttpRecData.open("GET", "../resources/library/redcap/records.php?pid="+pid, true);
+        xmlhttpRecData.send();
+
+        //this function will make the AJAX cal to load the data
+        //to the javascript library
+        var xmlhttpMetData = new XMLHttpRequest();
+        xmlhttpMetData.onreadystatechange = function () {
+            if (xmlhttpMetData.readyState == 4 && xmlhttpMetData.status == 200) {
+                metadataData = xmlhttpMetData.responseText;
+                redCapData.setMetadataJSON(JSON.parse(metadataData));
+                self.isMetaData = true;
+                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+            }
+        };
+        xmlhttpMetData.open("GET", "../resources/library/redcap/metadata.php?pid="+pid, true);
+        xmlhttpMetData.send();
+
+        //this function will make the AJAX cal to load the data
+        //to the javascript library
+        var xmlhttpInstData = new XMLHttpRequest();
+        xmlhttpInstData.onreadystatechange = function () {
+            if (xmlhttpInstData.readyState == 4 && xmlhttpInstData.status == 200) {
+                instrumentData = xmlhttpInstData.responseText;
+                redCapData.setInstrumentJSON(JSON.parse(instrumentData));
+                self.isInstruments = true;
+                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+            }
+        };
+        xmlhttpInstData.open("GET", "../resources/library/redcap/instruments.php?pid="+pid, true);
+        xmlhttpInstData.send();
+
+        //this function will make the AJAX cal to load the data
+        //to the javascript library
+        var xmlhttpEvntData = new XMLHttpRequest();
+        xmlhttpEvntData.onreadystatechange = function () {
+            if (xmlhttpEvntData.readyState == 4 && xmlhttpEvntData.status == 200) {
+                eventData = xmlhttpEvntData.responseText;
+                redCapData.setEventJSON(JSON.parse(eventData));
+                self.isEvent = true;
+                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+            }
+        };
+        xmlhttpEvntData.open("GET", "../resources/library/redcap/events.php?pid="+pid, true);
+        xmlhttpEvntData.send();
+    }
+
+    return LoadData.getInstance();
+});

@@ -1,0 +1,567 @@
+.tab {
+    float: left;
+    height: 100%;
+}
+
+.node rect {
+    cursor: pointer;
+    fill: #fff;
+    stroke: #000000;
+    stroke-width: 1.5px;
+}
+.node text {
+    font: 10px sans-serif;
+    pointer-events: none;
+}
+
+
+path.link {
+    fill: none;
+    stroke: #9ecae1;
+    stroke-width: 1.5px;
+}
+
+.filterPanel{
+    overflow: auto;
+    white-space: nowrap;
+    width: 100%;
+    height: 80%;
+}
+
+.lockedRect{
+    fill: #ededed;
+}
+
+
+.numerical-bar{
+    fill: WHITE;
+    stroke: #000000;
+    stroke-width: 1.0px;
+}
+
+
+.overlay-numerical-bar{
+    fill: #000000;
+    fill-opacity: 0.75;
+    stroke: #000000;
+    stroke-width: 1.0px;
+}
+
+.bar{
+    fill: WHITE;
+    stroke: #000000;
+    stroke-width: 1.0px;
+    cursor: pointer;
+}
+
+.query-bar{
+    stroke: #000000;
+    stroke-width: 1.0px;
+    cursor: pointer;
+}
+
+.query-bar:hover {
+    fill: orangered;
+    cursor: pointer;
+}
+
+th{
+    font-size: 75%;
+}
+
+h4 {
+    font-size: 100%;
+}
+
+.varBindDiv{
+    border-radius: 5px;
+    border: 1px solid #000000;
+    padding: 2px;
+    float:left;
+    font-size: 75%;
+    background-color: #5b5b5b;
+    cursor: pointer;
+}
+
+.varDiv{
+
+    padding: 2px;
+    float:left;
+    font-size: 80%;
+    color: white;
+    cursor: pointer;
+    /*font-weight: bold;*/
+}
+.varDiv:hover{
+    padding: 2px;
+    float:left;
+    text-decoration: line-through;
+    font-size: 80%;
+    //font-weight: bold;
+    color: white;
+    background-color: rgba(91, 91, 91, 0.29);
+    cursor: pointer;
+}
+
+
+.selDiv{
+    position: relative;
+    border: 1px solid #000000;
+    padding: 2px;
+    background-color: #ff9c00;
+    float:left;
+    font-size: 75%;
+    cursor: pointer;
+}
+
+
+.selDiv:hover{
+    position: relative;
+    border: 1px solid #000000;
+    padding: 1px;
+    float:left;
+    text-decoration: line-through;
+    font-size: 75%;
+    background-color: #ff9c00;
+    cursor: pointer;
+}
+
+
+.dataDistPanel{
+    height: 5px;
+}
+
+.graph-label{
+    font-size  : large;
+    font-weight: bold;
+    fill       : black;
+    cursor: pointer;
+}
+
+.graph-label-box{
+    fill: rgb(255, 255, 255);
+}
+
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+}
+.d3-tip span {
+    color: #ff00c7;
+}
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0 0;
+    top: 100%;
+    left: 0;
+}
+
+.horizontal-nominal-bar{
+    fill: WHITE;
+    stroke: #000000;
+    stroke-width: 0.75px;
+    cursor: pointer;
+}
+
+.overlay-horizontal-nominal-bar{
+    fill: #3366cc;
+    stroke: #000000;
+    stroke-width: 0.75px;
+    cursor: pointer;
+}
+
+.overlay-horizontal-nominal-bar:hover{
+    cursor: pointer;
+}
+
+.hover-nominal-bar{
+    fill: orangered ;
+    stroke: #000000;
+    stroke-width: 0.75px;
+    cursor: pointer;
+}
+
+
+.clearfix:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+#mainPanel{
+    margin-top: 45px;
+    float: left;
+}
+
+#leftPanel{
+    float: left;
+    width:20%;
+    height: 100%;
+    overflow-y: hidden;
+}
+
+#varResize{
+    background-color:black;
+    height:100%;
+    float: right;
+    width: 3px;
+    cursor: col-resize;
+}
+
+#mainResize{
+    background-color:black;
+    height:100%;
+    float: right;
+    width: 3px;
+    cursor: col-resize;
+}
+
+#ghostbar{
+    width:3px;
+    background-color:#000;
+    opacity:0.5;
+    position:absolute;
+    cursor: col-resize;
+    z-index:999}
+
+.table-container {
+    background-color: white;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+
+.graph-outer {
+    width: auto;
+    height:auto;
+    overflow-x: auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+}
+.graph-inner {
+    font-size: 10pt;
+    display:inline-block;
+    fill: "white";
+}
+
+.graph-inner h5 {
+    background:#0094ff;
+    color:white;
+    padding:10px;
+}
+
+.var-strat{
+    fill: #ffec50;
+}
+.var-color{
+    fill: #36ff51;
+}
+
+
+html, body {
+    height: 100%;
+}
+
+body {
+    padding: 8px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.split {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.content {
+    border: 1px solid #C0C0C0;
+    box-shadow: inset 0 1px 2px #e4e4e4;
+    background-color: #fff;
+}
+
+.content {
+    border: 1px solid #C0C0C0;
+    box-shadow: inset 0 1px 2px #e4e4e4;
+    background-color: #fff;
+}
+
+.gutter {
+    background-color: #eee ;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+    background-image: url('../../bower_components/Split.js/grips/vertical.png');
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
+    background-image: url('../../bower_components/Split.js/grips/horizontal.png');
+}
+
+.split.split-horizontal, .gutter.gutter-horizontal {
+    height: 100%;
+    float: left;
+}
+
+
+.color-grp{
+    stroke: #000000;
+    stroke-width: 0.75px;
+}
+
+#input-xs {
+    height: 20px;
+    padding: 2px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 6px;
+}
+div#header {
+    background-color: #900;
+    width: 100%;
+    height: 10%;
+    border: 2px solid #488ed0;
+    margin: 0 auto;
+    text-align: right;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.menu-node{
+
+}
+
+.menu-node-form {
+    font-family: "proxima-nova", sans-serif;
+    font-size: xx-large;
+}
+
+.menu-node-var {
+    font-size: medium;
+}
+
+/* Style for the Scatter plots */
+.name{
+    position: relative;
+    top: 90px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.title {
+    position: relative;
+    text-align: left;
+    font-size: 25px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.dot {
+    stroke: #000;
+}
+
+#filter {
+    position: absolute;
+}
+
+#mark {
+    padding-left: 150px;
+    position: inherit;
+}
+
+#xAXs {
+    position: relative;
+    left: 290px;
+    bottom: 30px;
+}
+
+#yAXs {
+    position: relative;
+    bottom: 30px;
+    left: 315px;
+
+}
+
+#label {
+    position: absolute;
+    top: 599px;
+    bottom: 125px;
+    left: 300px;
+    right: 0px;
+}
+
+#label2 {
+    position: absolute;
+    top: 599px;
+    bottom: 125px;
+    left: 430px;
+    right: 0px;
+}
+
+.extent {
+    fill: #000;
+    fill-opacity: .125;
+    stroke: #fff;
+}
+#leftPanel{
+    margin-top: 25px;
+}
+#left-top{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 5px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.fa{
+     cursor: pointer;
+     color: #000000;
+ }
+
+.fa:hover {
+    color: #ffffff;
+    text-shadow: 0 0 5px black;
+    cursor: pointer;
+}
+
+.glyphicon{
+    cursor: pointer;
+    color: #000000;
+}
+
+.glyphicon:hover{
+    color: #ffffff;
+    text-shadow: 0 0 5px black;
+    cursor: pointer;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    table-layout:fixed;
+    width: 100%;
+
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+.datapanel-header-row{
+    background-color: white;
+}
+
+.filter-opr{
+    text-align: center;
+}
+
+.filter-remove{
+    text-align: center;
+}
+
+h3{
+    font-size: 1.5em; fill: #333; font-weight: bold;
+}
+
+li{
+    cursor: pointer;
+}
+
+.varPlotGraphDisplay{
+    visibility: hidden;
+}
+
+.point{
+    fill: #3366cc;
+    stroke: black;
+    stroke-width: 0.5;
+    cursor: pointer;
+}
+
+.hover-point{
+    fill: orangered;
+    stroke: black;
+    stroke-width: 0.5;
+    cursor: pointer;
+}
+
+.loading-message{
+    font-size: larger;
+}

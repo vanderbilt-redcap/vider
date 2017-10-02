@@ -138,6 +138,7 @@ define(["jquery","d3","dataWrapper","loadData","url","stateCtrl","view","filterD
          * @param _urlParam
          */
         Controller.prototype.newState = function(_urlParam){
+	    alert(_urlParam);
             var self = this;
 
             // update the url as per the

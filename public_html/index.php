@@ -49,12 +49,12 @@ header('X-Frame-Options: GOFORIT');
     <title>ViDER - Visual Data Explorer For REDCap</title>
 </head>
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="../public_html/js/external/d3.v3.min.js"></script>
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
 
 <link rel="stylesheet" type="text/css" href="../bower_components/please-wait/build/please-wait.css">
 <link rel="stylesheet" type="text/css" href="../public_html/css/numHistogram.css">
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="../public_html/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="../public_html/css/ie10-viewport-bug-workaround.css">
 <link rel="stylesheet" type="text/css" href="../public_html/css/dashboard.css">
@@ -373,7 +373,7 @@ header('X-Frame-Options: GOFORIT');
         backgroundColor: '#FFFFFF',
         loadingHtml: "<div>"
                         + "<style scoped>"
-                        + "\@import '\/redcap\/plugins\/vider\/public_html\/css\/loadingScreen.css';"
+                        + "\@import 'css\/loadingScreen.css';"
                         + "</style>"
                             + "<div class='spinner'>"
                                 + " <div class='rect1'>&nbsp;</div>"

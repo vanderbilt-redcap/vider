@@ -14,4 +14,13 @@ require_once(realpath(dirname(__FILE__) . "/../../plugin-config.php"));
 require_once $config["redcap-connect"];
 
 //send the json data to the vider applicationw
-echo REDCap::getData('json');
+if (isset($_GET['form'])) {
+    $fields = array_merge(REDCap::getFieldNames($_GET['form']), array(REDCap::getRecordIdField()));
+    if (isset($_GET['event_id'])) {
+        echo REDCap::getData('json', NULL, $fields, array($_GET['event_id']));
+    } else {
+        echo REDCap::getData('json', NULL, $fields);
+    }
+} else {
+    echo REDCap::getData('json');
+}

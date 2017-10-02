@@ -27,6 +27,11 @@ function array_kshift(&$arr)
 
 // Print out the names of all instruments in the project
 $instrument_names = REDCap::getInstrumentNames();
+if (isset($_GET['form'])) {
+    if (isset($instrument_names[$_GET['form']])) {
+        $instrument_names = array($_GET['form'] => $instrument_names[$_GET['form']]); 
+    }
+}
 
 //get the first element to adjust comma in json
 //data accordingly

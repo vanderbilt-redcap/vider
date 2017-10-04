@@ -30,7 +30,9 @@ function Pager(tableName, itemsPerPage) {
         var to = from + itemsPerPage - 1;
         this.showRecords(from, to);
 
-        this.navElement.innerHTML = "";
+        if (this.navElement) {
+            this.navElement.innerHTML = "";
+        }
 
         var initPage = 1;
 
@@ -47,7 +49,9 @@ function Pager(tableName, itemsPerPage) {
 
         pagerHtml += '<li id="nextPage"><a onclick="' + this.pagerName + '.next();" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li></ul></nav>';
 
-        this.navElement.innerHTML = pagerHtml;
+        if (this.navElement) {
+            this.navElement.innerHTML = pagerHtml;
+        }
 
         var pgNext = document.getElementById('nextPage');
         var pgPrev = document.getElementById('prevPage');
@@ -109,6 +113,8 @@ function Pager(tableName, itemsPerPage) {
         pagerHtml += '<li id="nextPage"><a onclick="' + this.pagerName + '.next();" aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li></ul></nav>';
 
 
-        this.navElement.innerHTML = pagerHtml;
+        if (this.navElement) {
+            this.navElement.innerHTML = pagerHtml;
+        }
     }
 }

@@ -171,7 +171,9 @@ define(["dataWrapper"],function(dataWrapper){
                 }
                 dataTable.appendChild(tbody);
 
-                bottomOprPanel.appendChild(navDiv);
+                if (bottomOprPanel) {
+                    bottomOprPanel.appendChild(navDiv);
+                }
                 if (dataPanel) {
                     dataPanel.appendChild(dataTable);
                 }

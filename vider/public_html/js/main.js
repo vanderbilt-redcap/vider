@@ -75,8 +75,7 @@ require(["require","controller", "split", "global"],
         //this will split the div of the website accordingly
         Split(['#leftPanel', '#mainPanel'],{gutterSize: 10, sizes: [20 , 80], minSize: [410]});
         Split(['#left-top', '#left-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [70, 30]/*, minSize: [200, 100]*/});
-        Split(['#main-top', '#main-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [100, 0]});
-	$('#main-bottom').hide();
+	$('#main-top').css({ 'height' : '100%' });
         Split(['#main-top-left', '#main-top-right'],{gutterSize: 10, sizes: [50, 50]});
 
         //initialize the controller
@@ -145,23 +144,17 @@ require(["require","controller", "split", "global"],
 
         //
 
-        $('#main-bottom').css('width', '95%').css('width', '-=5px');
-
 
         self.isDataPanel = true;
         $("#data-panel").click(function(){
 
             if(self.isDataPanel) {
-                $("#main-bottom").css("visibility", "hidden");
-                $('#main-top').css('height', '100%').css('height', '-=5px');
-                $('#main-bottom').css('height', '0px');
+                $('#main-top').css('height', '100%');
 
                 $(this).css("color","#9d9d9d")
             }
             else{
-                $("#main-bottom").css("visibility", "hidden");
-                $('#main-top').css('height', '100%').css('height', '-=5px');
-                $('#main-bottom').css('height', '0px');
+                $('#main-top').css('height', '100%');
 
                 $(this).css("color","white")
                 require("view").updateNewState(require("stateCtrl").top());

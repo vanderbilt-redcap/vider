@@ -176,39 +176,6 @@ header('X-Frame-Options: GOFORIT');
             </div>
         </div>
     </div>
-
-    <div id="main-bottom" class="split split-vertical" style="position: relative; overflow: hidden; ">
-            <!--<div id="rightPanel" class="split split-horizontal">-->
-
-<!--            <div class="col-sm-12 col-md-12">-->
-<!--                <div class="row" style="text-align: right; height: 20%">-->
-<!--                    <a type="button" class="btn btn-sm btn-success" id="exportCSV">Export CSV</a>-->
-<!--                </div>-->
-                <div id="bottomOprPanel" style="background-color:white;width: 100%; top:0; height: 50px; position:absolute; width: 99%;">
-                    <div id = "pageNavPosition" style="top: -50px;"></div>
-                    <a type="button"
-                       class="btn btn-sm btn-success"
-                       id="exportCSV"
-                       style="float: right; margin-top: 20px;">
-                        Export CSV
-                    </a>
-                </div>
-                <div id="dataPanel" class="table-container" style="position: absolute; top: 70px; overflow: scroll; height: 550px; width: 99%;">
-
-                </div>
-<!--                <div style="overflow: scroll;">-->
-<!--                    <div class="row"-->
-<!--                         style="overflow: scroll; height:100%; position: fixed;"-->
-<!--                         id="dataPanel"-->
-<!--                         class="table-container">-->
-<!---->
-<!--                        <!-- here goes the table which show the data -->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div id="stateDisplay"></div>-->
-<!--            </div>-->
-    </div>
 </div>
 
 

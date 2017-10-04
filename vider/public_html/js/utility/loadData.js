@@ -70,7 +70,7 @@ define(["redCapData"],function(redCapData){
         }
         var paramPairs = components[1].split(/&/);
         var params = {};
-        for (var i = 0; i < paramsPairs.length; i++) {
+        for (var i = 0; i < paramPairs.length; i++) {
             var a = paramPairs[i].split(/=/);
             if (a.length == 2) {
                 params[a[0]] = a[1];

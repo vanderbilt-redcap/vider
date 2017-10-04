@@ -193,7 +193,9 @@ define(["d3","stateCtrl", "viewVariablePanel", "rugPlotHandler",
         View.prototype.updateNewState = function(_parameter){
             var self = this;
 
-            self.stateEventHndlr.stateChanged(_parameter);
+            if (self.stateEventHndlr) {
+                self.stateEventHndlr.stateChanged(_parameter);
+            }
         }
 
         return View.getInstance();

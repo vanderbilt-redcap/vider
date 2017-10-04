@@ -77,7 +77,7 @@ header('X-Frame-Options: GOFORIT');
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" data-target="#scatterPlotModal">Scatter Plot</a></li>
+                <li id='scatterPlot'><a data-toggle="modal" data-target="#scatterPlotModal">Scatter Plot</a></li>
                 <li><a id="parallel-sets">Parallel Sets</a></li>
                 <!-- <li><a id="data-panel">Data Panel</a></li> -->
                 <!-- <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li> -->

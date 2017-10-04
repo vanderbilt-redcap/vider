@@ -113,6 +113,7 @@ define(["d3","stateCtrl", "viewVariablePanel", "rugPlotHandler",
                 $('#xAxis').hide();
                 $('#yAxis').hide();
                 $('#scatterMessage').html('You must have a number/integer field validation type setup for a text box in order for this feature to have data to process.');
+                $('#scatterPlot').hide();
             }
 
             d3.select("#addScatterPlot")

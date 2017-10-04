@@ -1,7 +1,5 @@
 <?php
 
-require_once("../../redcap_connect.php");
-
 $pid = $_GET['pid'];
 
 if (isset($_POST['submit'])) {

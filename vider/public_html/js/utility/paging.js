@@ -8,13 +8,15 @@ function Pager(tableName, itemsPerPage) {
     this.inited = false;
 
     this.showRecords = function (from, to) {
-        var rows = document.getElementById(tableName).rows;
-        // i starts from 1 to skip table header row
-        for (var i = 1; i < rows.length; i++) {
-            if (i < from || i > to)
-                rows[i].style.display = 'none';
-            else
-                rows[i].style.display = '';
+        if (document.getElementById(tableName)) {
+            var rows = document.getElementById(tableName).rows;
+            // i starts from 1 to skip table header row
+            for (var i = 1; i < rows.length; i++) {
+                if (i < from || i > to)
+                    rows[i].style.display = 'none';
+                else
+                    rows[i].style.display = '';
+            }
         }
     }
 
@@ -56,14 +58,18 @@ function Pager(tableName, itemsPerPage) {
         var pgNext = document.getElementById('nextPage');
         var pgPrev = document.getElementById('prevPage');
 
-        if (this.currentPage == this.pages)
-            pgNext.className = 'disabled';
-        else
-            pgNext.className = '';
-        if (this.currentPage == 1)
-            pgPrev.className = 'disabled';
-        else
-            pgPrev.className = '';
+        if (pgNext) {
+            if (this.currentPage == this.pages)
+                pgNext.className = 'disabled';
+            else
+                pgNext.className = '';
+        }
+        if (pgPrev) {
+            if (this.currentPage == 1)
+                pgPrev.className = 'disabled';
+            else
+                pgPrev.className = '';
+        }
     }
 
     this.prev = function () {
@@ -82,9 +88,11 @@ function Pager(tableName, itemsPerPage) {
 
     this.init = function () {
         if (document.getElementById(tableName)) {
-        	var rows = document.getElementById(tableName).rows;
-        	var records = (rows.length - 1);
-        	this.pages = Math.ceil(records / itemsPerPage);
+            var rows = document.getElementById(tableName).rows;
+            var records = (rows.length - 1);
+            this.pages = Math.ceil(records / itemsPerPage);
+        } else {
+            this.pages = 1;
         }
         this.inited = true;
     }

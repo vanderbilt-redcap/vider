@@ -68,7 +68,7 @@ define(["redCapData"],function(redCapData){
         if (components.length == 1) {
             return null;
         }
-        var paramsPairs = components[1].split(/&/);
+        var paramPairs = components[1].split(/&/);
         var params = {};
         for (var i = 0; i < paramsPairs.length; i++) {
             var a = paramPairs[i].split(/=/);

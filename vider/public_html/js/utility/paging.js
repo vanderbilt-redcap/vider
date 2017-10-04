@@ -77,9 +77,11 @@ function Pager(tableName, itemsPerPage) {
     }
 
     this.init = function () {
-        var rows = document.getElementById(tableName).rows;
-        var records = (rows.length - 1);
-        this.pages = Math.ceil(records / itemsPerPage);
+        if (document.getElementById(tableName)) {
+        	var rows = document.getElementById(tableName).rows;
+        	var records = (rows.length - 1);
+        	this.pages = Math.ceil(records / itemsPerPage);
+        }
         this.inited = true;
     }
 

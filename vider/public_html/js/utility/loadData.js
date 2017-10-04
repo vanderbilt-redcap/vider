@@ -64,11 +64,22 @@ define(["redCapData"],function(redCapData){
 
 
         name = name.replace(/[\[\]]/g, "\\$;");
-        var regex = new RegExp("[?;]" + name + "(=([^;#]*)|;|#|$)"),
-            results = regex.exec(url);
-        if (!results) return null;
-        if (!results[2]) return '';
-        return decodeURIComponent(results[2].replace(/\+/g, " "));
+        var components = url.split(/?/);
+        if (components.length == 1) {
+            return null;
+        }
+        var paramsPairs = components[1].split(/&/);
+        var params = {};
+        for (var i = 0; i < paramsPairs.length; i++) {
+            var a = paramPairs[i].split(/=/);
+            if (a.length == 2) {
+                params[a[0]] = a[1];
+            }
+        }
+	if (typeof params[name] != 'undefined') {
+                return decodeURIComponent(params[name].replace(/\+/g, " "));
+        }
+        return null;
     }
 
     /**

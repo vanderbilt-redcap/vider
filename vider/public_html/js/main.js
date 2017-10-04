@@ -152,15 +152,15 @@ require(["require","controller", "split", "global"],
 
             if(self.isDataPanel) {
                 $("#main-bottom").css("visibility", "hidden");
-                $('#main-top').css('height', '98%').css('height', '-=5px');
-                $('#main-bottom').css('height', '1%').css('height', '-=5px');
+                $('#main-top').css('height', '100%').css('height', '-=5px');
+                $('#main-bottom').css('height', '0px');
 
                 $(this).css("color","#9d9d9d")
             }
             else{
                 $("#main-bottom").css("visibility", "visible");
-                $('#main-top').css('height', '60%').css('height', '-=5px');
-                $('#main-bottom').css('height', '40%').css('height', '-=5px');
+                $('#main-top').css('height', '100%').css('height', '-=5px');
+                $('#main-bottom').css('height', '0px');
 
                 $(this).css("color","white")
                 require("view").updateNewState(require("stateCtrl").top());

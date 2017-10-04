@@ -64,7 +64,7 @@ define(["redCapData"],function(redCapData){
 
 
         name = name.replace(/[\[\]]/g, "\\$;");
-        var components = url.split(/?/);
+        var components = url.split(/\?/);
         if (components.length == 1) {
             return null;
         }

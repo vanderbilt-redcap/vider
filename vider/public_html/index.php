@@ -299,6 +299,7 @@ header('X-Frame-Options: GOFORIT');
                             <select id="yAxis">
                             </select>
                         </form>
+                            <div id='scatterMessage'></div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal" id="addScatterPlot">Add Scatter Plot</button>

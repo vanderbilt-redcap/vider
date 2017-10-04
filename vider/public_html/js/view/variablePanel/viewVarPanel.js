@@ -448,7 +448,8 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     }
                 })
                 .text(function(d){
-                    return  d.Name.substring(0,30) +  (d.Name.length > 30 ? "..." : "");
+                    var name = stripHtml(d.Name);
+                    return  name.substring(0,30) +  (name.length > 30 ? "..." : "");
                 });
 
             nodeEnter.append("g")

@@ -192,3 +192,14 @@ define(["d3","stateCtrl", "viewVariablePanel", "rugPlotHandler",
         return View.getInstance();
 
     });
+
+function stripHtml(html) {
+    if (!html) {
+        return "";
+    }
+    var str = html;
+    while (str.match(/<.+>/)) {
+        str = str.replace(/<[^>]+>/, "");
+    }
+    return str;
+}

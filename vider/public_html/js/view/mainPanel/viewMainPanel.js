@@ -127,7 +127,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                 var div = sel.append("div").classed("header", true);
                 //appending header
                 div.append("h3").text(function () {
-                    return varLabel;
+                    return stripHtml(varLabel);
                 })
 
                 var oprDiv = div.append("div").classed("col-xs-8", true);

@@ -79,9 +79,9 @@ header('X-Frame-Options: GOFORIT');
             <ul class="nav navbar-nav navbar-right">
                 <li><a data-toggle="modal" data-target="#scatterPlotModal">Scatter Plot</a></li>
                 <li><a id="parallel-sets">Parallel Sets</a></li>
-                <li><a id="data-panel">Data Panel</a></li>
-                <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li>
-                <li><a href="public_html/aboutus.html" target="_blank">About Us</a></li>
+                <!-- <li><a id="data-panel">Data Panel</a></li> -->
+                <!-- <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li> -->
+                <li><a href="aboutus.html" target="_blank">About Us</a></li>
             </ul>
 <!--            <form class="navbar-form navbar-right">-->
 <!--                <input type="text" class="form-control" placeholder="Search...">-->
@@ -93,13 +93,13 @@ header('X-Frame-Options: GOFORIT');
 
 
 <div id="leftPanel" style="overflow: scroll;" class="split split-horizontal">
-    <div id="left-top" style="overflow: scroll; height: 60%;" class="split split-vertical">
+    <div id="left-top" style="overflow: scroll; height: 70%;" class="split split-vertical">
         <div class="col-sm-12 col-md-12">
             <svg id="varPanel"></svg>
         </div>
     </div>
 
-    <div id="left-bottom" style="overflow: scroll; height: 40%" class="split split-vertical">
+    <div id="left-bottom" style="overflow: scroll; height: 30%" class="split split-vertical">
         <div class="col-sm-12 col-md-12">
             <svg class="dataDistPanel" width="100%"></svg>
         </div>

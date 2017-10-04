@@ -103,7 +103,7 @@ define(["jquery","d3","dataWrapper","loadData","url","stateCtrl","view","filterD
 
             //five second timeout if nothing no response is received
             setTimeout(function(){
-                loading_screen.updateLoadingHtml("<div><p class='loading-message'>Please wait while your data is loaded.</p></div>");
+                loading_screen.updateLoadingHtml("<div><p class='loading-message' id='loading-message'>Please wait while your data is loaded.</p></div>");
             }, 5000);
 
             window.addEventListener("popstate", function(e) {

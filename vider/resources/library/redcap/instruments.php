@@ -57,6 +57,23 @@ if (isset($_GET['form'])) {
     }
 }
 
+if (REDCap::isLongitudinal()) {
+    $events = REDCap::getEventNames(false);
+    $unique_events = REDCap::getEventNames(true);
+    $oldInstruments = $instrument_names;
+    $instrument_names = array();
+    foreach ($events as $eventId => $eventName) {
+        $sql = "SELECT form_name FROM redcap_events_forms WHERE event_id = $eventId;";
+        $q = db_query($sql);
+        while ($row = db_fetch_assoc($q)) {
+            if ($oldInstruments[$row['form_name']]) {
+                # coordinated with below
+                $instrument_names[$row['form_name']] = array($oldInstruments[$row['form_name']], $eventName, $eventId, $unique_events[$eventId]);
+            }
+        }
+    }
+}
+
 //get the first element to adjust comma in json
 //data accordingly
 $firstElement = array_kshift($instrument_names);
@@ -65,14 +82,23 @@ $firstElement = array_kshift($instrument_names);
 echo "[";
 echo "{\"instrument_name\":\"";
 echo key($firstElement);
-echo "\", \"instrument_label\":\"";
-echo array_shift($firstElement);
-echo "\"}";
+echo "\", \"instrument_label\":";
+$var = array_shift($firstElement);
+if (is_array($var)) {
+    echo "\"".$var[0]."\", \"event_label\":\"".$var[1]."\", \"event_id\":\"".$var[2]."\", \"unique_event_name\":\"".$var[3]."\"";
+} else {
+    echo "\"".$var."\"";
+}
+echo "}";
 
 foreach ($instrument_names as $unique_name=>$label)
 {
     // Print this instrument name and label
     echo ",";
-    echo "{\"instrument_name\":\"$unique_name\", \"instrument_label\":\"$label\"}";
+    if (is_array($label)) {
+        echo "{\"instrument_name\":\"$unique_name\", \"instrument_label\":\"{$label[0]}\", \"event_label\":\"{$label[1]}\", \"event_id\":\"{$label[2]}\", \"unique_event_name\":\"{$label[3]}\"}";
+    } else {
+        echo "{\"instrument_name\":\"$unique_name\", \"instrument_label\":\"$label\"}";
+    }
 }
 echo "]";

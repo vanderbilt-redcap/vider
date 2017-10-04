@@ -103,9 +103,15 @@ define(["redCapData"],function(redCapData){
         xmlhttpRecData.onreadystatechange = function () {
             if (xmlhttpRecData.readyState == 4 && xmlhttpRecData.status == 200) {
                 recordsData = xmlhttpRecData.responseText;
-                redCapData.setRecordsJSON(JSON.parse(recordsData.replace(new RegExp(",,", 'g'), ",")));
-                self.isRecords = true;
-                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                if (recordsData.match(/^</)) {
+                    setTimeout(function(){
+                        $('#loading-message').html('Please log into REDCap on this instance. Then refresh this page to proceed.');
+                    }, 7000);
+                } else {
+                    redCapData.setRecordsJSON(JSON.parse(recordsData.replace(new RegExp(",,", 'g'), ",")));
+                    self.isRecords = true;
+                    self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                }
             }
         };
         xmlhttpRecData.open("GET", "../resources/library/redcap/records.php?pid="+pid, true);
@@ -117,9 +123,11 @@ define(["redCapData"],function(redCapData){
         xmlhttpMetData.onreadystatechange = function () {
             if (xmlhttpMetData.readyState == 4 && xmlhttpMetData.status == 200) {
                 metadataData = xmlhttpMetData.responseText;
-                redCapData.setMetadataJSON(JSON.parse(metadataData));
-                self.isMetaData = true;
-                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                if (!metadataData.match(/^</)) {
+                    redCapData.setMetadataJSON(JSON.parse(metadataData));
+                    self.isMetaData = true;
+                    self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                }
             }
         };
         xmlhttpMetData.open("GET", "../resources/library/redcap/metadata.php?pid="+pid, true);
@@ -131,9 +139,11 @@ define(["redCapData"],function(redCapData){
         xmlhttpInstData.onreadystatechange = function () {
             if (xmlhttpInstData.readyState == 4 && xmlhttpInstData.status == 200) {
                 instrumentData = xmlhttpInstData.responseText;
-                redCapData.setInstrumentJSON(JSON.parse(instrumentData));
-                self.isInstruments = true;
-                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                if (!instrumentData.match(/^</)) {
+                    redCapData.setInstrumentJSON(JSON.parse(instrumentData));
+                    self.isInstruments = true;
+                    self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                }
             }
         };
         xmlhttpInstData.open("GET", "../resources/library/redcap/instruments.php?pid="+pid, true);
@@ -145,9 +155,11 @@ define(["redCapData"],function(redCapData){
         xmlhttpEvntData.onreadystatechange = function () {
             if (xmlhttpEvntData.readyState == 4 && xmlhttpEvntData.status == 200) {
                 eventData = xmlhttpEvntData.responseText;
-                redCapData.setEventJSON(JSON.parse(eventData));
-                self.isEvent = true;
-                self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                if (!eventData.match(/^</)) {
+                    redCapData.setEventJSON(JSON.parse(eventData));
+                    self.isEvent = true;
+                    self.actionOnLoad(self.isEvent,self.isRecords,self.isMetaData,self.isInstruments);
+                }
             }
         };
         xmlhttpEvntData.open("GET", "../resources/library/redcap/events.php?pid="+pid, true);

@@ -65,6 +65,7 @@ define(["jquery", "d3",  "d3-tip", "filterData", "global"],
             if (stratObj.isStrat) {
                 var obj = self.data[stratObj.form].fields[stratObj.variable].obj;
                 var stratLabel = obj.field_label;
+                stratLabel = stripHtml(stratLabel);
                 stratLabel = stratLabel.length < 30 ? stratLabel : stratLabel.substr(0, 27) + "...";
                 stratData.push(stratLabel);
             }
@@ -127,7 +128,7 @@ define(["jquery", "d3",  "d3-tip", "filterData", "global"],
             var colorByObj = require("filterData").getColorBy();
             if (colorByObj.isColorBy) {
                 var obj = self.data[colorByObj.form].fields[colorByObj.variable].obj;
-                var colorByLabel = obj.field_label;
+                var colorByLabel = stripHtml(obj.field_label);
                 //colorByLabel = colorByLabel.length < 30 ? colorByLabel : colorByLabel.substr(0, 27) + "...";
                 colorData.push(colorByLabel);
             }
@@ -222,13 +223,13 @@ define(["jquery", "d3",  "d3-tip", "filterData", "global"],
                 .classed("filter-var",true)
                 .text(function(d){
                     var variable = self.forms[d.form].variables[d.var];
-                    return variable.label;
+                    return stripHtml(variable.label);
                     //return variable.label.length > 20 ? variable.label.substr(0,17) + "..." : variable.label;
                 });
             enterRow.append("td")
                 .classed("filter-sel",true)
                 .text(function(d){
-                    return d.label;
+                    return stripHtml(d.label);
                     //return d.label.length > 20 ? d.label.substr(0,17) + "..." : d.label;
                 });
             enterRow.append("td")
@@ -259,12 +260,12 @@ define(["jquery", "d3",  "d3-tip", "filterData", "global"],
             row.select(".filter-var")
                 .text(function(d){
                     var variable = self.forms[d.form].variables[d.var];
-                    return variable.label;
+                    return stripHtml(variable.label);
                     //return variable.label.length > 20 ? variable.label.substr(0,17) + "..." : variable.label;
                 });
             row.select(".filter-sel")
                 .text(function(d){
-                    return d.label;
+                    return stripHtml(d.label);
                     //return d.label.length > 20 ? d.label.substr(0,17) + "..." : d.label;
                 });
             row.select(".fa")

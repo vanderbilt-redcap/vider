@@ -55,10 +55,19 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
         //todo divide the following task into functions
         self.instrumentObj.forEach(function(instrument){
             if(!self.mapInstToFields.hasOwnProperty(instrument.instrument_name)){
-                self.mapInstToFields[instrument.instrument_name] = {
-                    "label"  : instrument.instrument_label,
-                    "fields" : {}
-                };
+                if (typeof instrument.event_name != "undefined") {
+                    self.mapInstToFields[instrument.instrument_name] = {
+                        "label"     : instrument.instrument_label,
+                        "event_id"  : instrument.event_id,
+                        "event_name": instrument.event_name,
+                        "fields"    : {}
+                    };
+                } else {
+                    self.mapInstToFields[instrument.instrument_name] = {
+                        "label"  : instrument.instrument_label,
+                        "fields" : {}
+                    };
+                }
             }
             else{
                 //if the two forms of multiple names appear then throw error
@@ -119,7 +128,7 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
                 }
             }
             else{
-                console.log("Error - Invalid Form name mentioned in the field")
+                console.log("Error - Invalid Form name mentioned in the field: "+field.form_name+" for "+field.field_name)
             }
         });
 

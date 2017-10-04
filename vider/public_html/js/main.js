@@ -74,8 +74,8 @@ require(["require","controller", "split", "global"],
 
         //this will split the div of the website accordingly
         Split(['#leftPanel', '#mainPanel'],{gutterSize: 10, sizes: [20 , 80], minSize: [410]});
-        Split(['#left-top', '#left-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [60, 40]/*, minSize: [200, 100]*/});
-        Split(['#main-top', '#main-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [75, 25]/*, minSize: [600, 100]*/});
+        Split(['#left-top', '#left-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [70, 30]/*, minSize: [200, 100]*/});
+        Split(['#main-top', '#main-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [100, 0]/*, minSize: [600, 100]*/});
         Split(['#main-top-left', '#main-top-right'],{gutterSize: 10, sizes: [50, 50]});
 
         //initialize the controller

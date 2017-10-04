@@ -99,6 +99,15 @@ define(["redCapData"],function(redCapData){
         var encodedURL = $("#url").val();
         var token = $("#token").val();
         var pid = getParameterByName("pid")
+        var form = getParameterByName("form")
+        var event_id = getParameterByName("event_id")
+        var suffix = "";
+        if (form) {
+            suffix += "&form="+form;
+        }
+        if (event_id) {
+            suffix += "&event_id="+event_id;
+        }
 
         console.log(window.location.href, pid);
 
@@ -125,7 +134,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpRecData.open("GET", "../resources/library/redcap/records.php?pid="+pid, true);
+        xmlhttpRecData.open("GET", "../resources/library/redcap/records.php?pid="+pid+suffix, true);
         xmlhttpRecData.send();
 
         //this function will make the AJAX cal to load the data
@@ -141,7 +150,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpMetData.open("GET", "../resources/library/redcap/metadata.php?pid="+pid, true);
+        xmlhttpMetData.open("GET", "../resources/library/redcap/metadata.php?pid="+pid+suffix, true);
         xmlhttpMetData.send();
 
         //this function will make the AJAX cal to load the data
@@ -157,7 +166,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpInstData.open("GET", "../resources/library/redcap/instruments.php?pid="+pid, true);
+        xmlhttpInstData.open("GET", "../resources/library/redcap/instruments.php?pid="+pid+suffix, true);
         xmlhttpInstData.send();
 
         //this function will make the AJAX cal to load the data
@@ -173,7 +182,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpEvntData.open("GET", "../resources/library/redcap/events.php?pid="+pid, true);
+        xmlhttpEvntData.open("GET", "../resources/library/redcap/events.php?pid="+pid+suffix, true);
         xmlhttpEvntData.send();
     }
 

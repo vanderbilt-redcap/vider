@@ -97,7 +97,9 @@ define(["dataWrapper"],function(dataWrapper){
 
         var _initPanel =  function(_data, _filterData){
 
-            dataPanel.innerHTML = "";
+            if (dataPanel) {
+                dataPanel.innerHTML = "";
+            }
 
             var dataLength = 0;
             var dataArr = [];
@@ -170,7 +172,9 @@ define(["dataWrapper"],function(dataWrapper){
                 dataTable.appendChild(tbody);
 
                 bottomOprPanel.appendChild(navDiv);
-                dataPanel.appendChild(dataTable);
+                if (dataPanel) {
+                    dataPanel.appendChild(dataTable);
+                }
 
                 //var pager = new Pager('dataTable', 15);
 
@@ -179,7 +183,9 @@ define(["dataWrapper"],function(dataWrapper){
                 pager.showPage(1);
             }
             else{
-                dataPanel.innerHTML = "";
+                if (dataPanel) {
+                    dataPanel.innerHTML = "";
+                }
             }
 
             //$('#dataTable').paging({limit:5});

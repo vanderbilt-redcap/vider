@@ -158,7 +158,7 @@ require(["require","controller", "split", "global"],
                 $(this).css("color","#9d9d9d")
             }
             else{
-                $("#main-bottom").css("visibility", "visible");
+                $("#main-bottom").css("visibility", "hidden");
                 $('#main-top').css('height', '100%').css('height', '-=5px');
                 $('#main-bottom').css('height', '0px');
 

@@ -10,6 +10,50 @@ define(["redCapData"],function(redCapData){
     var metadataData;
     var eventData;
 
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+
+
+        var components = url.split(/\?/);
+        if (components.length == 1) {
+            return null;
+        }
+        var paramPairs = components[1].split(/&/);
+        var params = {};
+        for (var i = 0; i < paramPairs.length; i++) {
+            var a = paramPairs[i].split(/=/);
+            if (a.length == 2) {
+                params[a[0]] = a[1];
+            }
+        }
+	if (!name) {
+		return params;
+	}
+
+        name = name.replace(/[\[\]]/g, "\\$;");
+	if (typeof params[name] != 'undefined') {
+                return decodeURIComponent(params[name].replace(/\+/g, " "));
+        }
+        return null;
+    }
+
+    /**
+     * This method transforms the current URL into a new URL for the given page name
+     * assumes that the given page name does not contain http://
+     */
+    function getUrl(page) {
+        var params = getParameterByName();
+        var url = window.location.href;
+
+        var components = url.split(/\?/);
+        var main = components[0];
+
+        var pageTrunk = page.replace(/\.php.+$/, "");
+
+        main += "?pid="+params['pid']+"&id="+params['id']+"&page="+pageTrunk;
+        return main;
+    }
+
     /**
      * This class is responsible for the modifiying the intruments
      * on the ui
@@ -57,29 +101,6 @@ define(["redCapData"],function(redCapData){
         if(isEvent && isRecords && isMetaData && isInstruments){
             self.registeredCallBack.call(this,self.parentIns);
         }
-    }
-
-    function getParameterByName(name, url) {
-        if (!url) url = window.location.href;
-
-
-        name = name.replace(/[\[\]]/g, "\\$;");
-        var components = url.split(/\?/);
-        if (components.length == 1) {
-            return null;
-        }
-        var paramPairs = components[1].split(/&/);
-        var params = {};
-        for (var i = 0; i < paramPairs.length; i++) {
-            var a = paramPairs[i].split(/=/);
-            if (a.length == 2) {
-                params[a[0]] = a[1];
-            }
-        }
-	if (typeof params[name] != 'undefined') {
-                return decodeURIComponent(params[name].replace(/\+/g, " "));
-        }
-        return null;
     }
 
     /**
@@ -134,7 +155,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpRecData.open("GET", "../resources/library/redcap/records.php?pid="+pid+suffix, true);
+        xmlhttpRecData.open("GET", getUrl("records.php")+suffix, true);
         xmlhttpRecData.send();
 
         //this function will make the AJAX cal to load the data
@@ -150,7 +171,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpMetData.open("GET", "../resources/library/redcap/metadata.php?pid="+pid+suffix, true);
+        xmlhttpMetData.open("GET", getUrl("metadata.php")+suffix, true);
         xmlhttpMetData.send();
 
         //this function will make the AJAX cal to load the data
@@ -166,7 +187,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpInstData.open("GET", "../resources/library/redcap/instruments.php?pid="+pid+suffix, true);
+        xmlhttpInstData.open("GET", getUrl("instruments.php)+suffix, true);
         xmlhttpInstData.send();
 
         //this function will make the AJAX cal to load the data
@@ -182,7 +203,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpEvntData.open("GET", "../resources/library/redcap/events.php?pid="+pid+suffix, true);
+        xmlhttpEvntData.open("GET", getUrl("events.php")+suffix, true);
         xmlhttpEvntData.send();
     }
 

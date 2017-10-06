@@ -33,7 +33,7 @@ h1,h2,h3 { text-align: center; }
 	if ($isLong) {
 		$style = "width: 50%;";
 	}
-	echo "<form action='index.php?pid=$pid' method='POST'>";
+	echo "<form action='' method='POST'>";
 	echo "<table style='margin-left: auto; margin-right: auto;'><tr><td style='$width'>";
 	echo "<h3>Instruments</h3>";
 	echo "<input type='radio' name='instrument' value='all___all' selected> <b>All</b><br>";

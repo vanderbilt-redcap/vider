@@ -40,7 +40,7 @@
             {
                 "name": "ViDER",
                 "icon": "report",
-                "url": "vider/index.php"
+                "url": "index.php"
             }
 	    ]
     },

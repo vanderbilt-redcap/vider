@@ -17,7 +17,7 @@
 //reference to the following folder :
 //vider/bower_components/resources/library/redcap/
 $config = array(
-    "redcap-connect" => "../../../../../redcap_connect.php"
+    "redcap-connect" => "../../redcap_connect.php"
 );
 
 /*

@@ -118,9 +118,6 @@ define(["d3","d3-tip","colorbrewer"],function(d3,d3tip,colorbrewer) {
                     })
 
             }
-
-            //get the site name
-            //instance.baseURL = "http://"+ extractDomain(window.location.href) + "/redcap/plugins/vider/public_html";
         }
         return instance;
     };

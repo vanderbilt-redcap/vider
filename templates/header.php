@@ -16,23 +16,23 @@
     <title>REDCap Data Visualizer</title>
 </head>
 
-<link rel="stylesheet" type="text/css" href="../public_html/css/numHistogram.css"/>
-<link rel="stylesheet" type="text/css" href="../public_html/css/jquery-ui.css"/>
-<link rel="stylesheet" href="/../bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-<link href="/../public_html/css/ie10-viewport-bug-workaround.css" rel="stylesheet"/>
-<link href="/../public_html/css/dashboard.css" rel="stylesheet"/>
-<link href="/../public_html/css/main.css" rel="stylesheet"/>
-<link href="/../public_html/css/d3Parsets.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="<?= getUrl('css/numHistogram.css'); ?>"/>
+<link rel="stylesheet" type="text/css" href="<?= getUrl('css/jquery-ui.css'); ?>"/>
+<link rel="stylesheet" href="<?= getUrl("bower_components/bootstrap/dist/css/bootstrap.min.css"); ?>"/>
+<link href="<?= getUrl("css/ie10-viewport-bug-workaround.css"); ?>" rel="stylesheet"/>
+<link href="<?= getUrl("css/dashboard.css"); ?>" rel="stylesheet"/>
+<link href="<?= getUrl("css/main.css"); ?>" rel="stylesheet"/>
+<link href="<?= getUrl("css/d3Parsets.css"); ?>" rel="stylesheet"/>
 
 <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css"/>
 
-<script data-main="../public_html/js/main" src="../bower_components/requirejs/require.js"></script>
+<script data-main="<?= getUrl("js/main.js"); ?>" src="<?= getUrl("bower_components/requirejs/require.js") ?>"></script>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="/../public_html/js/external/bootstrap.min.js"></script>
-<script src="/../public_html/js/utility/paging.js"></script>
-<script src="/../public_html/js/utility/htmltocsv.js"></script>
+<script src="<?= getUrl("js/bootstrap.min.js"); ?>"></script>
+<script src="<?= getUrl("js/paging.js"); ?>"></script>
+<script src="<?= getUrl("js/htmltocsv.js"); ?>"></script>
 
 <body>
 

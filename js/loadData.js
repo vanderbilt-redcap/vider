@@ -38,23 +38,6 @@ define(["redCapData"],function(redCapData){
     }
 
     /**
-     * This method transforms the current URL into a new URL for the given page name
-     * assumes that the given page name does not contain http://
-     */
-    function getUrl(page) {
-        var params = getParameterByName();
-        var url = window.location.href;
-
-        var components = url.split(/\?/);
-        var main = components[0];
-
-        var pageTrunk = page.replace(/\.php.+$/, "");
-
-        main += "?pid="+params['pid']+"&id="+params['id']+"&page="+pageTrunk;
-        return main;
-    }
-
-    /**
      * This class is responsible for the modifiying the intruments
      * on the ui
      * @type {null}

@@ -6,7 +6,7 @@
  * Date: 1/26/16
  * Time: 2:45 PM
  */
-require_once(realpath(dirname(__FILE__) . "/../resources/config.php"));
+require_once(realpath(dirname(__FILE__) . "/config.php"));
 
 require_once(LIBRARY_PATH . "/templateFunctions.php");
 
@@ -49,19 +49,19 @@ header('X-Frame-Options: GOFORIT');
     <title>ViDER - Visual Data Explorer For REDCap</title>
 </head>
 
-<script src="../public_html/js/external/d3.v3.min.js"></script>
+<script src='<?= getUrl("js/external/d3.v3.min.js"); ?>'></script>
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../bower_components/please-wait/build/please-wait.css">
-<link rel="stylesheet" type="text/css" href="../public_html/css/numHistogram.css">
-<link rel="stylesheet" type="text/css" href="../public_html/css/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../public_html/css/ie10-viewport-bug-workaround.css">
-<link rel="stylesheet" type="text/css" href="../public_html/css/dashboard.css">
-<link rel="stylesheet" type="text/css" href="../public_html/css/main.css">
+<link rel="stylesheet" type="text/css" href="<?= getUrl('bower_components/please-wait/build/please-wait.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl('css/numHistogram.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl('css/jquery-ui.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl('bower_components/bootstrap/dist/css/bootstrap.min.css'); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl("css/ie10-viewport-bug-workaround.css"); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl("css/dashboard.css"); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl("css/main.css"); ?>">
 <link rel="stylesheet" type="text/css" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
-<link rel="stylesheet" type="text/css" href="../public_html/css/d3Parsets.css">
-<link rel="stylesheet" type="text/css" href="../bower_components/components-font-awesome/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="<?= getUrl("css/d3Parsets.css"); ?>">
+<link rel="stylesheet" type="text/css" href="<?= getUrl("bower_components/components-font-awesome/css/font-awesome.css"); ?>">
 
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -354,12 +354,12 @@ header('X-Frame-Options: GOFORIT');
 
     });
 </script>
-<script data-main="../public_html/js/main" src="../bower_components/requirejs/require.js"></script>
+<script data-main="<?= getUrl("js/main.js"); ?>" src="<?= getUrl('bower_components/requirejs/require.js'); ?>"></script>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="../public_html/js/utility/paging.js"></script>
-<script src="../public_html/js/utility/htmltocsv.js"></script>
+<script src="<?= getUrl("js/paging.js"); ?>"></script>
+<script src="<?= getUrl("js/htmltocsv.js"); ?>"></script>
 <script>
     var pager = new Pager('dataTable', 15);
 </script>

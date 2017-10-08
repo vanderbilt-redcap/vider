@@ -7,7 +7,7 @@
  */
 
 
-require_once(realpath(dirname(__FILE__) . "/../../plugin-config.php"));
+require_once(realpath(dirname(__FILE__) . "/plugin-config.php"));
 
 //load the redcap connect file before requesting
 //any data from the redcap server, this will

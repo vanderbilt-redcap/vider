@@ -1,60 +1,77 @@
+/**
+ * This method transforms the current URL into a new URL for the given page name
+ * assumes that the given page name does not contain http://
+ */
+function getUrl(page) {
+	var params = getParameterByName();
+	var url = window.location.href;
+
+	var components = url.split(/\?/);
+	var main = components[0];
+
+	var pageTrunk = page.replace(/\.php.+$/, "");
+
+	main += "?pid="+params['pid']+"&id="+params['id']+"&page="+pageTrunk;
+	return main;
+}
+
 requirejs.config({
     waitSeconds: 100,
     paths:{
-        "jquery": "../../bower_components/jquery/dist/jquery.min",
-        "split":"../../bower_components/Split.js/split",
-        "html2csv":"../../public_html/js/utility/htmltocsv",
-        "paging":"../../public_html/js/utility/paging",
-        "bootstrap": "../../bower_components/bootstrap/dist/js/bootstrap.min",
-        "colorbrewer": "../../bower_components/colorbrewer/colorbrewer",
-        "d3": "../../bower_components/d3/d3",
-        "d3-tip": "../../bower_components/d3-tip/index",
-        "d3-word-cloud": "../../public_html/js/view/mainPanel/wordGraph/d3.layout.cloud",
-        "loadData":"../../public_html/js/utility/loadData",
-        "redCapData":"../../public_html/js/data/redcapData",
-        "dataWrapper":"../../public_html/js/data/dataWrapper",
-        "stateCtrl":"../../public_html/js/state/stateCtrl",
-        "stateVarCtrl":"../../public_html/js/state/stateVarPanel/stateVarCtrl",
-        "stateVarData":"../../public_html/js/state/stateVarPanel/stateVarData",
-        "stateMainCtrl":"../../public_html/js/state/stateMainPanel/stateMainCtrl",
-        "stateMainData":"../../public_html/js/state/stateMainPanel/stateMainData",
-        "stateBinCtrl":"../../public_html/js/state/stateBin/stateBinCtrl",
-        "stateBinData":"../../public_html/js/state/stateBin/stateBinData",
-        "stateScatterCtrl":"../../public_html/js/state/stateScatter/stateScatterCtrl",
-        "stateScatterData":"../../public_html/js/state/stateScatter/stateScatterData",
-        "url":"../../public_html/js/url/url",
-        "urlModifier":"../../public_html/js/url/urlModifier",
-        "urlReader":"../../public_html/js/url/urlReader",
-        "view":"../../public_html/js/view/view",
-        "viewVariablePanel":"../../public_html/js/view/variablePanel/viewVarPanel",
-        "viewMainPanel":"../../public_html/js/view/mainPanel/viewMainPanel",
-        "controller":"../../public_html/js/controller",
-        "rugPlotHandler":"../../public_html/js/view/modules/rugPlotHandler",
-        "numHistogramHndlr":"../../public_html/js/view/modules/numHistogramHndlr",
-        "nominalGraphHndlr":"../../public_html/js/view/modules/nominalGraphHndlr",
-        "categoryPlotHndlr":"../../public_html/js/view/modules/categoryPlotHndlr",
-        "dataPanel":"../../public_html/js/view/dataPanel/viewDataPanel",
-        "comparisionPanel":"../../public_html/js/view/comparisionPanel/viewComparisionPanel",
-        "filterData":"../../public_html/js/data/filterData",
-        "viewFilterPanel":"../../public_html/js/view/filterPanel/viewFilterPanel",
-        "nominalView":"../../public_html/js/view/mainPanel/nominalGraph/nominalView",
-        "nominalController":"../../public_html/js/view/mainPanel/nominalGraph/nominalController",
-        "viewEventPanel":"../../public_html/js/view/filterPanel/viewEventPanel",
-        "d3Parsets":"../../public_html/js/view/comparisionPanel/parsets",
-        "numericalView":"../../public_html/js/view/mainPanel/numericalGraph/numericalView",
-        "numericalController":"../../public_html/js/view/mainPanel/numericalGraph/numericalController",
-        "stratifiedController":"../../public_html/js/view/mainPanel/stratifiedGraph/stratifiedController",
-        "stratifiedView":"../../public_html/js/view/mainPanel/stratifiedGraph/stratifiedView",
-        "scatterController":"../../public_html/js/view/mainPanel/scatterPlot/scatterController",
-        "scatterView":"../../public_html/js/view/mainPanel/scatterPlot/scatterView",
-        "scatterControl":"../../public_html/js/view/mainPanel/scatterPlot/scatterControl",
-        "scatterViewer":"../../public_html/js/view/mainPanel/scatterPlot/scatterViewer",
-        "wordCloudController":"../../public_html/js/view/mainPanel/wordGraph/wordCloudController",
-        "wordCloudView":"../../public_html/js/view/mainPanel/wordGraph/wordCloudView",
-        "rebinning":"../../public_html/js/data/rebinning",
-        "global":"../../public_html/js/data/global",
-        "nominalCheckBoxView":"../../public_html/js/view/mainPanel/nominalCheckBoxGraph/nominalCheckBoxView",
-        "nominalCheckBoxController":"../../public_html/js/view/mainPanel/nominalCheckBoxGraph/nominalCheckBoxController"
+        "jquery": getUrl("bower_components/jquery/dist/jquery.min.js"),
+        "split": getUrl("bower_components/Split.js/split.js"),
+        "html2csv":getUrl("js/htmltocsv.js"),
+        "paging":getUrl("js/paging.js"),
+        "bootstrap": getUrl("bower_components/bootstrap/dist/js/bootstrap.min.js")",
+        "colorbrewer": getUrl("bower_components/colorbrewer/colorbrewer.js")",
+        "d3": getUrl("bower_components/d3/d3.js")",
+        "d3-tip": getUrl("bower_components/d3-tip/index.js"),
+        "d3-word-cloud": getUrl("view/mainPanel/wordGraph/d3.layout.cloud.js"),
+        "loadData":getUrl("js/loadData.js"),
+        "redCapData":getUrl("js/redcapData.js"),
+        "dataWrapper":getUrl("js/dataWrapper.js"),
+        "stateCtrl":getUrl("js/stateCtrl.js"),
+        "stateVarCtrl":getUrl("js/stateVarPanel/stateVarCtrl.js"),
+        "stateVarData":getUrl("js/stateVarPanel/stateVarData.js"),
+        "stateMainCtrl":getUrl("js/stateMainPanel/stateMainCtrl.js"),
+        "stateMainData":getUrl("js/stateMainPanel/stateMainData.js"),
+        "stateBinCtrl":getUrl("js/stateBin/stateBinCtrl.js"),
+        "stateBinData":getUrl("js/stateBin/stateBinData.js"),
+        "stateScatterCtrl":getUrl("js/stateScatter/stateScatterCtrl.js"),
+        "stateScatterData":getUrl("js/stateScatter/stateScatterData.js"),
+        "url":getUrl("js/url.js"),
+        "urlModifier":getUrl("js/urlModifier.js"),
+        "urlReader":getUrl("js/urlReader.js"),
+        "view":getUrl("js/view.js"),
+        "viewVariablePanel":getUrl("js/variablePanel/viewVarPanel.js"),
+        "viewMainPanel":getUrl("js/mainPanel/viewMainPanel.js"),
+        "controller":getUrl("js/controller.js"),
+        "rugPlotHandler":getUrl("js/modules/rugPlotHandler.js"),
+        "numHistogramHndlr":getUrl("js/modules/numHistogramHndlr.js"),
+        "nominalGraphHndlr":getUrl("js/modules/nominalGraphHndlr.js"),
+        "categoryPlotHndlr":getUrl("js/modules/categoryPlotHndlr.js"),
+        "dataPanel":getUrl("js/dataPanel/viewDataPanel.js"),
+        "comparisionPanel":getUrl("js/comparisionPanel/viewComparisionPanel.js"),
+        "filterData":getUrl("js/filterData.js"),
+        "viewFilterPanel":getUrl("js/filterPanel/viewFilterPanel.js"),
+        "nominalView":getUrl("js/mainPanel/nominalGraph/nominalView.js"),
+        "nominalController":getUrl("js/mainPanel/nominalGraph/nominalController.js"),
+        "viewEventPanel":getUrl("js/filterPanel/viewEventPanel.js"),
+        "d3Parsets":getUrl("js/comparisionPanel/parsets.js"),
+        "numericalView":getUrl("js/mainPanel/numericalGraph/numericalView.js"),
+        "numericalController":getUrl("js/mainPanel/numericalGraph/numericalController.js"),
+        "stratifiedController":getUrl("js/mainPanel/stratifiedGraph/stratifiedController.js"),
+        "stratifiedView":getUrl("js/mainPanel/stratifiedGraph/stratifiedView.js"),
+        "scatterController":getUrl("js/mainPanel/scatterPlot/scatterController.js"),
+        "scatterView":getUrl("js/mainPanel/scatterPlot/scatterView.js"),
+        "scatterControl":getUrl("js/mainPanel/scatterPlot/scatterControl.js"),
+        "scatterViewer":getUrl("js/mainPanel/scatterPlot/scatterViewer.js"),
+        "wordCloudController":getUrl("js/mainPanel/wordGraph/wordCloudController.js"),
+        "wordCloudView":getUrl("js/mainPanel/wordGraph/wordCloudView.js"),
+        "rebinning":getUrl("js/rebinning.js"),
+        "global":getUrl("js/global.js"),
+        "nominalCheckBoxView":getUrl("js/mainPanel/nominalCheckBoxGraph/nominalCheckBoxView.js"),
+        "nominalCheckBoxController":getUrl("js/mainPanel/nominalCheckBoxGraph/nominalCheckBoxController")
     },
     shim: {
         "d3-tip":["d3"],
@@ -98,11 +115,11 @@ require(["require","controller", "split", "global"],
         //the new
         $("#reload").click(function() {
             loading_screen = window.pleaseWait({
-                logo: "public_html/img/content/800px-University_of_Utah_horizontal_logo.png",
+                logo: getUrl("img/content/800px-University_of_Utah_horizontal_logo.png"),
                 backgroundColor: '#FFFFFF',
                 loadingHtml: "<div>"
                     + "<style scoped>"
-                    + "\@import '\/public_html\/css\/loadingScreen.css';"
+                    + "\@import '" + getUrl('css/loadingScreen.css') + "';"
                     + "</style>"
                     + "<div class='spinner'>"
                     + " <div class='rect1'>&nbsp;</div>"

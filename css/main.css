@@ -310,16 +310,6 @@ body {
     background-position: 50%;
 }
 
-.gutter.gutter-horizontal {
-    cursor: col-resize;
-    background-image: url('../../bower_components/Split.js/grips/vertical.png');
-}
-
-.gutter.gutter-vertical {
-    cursor: row-resize;
-    background-image: url('../../bower_components/Split.js/grips/horizontal.png');
-}
-
 .split.split-horizontal, .gutter.gutter-horizontal {
     height: 100%;
     float: left;

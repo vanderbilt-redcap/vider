@@ -22,6 +22,7 @@
 <link href="<?= getUrl("css/ie10-viewport-bug-workaround.css"); ?>" rel="stylesheet"/>
 <link href="<?= getUrl("css/dashboard.css"); ?>" rel="stylesheet"/>
 <link href="<?= getUrl("css/main.css"); ?>" rel="stylesheet"/>
+<?php require_once("../css/main.php"); ?>
 <link href="<?= getUrl("css/d3Parsets.css"); ?>" rel="stylesheet"/>
 
 <link rel="stylesheet" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css"/>

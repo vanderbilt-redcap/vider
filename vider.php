@@ -59,6 +59,7 @@ header('X-Frame-Options: GOFORIT');
 <link rel="stylesheet" type="text/css" href="<?= getUrl("css/ie10-viewport-bug-workaround.css"); ?>">
 <link rel="stylesheet" type="text/css" href="<?= getUrl("css/dashboard.css"); ?>">
 <link rel="stylesheet" type="text/css" href="<?= getUrl("css/main.css"); ?>">
+<?php require_once("css/main.php") ?>
 <link rel="stylesheet" type="text/css" href="//rawgithub.com/Caged/d3-tip/master/examples/example-styles.css">
 <link rel="stylesheet" type="text/css" href="<?= getUrl("css/d3Parsets.css"); ?>">
 <link rel="stylesheet" type="text/css" href="<?= getUrl("bower_components/components-font-awesome/css/font-awesome.css"); ?>">

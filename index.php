@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(__FILE__)."/plugin-config.php");
+
 $pid = $_GET['pid'];
 
 if (isset($_POST['submit'])) {
@@ -11,7 +13,7 @@ if (isset($_POST['submit'])) {
 	if (($_POST['event'] != "") && ($_POST['event'] != "all___all")) {
 		$eventValue = "&event=".$_POST['event'];
 	}
-	header("Location: ".getUrl("vider.php?pid=$pid".$formValue.$eventValue));
+	header("Location: ".$module->getUrl("vider.php")."&pid=$pid".$formValue.$eventValue);
 } else {
 	$instruments = \REDCap::getInstrumentNames();
 

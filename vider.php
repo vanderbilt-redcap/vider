@@ -49,7 +49,7 @@ header('X-Frame-Options: GOFORIT');
     <title>ViDER - Visual Data Explorer For REDCap</title>
 </head>
 
-<script src='<?= getUrl("js/external/d3.v3.min.js"); ?>'></script>
+<script src='<?= getUrl("js/d3.v3.min.js"); ?>'></script>
 <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
 
 <link rel="stylesheet" type="text/css" href="<?= getUrl('bower_components/please-wait/build/please-wait.css'); ?>">
@@ -335,14 +335,15 @@ header('X-Frame-Options: GOFORIT');
     </div>
 </div>
 
-<script type="text/javascript" src="../bower_components/please-wait/build/please-wait.min.js"></script>
+Text: <?= getUrl("bower_components/please-wait/build/please-wait.min.js"); ?>
+<script type="text/javascript" src="<?= getUrl("bower_components/please-wait/build/please-wait.min.js"); ?>"></script>
 <script type="text/javascript">
     var loading_screen = window.pleaseWait({
-        logo: "img/vider.png",
+        logo: '<?= getUrl("img/vider.png") ?>',
         backgroundColor: '#FFFFFF',
         loadingHtml: "<div>"
                         + "<style scoped>"
-                        + "\@import 'css\/loadingScreen.css';"
+                        + "\@import '<?= getUrl("css\/loadingScreen.css") ?>';"
                         + "</style>"
                             + "<div class='spinner'>"
                                 + " <div class='rect1'>&nbsp;</div>"

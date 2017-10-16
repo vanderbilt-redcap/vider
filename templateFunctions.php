@@ -5,7 +5,7 @@
  * Date: 1/26/16
  * Time: 2:27 PM
  */
-require_once(realpath(dirname(__FILE__) . "/../config.php"));
+require_once(realpath(dirname(__FILE__) . "/config.php"));
 
 function renderLayoutWithContentFile($contentFile, $variables = array())
 {

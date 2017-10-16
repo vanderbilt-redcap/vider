@@ -8,7 +8,7 @@
 
 function getUrl($url) {
 	global $module;
-	$module->getUrl($url);
+	return $module->getUrl($url);
 }
 
 //give the path of the redcap_connect.php with

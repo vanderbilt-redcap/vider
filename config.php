@@ -19,6 +19,11 @@ defined("TEMPLATES_PATH")
 or define("TEMPLATES_PATH", realpath(dirname(__FILE__) . '/templates'));
 
 
+function getUrl($url) {
+    global $module;
+    return $module->getUrl($url);
+}
+
 /*
     Error reporting.
     Remove this error reporting for debugging application

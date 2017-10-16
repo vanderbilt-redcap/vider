@@ -170,7 +170,7 @@ define(["redCapData"],function(redCapData){
                 }
             }
         };
-        xmlhttpInstData.open("GET", getUrl("instruments.php)+suffix, true);
+        xmlhttpInstData.open("GET", getUrl("instruments.php")+suffix, true);
         xmlhttpInstData.send();
 
         //this function will make the AJAX cal to load the data

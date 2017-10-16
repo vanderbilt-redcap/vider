@@ -1,3 +1,28 @@
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    var components = url.split(/\?/);
+    if (components.length == 1) {
+        return null;
+    }
+    var paramPairs = components[1].split(/&/);
+    var params = {};
+    for (var i = 0; i < paramPairs.length; i++) {
+        var a = paramPairs[i].split(/=/);
+        if (a.length == 2) {
+            params[a[0]] = a[1];
+        }
+    }
+    if (!name) {
+        return params;
+    }
+
+    name = name.replace(/[\[\]]/g, "\\$;");
+    if (typeof params[name] != 'undefined') {
+        return decodeURIComponent(params[name].replace(/\+/g, " "));
+    }
+    return null;
+}
+
 /**
  * This method transforms the current URL into a new URL for the given page name
  * assumes that the given page name does not contain http://
@@ -9,7 +34,7 @@ function getUrl(page) {
 	var components = url.split(/\?/);
 	var main = components[0];
 
-	var pageTrunk = page.replace(/\.php.+$/, "");
+	var pageTrunk = page.replace(/\.php.*$/, "");
 
 	main += "?pid="+params['pid']+"&id="+params['id']+"&page="+pageTrunk;
 	return main;
@@ -22,11 +47,11 @@ requirejs.config({
         "split": getUrl("bower_components/Split.js/split.js"),
         "html2csv":getUrl("js/htmltocsv.js"),
         "paging":getUrl("js/paging.js"),
-        "bootstrap": getUrl("bower_components/bootstrap/dist/js/bootstrap.min.js")",
-        "colorbrewer": getUrl("bower_components/colorbrewer/colorbrewer.js")",
-        "d3": getUrl("bower_components/d3/d3.js")",
+        "bootstrap": getUrl("bower_components/bootstrap/dist/js/bootstrap.min.js"),
+        "colorbrewer": getUrl("bower_components/colorbrewer/colorbrewer.js"),
+        "d3": getUrl("bower_components/d3/d3.js"),
         "d3-tip": getUrl("bower_components/d3-tip/index.js"),
-        "d3-word-cloud": getUrl("view/mainPanel/wordGraph/d3.layout.cloud.js"),
+        "d3-word-cloud": getUrl("js/mainPanel/wordGraph/d3.layout.cloud.js"),
         "loadData":getUrl("js/loadData.js"),
         "redCapData":getUrl("js/redcapData.js"),
         "dataWrapper":getUrl("js/dataWrapper.js"),
@@ -71,7 +96,7 @@ requirejs.config({
         "rebinning":getUrl("js/rebinning.js"),
         "global":getUrl("js/global.js"),
         "nominalCheckBoxView":getUrl("js/mainPanel/nominalCheckBoxGraph/nominalCheckBoxView.js"),
-        "nominalCheckBoxController":getUrl("js/mainPanel/nominalCheckBoxGraph/nominalCheckBoxController")
+        "nominalCheckBoxController":getUrl("js/mainPanel/nominalCheckBoxGraph/nominalCheckBoxController.js")
     },
     shim: {
         "d3-tip":["d3"],

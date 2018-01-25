@@ -82,13 +82,13 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 fieldData['validation'] = _data[form].fields[field].obj.text_validation_type_or_show_slider_number;
                                 fieldData['chart'] = ''; 
                                 if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
-                                    fieldData['chart'] = '(Continuous Bar Chart)'; 
+                                    fieldData['chart'] = '(Histogram)'; 
                                 }
                                 else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
-                                    fieldData['chart'] = '(Categorical Bar Chart)'; 
+                                    fieldData['chart'] = '(Bar Chart)'; 
                                 }
                                 else if (fieldData['type'] === "checkbox") {
-                                    fieldData['chart'] = '(Categorical Bar Chart)'; 
+                                    fieldData['chart'] = '(Bar Chart)'; 
                                 }
                                 else if(fieldData['type'] === "text"){
                                     fieldData['chart'] = '(Word Cloud)'; 
@@ -144,13 +144,13 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     fieldData['validation'] = _data[d.formName].fields[d.variableName].obj.text_validation_type_or_show_slider_number;
                     fieldData['chart'] = 'ABCD'; 
                     if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
-                        fieldData['chart'] = '(Continuous Bar Chart)'; 
+                        fieldData['chart'] = '(Histogram)'; 
                     }
                     else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
-                        fieldData['chart'] = '(Categorical Bar Chart)'; 
+                        fieldData['chart'] = '(Bar Chart)'; 
                     }
                     else if (fieldData['type'] === "checkbox") {
-                        fieldData['chart'] = '(Categorical Bar Chart)'; 
+                        fieldData['chart'] = '(Bar Chart)'; 
                     }
                     else if(fieldData['type'] === "text"){
                         fieldData['chart'] = '(Word Cloud)'; 

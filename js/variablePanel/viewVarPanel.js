@@ -16,6 +16,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
             barWidth = width * 0.9;
 
         var varPanel = d3.select("#varPanel");
+        varPanel.prependTo("<h2>Choose Variables</h2>");
         var dataPanel = document.getElementById("dataPanel");
 
         var svgElement = varPanel.attr("width", "100%")
@@ -281,7 +282,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
                                 fo.append("xhtml:a")
                                     .attr("data-toggle","tooltip")
-                                    .attr("title","ABCDEFG")
+                                    .attr("title","Split screens to compare")
                                     .append("xhtml:i")
                                         .attr("class", 'fa fa-columns fa-2x')
                                         .attr("aria-hidden", 'true')
@@ -299,7 +300,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
                                 fo.append("xhtml:a")
                                     .attr("data-toggle","tooltip")
-                                    .attr("title","1234567")
+                                    .attr("title","Color all graphs by this datum")
                                     .append("xhtml:i")
                                         .attr("class", 'fa fa-tint fa-2x')
                                         //.style("font-size", "25")

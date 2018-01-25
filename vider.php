@@ -78,8 +78,8 @@ header('X-Frame-Options: GOFORIT');
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li id='scatterPlot'><a data-toggle="modal" data-target="#scatterPlotModal">Scatter Plot</a></li>
-                <li><a id="parallel-sets">Parallel Sets</a></li>
+                <li id='scatterPlot'><a data-toggle="modal" data-target="#scatterPlotModal">Add a Scatter Plot</a></li>
+                <li><a id="parallel-sets">Toggle Parallel Sets for Comparison</a></li>
                 <!-- <li><a id="data-panel">Data Panel</a></li> -->
                 <!-- <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li> -->
                 <li><a href="aboutus.html" target="_blank">About Us</a></li>
@@ -254,7 +254,7 @@ header('X-Frame-Options: GOFORIT');
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Settings</h4>
+                        <h4 class="modal-title">Settings for Scatter Plot (Continuous Data Only)</h4>
                     </div>
                     <div class="modal-body">
                         <form>

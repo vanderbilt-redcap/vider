@@ -282,7 +282,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
                                 fo.append("xhtml:a")
                                     .attr("data-toggle","tooltip")
-                                    .attr("title","Split screens to compare")
+                                    .attr("title","Stratify by category in this variable")
                                     .append("xhtml:i")
                                         .attr("class", 'fa fa-columns fa-2x')
                                         .attr("aria-hidden", 'true')
@@ -300,7 +300,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
                                 fo.append("xhtml:a")
                                     .attr("data-toggle","tooltip")
-                                    .attr("title","Color all graphs by this datum")
+                                    .attr("title","Color partitions in all graphs by this variable")
                                     .append("xhtml:i")
                                         .attr("class", 'fa fa-tint fa-2x')
                                         //.style("font-size", "25")
@@ -462,7 +462,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     var prefix = "";
                     if (!d.variable) {
                         // form
-                        prefix = "Fields for ";
+                        prefix = "Fields for Form ";
                     }
                     return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "");
                 });

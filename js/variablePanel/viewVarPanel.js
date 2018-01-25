@@ -344,10 +344,16 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                     .on("click", _click)
                             }
                             else {
-                                fo.append("xhtml:i")
-                                    .attr("class", 'fa fa-plus fa-2x')
-                                    .attr("aria-hidden", 'true')
-                                    .on("click", _click)
+                                fo.append("xhtml:a")
+                                    .attr("href", "#")
+                                    .attr("data-toggle", "tooltip")
+                                    .attr("title", "Add a visualization")
+                                    .attr("data-placement", "top")
+                                    .attr("class", "custom-tooltip")
+                                    .append("xhtml:i")
+                                        .attr("class", 'fa fa-plus fa-2x')
+                                        .attr("aria-hidden", 'true')
+                                        .on("click", _click)
                             }
                         }
                     }
@@ -449,7 +455,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                 })
                 .text(function(d){
                     var name = stripHtml(d.Name);
-                    return  name.substring(0,30) +  (name.length > 30 ? "..." : "");
+                    return "Fields for "+ name.substring(0,30) +  (name.length > 30 ? "..." : "");
                 });
 
             nodeEnter.append("g")

@@ -467,54 +467,57 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "");
                 });
 
-            nodeEnter.append("g")
-                .classed("varPlotGraphDisplay",true)
-                .attr("transform", "translate(" + 5 + "," + 5 + ")")
-                .each(function(d){
-                    if (d.type === "text" && d.validation === "integer" ) {
-                        flag = false;
-                        rugPlotHandler.create(d3.select(this), d.data);
-                    }
-                    else if( d.type === "text" && d.validation === "number" ) {
-                        flag = false;
-                        rugPlotHandler.create(d3.select(this), d.data);
-                    }
-                    else if(d.type === "dropdown" ||d.type === "radio" ){
-
-                        var keyValuePair = {};
-                        var formName = d.form;
-                        var varName = d.variable;
-                        var varObj = data[formName].fields[varName].obj;
-                        var varData = data[formName].fields[varName].data;
-                        var categories = varObj.select_choices_or_calculations.split("|");
-
-                        //
-                        categories.forEach(function(cat){
-                            var pair = cat.split(",");
-                            var key = pair[0].trim();
-                            var value = pair[1].trim();
-
-                            //this will store the key
-                            //value pair
-                            keyValuePair[key] = {
-                                value: value, //category
-                                count: 0      //counter
-                            }
-                        });
-
-                        //add extra handling for empty fields
-                        keyValuePair[""] = {
-                            value: "",
-                            count: 0
+            nodeEnter.append("a")
+                .attr("data-toggle","tooltip")
+                .attr("title","Add a bar graph")
+                .append("g")
+                    .classed("varPlotGraphDisplay",true)
+                    .attr("transform", "translate(" + 5 + "," + 5 + ")")
+                    .each(function(d){
+                        if (d.type === "text" && d.validation === "integer" ) {
+                            flag = false;
+                            rugPlotHandler.create(d3.select(this), d.data);
                         }
-
-                        //increment the counter for all
-                        varData.forEach(function(data){
-                            keyValuePair[data].count++;
-                        })
-                        categoryPlotHndlr.create(d3.select(this), d3.values(keyValuePair));
-                    }
-                });
+                        else if( d.type === "text" && d.validation === "number" ) {
+                            flag = false;
+                            rugPlotHandler.create(d3.select(this), d.data);
+                        }
+                        else if(d.type === "dropdown" ||d.type === "radio" ){
+    
+                            var keyValuePair = {};
+                            var formName = d.form;
+                            var varName = d.variable;
+                            var varObj = data[formName].fields[varName].obj;
+                            var varData = data[formName].fields[varName].data;
+                            var categories = varObj.select_choices_or_calculations.split("|");
+    
+                            //
+                            categories.forEach(function(cat){
+                                var pair = cat.split(",");
+                                var key = pair[0].trim();
+                                var value = pair[1].trim();
+    
+                                //this will store the key
+                                //value pair
+                                keyValuePair[key] = {
+                                    value: value, //category
+                                    count: 0      //counter
+                                }
+                            });
+    
+                            //add extra handling for empty fields
+                            keyValuePair[""] = {
+                                value: "",
+                                count: 0
+                            }
+        
+                            //increment the counter for all
+                            varData.forEach(function(data){
+                                keyValuePair[data].count++;
+                            })
+                            categoryPlotHndlr.create(d3.select(this), d3.values(keyValuePair));
+                        }
+                    });
 
             // Transition nodes to their new position.
             nodeEnter.transition()

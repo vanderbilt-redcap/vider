@@ -80,6 +80,19 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 fieldData['variable'] = _data[form].fields[field].obj.field_name;
                                 fieldData['type'] = _data[form].fields[field].obj.field_type;
                                 fieldData['validation'] = _data[form].fields[field].obj.text_validation_type_or_show_slider_number;
+                                fieldData['chart'] = 'ABCD'; 
+                                if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
+                                    fieldData['chart'] = '(Continuous Bar Chart)'; 
+                                }
+                                else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
+                                    fieldData['chart'] = '(Categorical Bar Chart)'; 
+                                }
+                                else if (fieldData['type'] === "checkbox") {
+                                    fieldData['chart'] = '(Categorical Bar Chart)'; 
+                                }
+                                else if(fieldData['type'] === "text"){
+                                    fieldData['chart'] = '(Word Cloud)'; 
+                                }
                                 fieldData['Name'] = _data[form].fields[field].obj.field_label;
                                 fieldData['id'] = field;
                                 fieldData['data'] = _data[form].fields[field].data;

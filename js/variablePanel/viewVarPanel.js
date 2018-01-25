@@ -431,7 +431,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         }
                     }
 
-                    if(d.Name.length > 30) {
+                    if(d.Name.length > 20) {
                         global.tips.numTextTip.show(d.Name);
                     }
                 })
@@ -494,7 +494,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     if (d.chart) {
                         suffix = " " + d.chart;
                     }
-                    return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "") + suffix;
+                    return prefix + name.substring(0,20) +  (name.length > 20 ? "..." : "") + suffix;
                 });
 
             nodeEnter.append("g")

@@ -467,10 +467,9 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "");
                 });
 
-            nodeEnter
-               //  .append("xhtml:a")
-                // .attr("data-toggle","tooltip")
-                // .attr("title","Add a bar graph")
+            nodeEnter.append("a")
+                .attr("data-toggle","tooltip")
+                .attr("title","Add a bar graph")
                 .append("g")
                     .classed("varPlotGraphDisplay",true)
                     .attr("transform", "translate(" + 5 + "," + 5 + ")")

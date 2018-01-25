@@ -487,7 +487,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     var name = stripHtml(d.Name);
                     var prefix = "";
                     var suffix = "";
-                    if (!d.variable) {
+                    if (name && !d.variable) {
                         // form
                         prefix = "Fields for Form ";
                     }

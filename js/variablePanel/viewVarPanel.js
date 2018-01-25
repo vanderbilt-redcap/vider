@@ -128,6 +128,20 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     fieldData['form'] = d.formName;
                     fieldData['variable'] = _data[d.formName].fields[d.variableName].obj.field_name;
                     fieldData['type'] = _data[d.formName].fields[d.variableName].obj.field_type;
+                    if (fieldData['type'] === "text" && (validationType === "number" || validationType === "integer")) {
+                        fieldData['chart'] = '(Continuous Bar Chart)'; 
+                    }
+                    else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
+                        fieldData['chart'] = '(Categorical Bar Chart)'; 
+                    }
+                    else if (fieldData['type'] === "checkbox") {
+                        fieldData['chart'] = '(Categorical Bar Chart)'; 
+                    }
+                    else if(fieldData['type'] === "text"){
+                        fieldData['chart'] = '(Word Cloud)'; 
+                    } else {
+                        fieldData['chart'] = ''; 
+                    }
                     fieldData['validation'] = _data[d.formName].fields[d.variableName].obj.text_validation_type_or_show_slider_number;
                     fieldData['Name'] = _data[d.formName].fields[d.variableName].obj.field_label;
                     fieldData['id'] = "sel" + d.variableName;
@@ -460,11 +474,15 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                 .text(function(d){
                     var name = stripHtml(d.Name);
                     var prefix = "";
+                    var suffix = "";
                     if (!d.variable) {
                         // form
                         prefix = "Fields for Form ";
                     }
-                    return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "");
+                    if (d.chart) {
+                        suffix = " "+d.chart;
+                    }
+                    return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "") + suffix;
                 });
 
             nodeEnter.append("g")

@@ -82,7 +82,7 @@ header('X-Frame-Options: GOFORIT');
                 <li><a id="parallel-sets">Parallel Sets</a></li>
                 <!-- <li><a id="data-panel">Data Panel</a></li> -->
                 <!-- <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li> -->
-                <li><a href="aboutus.html" target="_blank">About Us</a></li>
+                <li><a href="<?= getUrl("aboutus.html"); ?>" target="_blank">About Us</a></li>
             </ul>
 <!--            <form class="navbar-form navbar-right">-->
 <!--                <input type="text" class="form-control" placeholder="Search...">-->
@@ -335,7 +335,6 @@ header('X-Frame-Options: GOFORIT');
     </div>
 </div>
 
-Text: <?= getUrl("bower_components/please-wait/build/please-wait.min.js"); ?>
 <script type="text/javascript" src="<?= getUrl("bower_components/please-wait/build/please-wait.min.js"); ?>"></script>
 <script type="text/javascript">
     var loading_screen = window.pleaseWait({

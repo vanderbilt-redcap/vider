@@ -44,7 +44,7 @@ define(["d3","d3-tip","colorbrewer"],function(d3,d3tip,colorbrewer) {
             instance = new Global();
 
             //get the site name
-            instance.baseURL = window.location.href.split('?')[0];
+            instance.baseURL = window.location.href.split('?')[0]+"?pid="+getParameterByName("pid")+"&id="+getParameterByName("id")+"&page="+getParameterByName("page");
 
             //store the pid when system initialize
             instance.pid = getParameterByName("pid");

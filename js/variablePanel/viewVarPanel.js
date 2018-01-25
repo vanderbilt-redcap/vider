@@ -16,7 +16,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
             barWidth = width * 0.9;
 
         var varPanel = d3.select("#varPanel");
-        $("#left-top").prepend("<h2>Choose Variables</h2><p>Chart/Plot, Recolor, &amp; Stratify</p>");
+        $("#left-top").prepend("<h2 style='margin-top: 0px;'>Choose Variables</h2><h3 style='margin-top: 0px;'>Chart/Plot, Recolor, &amp; Stratify</h3>");
         var dataPanel = document.getElementById("dataPanel");
 
         var svgElement = varPanel.attr("width", "100%")

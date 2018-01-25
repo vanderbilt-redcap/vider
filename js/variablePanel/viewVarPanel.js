@@ -431,7 +431,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         }
                     }
 
-                    if(d.Name.length > 20) {
+                    if(d.Name.length > 25) {
                         global.tips.numTextTip.show(d.Name);
                     }
                 })
@@ -487,14 +487,14 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     var name = stripHtml(d.Name);
                     var prefix = "";
                     var suffix = "";
-                    if (name && !d.variable) {
+                    if (name && name != 'Selected Variables' && !d.variable) {
                         // form
                         prefix = "Fields for Form ";
                     }
                     if (d.chart) {
                         suffix = " " + d.chart;
                     }
-                    return prefix + name.substring(0,20) +  (name.length > 20 ? "..." : "") + suffix;
+                    return prefix + name.substring(0,25) +  (name.length > 25 ? "..." : "") + suffix;
                 });
 
             nodeEnter.append("g")

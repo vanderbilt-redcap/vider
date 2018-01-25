@@ -16,7 +16,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
             barWidth = width * 0.9;
 
         var varPanel = d3.select("#varPanel");
-        varPanel.prependTo("<h2>Choose Variables</h2>");
+        $("<h2>Choose Variables</h2>").prependTo("#varPanel");
         var dataPanel = document.getElementById("dataPanel");
 
         var svgElement = varPanel.attr("width", "100%")

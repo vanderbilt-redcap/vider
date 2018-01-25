@@ -347,13 +347,11 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                     numericalController.create(d, data, container.htmlDiv, isQueried);
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
-                    console.log(666666)
                     var container = self.createContainer(d.formName, d.variableName);
                     var isQueried = self.isQueried[d.formName].variable[d.variableName].status;
                     nominalController.create(d, data, container.htmlDiv, isQueried);
                 }
                 else if (fieldType === "checkbox") {
-                    console.log(7777777)
                     var container = self.createContainer(d.formName, d.variableName);
                     var isQueried = self.isQueried[d.formName].variable[d.variableName].status;
                     nominalCheckBoxController.create(d, data, container.htmlDiv, isQueried);

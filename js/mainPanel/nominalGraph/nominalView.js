@@ -38,7 +38,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"],
          */
         var init = function () {
 
-            console.log(22222222);
             var self = this;
 
             //strat

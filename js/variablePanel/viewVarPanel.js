@@ -294,14 +294,20 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                     .style("visibility", 'hidden');
 
 
-                                fo.append("xhtml:i")
-                                    .attr("class", 'fa fa-tint fa-2x')
-                                    //.style("font-size", "25")
-                                    .attr("aria-hidden", 'true')
-                                    .on("click", function (d) {
-                                        require("filterData").setColorBy(d.form, d.variable);
-                                        require("view").updateNewState(require("stateCtrl").top());
-                                    });
+                                fo.append("xhtml:a")
+                                    .attr("href", "javascript:;")
+                                    .attr("data-toggle", "tooltip")
+                                    .attr("title", "Change color")
+                                    .attr("data-placement", "top")
+                                    .attr("class", "custom-tooltip")
+                                    .append("xhtml:i")
+                                        .attr("class", 'fa fa-tint fa-2x')
+                                        //.style("font-size", "25")
+                                        .attr("aria-hidden", 'true')
+                                        .on("click", function (d) {
+                                            require("filterData").setColorBy(d.form, d.variable);
+                                            require("view").updateNewState(require("stateCtrl").top());
+                                        });
                             }
                             else{
                                 fo.append("xhtml:i")
@@ -345,7 +351,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                             }
                             else {
                                 fo.append("xhtml:a")
-                                    .attr("href", "#")
+                                    .attr("href", "javscript:;")
                                     .attr("data-toggle", "tooltip")
                                     .attr("title", "Add a visualization")
                                     .attr("data-placement", "top")
@@ -457,6 +463,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     var name = stripHtml(d.Name);
                     var prefix = "";
                     if (!d.variable) {
+                        // form
                         prefix = "Fields for ";
                     }
                     return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "");

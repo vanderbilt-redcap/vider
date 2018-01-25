@@ -279,14 +279,17 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                     .attr("aria-hidden", 'true')
                                     .style("visibility", 'hidden');
 
-                                fo.append("xhtml:i")
-                                    .attr("class", 'fa fa-columns fa-2x')
-                                    .attr("aria-hidden", 'true')
-                                    //.style("font-size", "25")
-                                    .on("click", function (d) {
-                                        require("filterData").setStrat(d.form, d.variable);
-                                        require("view").updateNewState(require("stateCtrl").top());
-                                    })
+                                fo.append("xhtml:a")
+                                    .attr("data-toggle","tooltip")
+                                    .attr("title","ABCDEFG")
+                                    .append("xhtml:i")
+                                        .attr("class", 'fa fa-columns fa-2x')
+                                        .attr("aria-hidden", 'true')
+                                        //.style("font-size", "25")
+                                        .on("click", function (d) {
+                                            require("filterData").setStrat(d.form, d.variable);
+                                            require("view").updateNewState(require("stateCtrl").top());
+                                        })
 
                                 fo.append("xhtml:i")
                                     .attr("class", 'fa fa-columns')
@@ -295,11 +298,8 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
 
                                 fo.append("xhtml:a")
-                                    .attr("href", "javascript:;")
-                                    .attr("data-toggle", "tooltip")
-                                    .attr("title", "Change color")
-                                    .attr("data-placement", "top")
-                                    .attr("class", "custom-tooltip")
+                                    .attr("data-toggle","tooltip")
+                                    .attr("title","1234567")
                                     .append("xhtml:i")
                                         .attr("class", 'fa fa-tint fa-2x')
                                         //.style("font-size", "25")
@@ -351,11 +351,8 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                             }
                             else {
                                 fo.append("xhtml:a")
-                                    .attr("href", "javscript:;")
-                                    .attr("data-toggle", "tooltip")
-                                    .attr("title", "Add a visualization")
-                                    .attr("data-placement", "top")
-                                    .attr("class", "custom-tooltip")
+                                    .attr("data-toggle","tooltip")
+                                    .attr("title","Add a visualization")
                                     .append("xhtml:i")
                                         .attr("class", 'fa fa-plus fa-2x')
                                         .attr("aria-hidden", 'true')

@@ -128,7 +128,9 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     fieldData['form'] = d.formName;
                     fieldData['variable'] = _data[d.formName].fields[d.variableName].obj.field_name;
                     fieldData['type'] = _data[d.formName].fields[d.variableName].obj.field_type;
-                    if (fieldData['type'] === "text" && (validationType === "number" || validationType === "integer")) {
+                    fieldData['validation'] = _data[d.formName].fields[d.variableName].obj.text_validation_type_or_show_slider_number;
+                    fieldData['chart'] = 'ABCD'; 
+                    if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
                         fieldData['chart'] = '(Continuous Bar Chart)'; 
                     }
                     else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
@@ -139,10 +141,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     }
                     else if(fieldData['type'] === "text"){
                         fieldData['chart'] = '(Word Cloud)'; 
-                    } else {
-                        fieldData['chart'] = ''; 
                     }
-                    fieldData['validation'] = _data[d.formName].fields[d.variableName].obj.text_validation_type_or_show_slider_number;
                     fieldData['Name'] = _data[d.formName].fields[d.variableName].obj.field_label;
                     fieldData['id'] = "sel" + d.variableName;
                     fieldData['data'] = _data[d.formName].fields[d.variableName].data;
@@ -479,9 +478,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         // form
                         prefix = "Fields for Form ";
                     }
-                    if (d.chart) {
-                        suffix = " "+d.chart;
-                    }
+                    suffix = " CHART " + d.chart;
                     return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "") + suffix;
                 });
 

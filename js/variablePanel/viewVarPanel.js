@@ -459,7 +459,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     if (!d.Variable) {
                         prefix = "Fields for ";
                     }
-                    return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "");
+                    return JSON.stringify(d) + name.substring(0,30) +  (name.length > 30 ? "..." : "");
                 });
 
             nodeEnter.append("g")

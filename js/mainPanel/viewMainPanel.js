@@ -364,8 +364,6 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                     wordCloudController.create(d, data, container.htmlDiv, isQueried);
                 }
 
-                console.log("1");
-
                 //mark the form and variables to delete
                 if (varToD3Container.hasOwnProperty(d.formName)
                     && varToD3Container[d.formName].variables.hasOwnProperty(d.variableName)) {

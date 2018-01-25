@@ -112,8 +112,6 @@ define(["jquery",  "d3-tip", "d3", "d3-word-cloud",
 
         var self = this;
 
-        console.log(stratData);
-
         var svg = sel.selectAll("svg").data(stratData);
         svg.enter().append("svg");
         svg.exit().remove();

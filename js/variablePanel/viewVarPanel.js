@@ -80,7 +80,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 fieldData['variable'] = _data[form].fields[field].obj.field_name;
                                 fieldData['type'] = _data[form].fields[field].obj.field_type;
                                 fieldData['validation'] = _data[form].fields[field].obj.text_validation_type_or_show_slider_number;
-                                fieldData['chart'] = 'ABCD'; 
+                                fieldData['chart'] = ''; 
                                 if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
                                     fieldData['chart'] = '(Continuous Bar Chart)'; 
                                 }
@@ -491,7 +491,9 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         // form
                         prefix = "Fields for Form ";
                     }
-                    suffix = " CHART " + d.chart;
+                    if (d.chart) {
+                        suffix = " " + d.chart;
+                    }
                     return prefix + name.substring(0,30) +  (name.length > 30 ? "..." : "") + suffix;
                 });
 

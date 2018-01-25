@@ -468,13 +468,13 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                 });
 
             nodeEnter
-            .append("foreignObject")
-            .append("xhtml:a")
-                .attr("data-toggle","tooltip")
-                .attr("title","Add a bar graph")
-            .append("xhtml:svg")
-                .attr("width", "205px")
-                .attr("height", "15px")
+            // .append("foreignObject")
+            // .append("xhtml:a")
+                // .attr("data-toggle","tooltip")
+                // .attr("title","Add a bar graph")
+            // .append("xhtml:svg")
+                // .attr("width", "205px")
+                // .attr("height", "15px")
             .append("g")
                 .classed("varPlotGraphDisplay",true)
                 .attr("transform", "translate(" + 5 + "," + 5 + ")")

@@ -28,8 +28,8 @@ define(["jquery",  "d3-tip", "d3", "d3-word-cloud",
 
     var textWidth = 80;
     var margin = {top: 40, right: 20, bottom: 60, left: 80},
-        width = 750 - margin.left - margin.right,
-        height = 700;
+        width = 500 - margin.left - margin.right,
+        height = 750;
 
     var transDuration = 1000;
     //call the numerical histogram handle

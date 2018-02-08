@@ -642,6 +642,7 @@
     }
   };
   d3_selectionPrototype.attr = function(name, value) {
+    console.log("attr1 "+value);
     if (arguments.length < 2) {
       if (typeof name === "string") {
         var node = this.node();
@@ -8701,6 +8702,7 @@
     }));
   }
   d3_transitionPrototype.attr = function(nameNS, value) {
+    console.log("attr2 "+value);
     if (arguments.length < 2) {
       for (value in nameNS) this.attr(value, nameNS[value]);
       return this;

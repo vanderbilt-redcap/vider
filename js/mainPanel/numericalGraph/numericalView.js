@@ -469,6 +469,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     console.log("parentNode x2: "+JSON.stringify(this.parentNode.parentNode));
                     console.log("datum: "+JSON.stringify(d3.select(this.parentNode.parentNode).datum()));
                     console.log("xScale: "+JSON.stringify(xScale));
+                    console.log("xScale(0): "+JSON.stringify(xScale(0)));
+                    console.log("xScale(d.originalCount): "+JSON.stringify(xScale(d.originalCount)));
                     return Math.abs(xScale(d.originalCount) - xScale(0));
                 });
 

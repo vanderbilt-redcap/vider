@@ -514,7 +514,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         for (var i = 0; i < d.data.length; i++) {
                             if (d.data[i]) {
                                 var dateAry = new Array(1970, 1, 1);
-                                var sections = d.data[i].split(/\s/);
+                                var sections = String(d.data[i]).split(/\s/);
                                 var dnodes = sections[0].split(/-/);
                                 var tnodes = new Array(0, 0, 0);
                                 if (sections.length >= 2) {

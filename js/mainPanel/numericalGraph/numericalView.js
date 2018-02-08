@@ -421,11 +421,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .attr("opacity", 1);
 
             textEnter.text(function (d) {
-                if(d.length <= 23 ) {
+                if(d.length <= 13 ) {
                     return d;
                 }
                 else{
-                    return d.substring(0,20) + "...";
+                    return d.substring(0,10) + "...";
                 }
             }).attr("x", textWidth - 10)
                 // dy is a shift along the y axis

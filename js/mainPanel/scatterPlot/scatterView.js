@@ -270,8 +270,8 @@ define(["require", "colorbrewer", "filterData", "dataWrapper",
                 dot.transition()
                     .duration(1000)
                     .attr({
-                        "cx": function(d) { return self.x(1000 + d[0]); }
-                        , "cy": function(d) { return self.y(10000 + d[1]); }
+                        "cx": function(d) { return self.x(d[0]); }
+                        , "cy": function(d) { return self.y(d[1]); }
                         , "r": 3.5
                     });
                 // enter
@@ -290,10 +290,10 @@ define(["require", "colorbrewer", "filterData", "dataWrapper",
                         return i / d.data.length * 500;
                     })
                     .attr("cx", function(d) {
-                        return self.x(d[0]);
+                        return self.x(1000 + d[0]);
                     })
                     .attr("cy", function(d) {
-                        return self.y(d[1]);
+                        return self.y(10000 + d[1]);
                     })
                     .attr("fill", function(e, i){
                         //console.log('Inside Fill attribute - ', self.colVals[i], i);

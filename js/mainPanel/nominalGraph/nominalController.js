@@ -237,7 +237,7 @@ define(["nominalView", "dataWrapper", "filterData"],
                 var fieldType = colorObj.field_type;
                 var validationType = colorObj.text_validation_type_or_show_slider_number;
 
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer")) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
                     var categories = getNumericalCategories(colorData, colorObj);
                     categories.forEach(function (cat) {
                         var key = cat.x;
@@ -305,7 +305,7 @@ define(["nominalView", "dataWrapper", "filterData"],
         var getDataType = function(obj){
             var fieldType = obj.field_type;
             var validationType = obj.text_validation_type_or_show_slider_number;
-            if (fieldType == "text" && (validationType === "number" || validationType === "integer")) {
+            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
                 return "NUMERICAL";
             }
             else if (fieldType === "dropdown" || fieldType === "radio") {
@@ -345,7 +345,7 @@ define(["nominalView", "dataWrapper", "filterData"],
                 //for each category
                 var fieldType = self.varObj.field_type;
                 var validationType = self.varObj.text_validation_type_or_show_slider_number;
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer")) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
                     self.type = 1; //one for numerical
                     generateNumericalStructure(origKeyValuePair);
                 }
@@ -497,7 +497,7 @@ define(["nominalView", "dataWrapper", "filterData"],
 
                 var fieldType = self.varObj.field_type;
                 var validationType = self.varObj.text_validation_type_or_show_slider_number;
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer")) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
                     self.type = 1; //one for numerical
                     generateNumericalStructure(origKeyValuePair);
                 }
@@ -655,7 +655,7 @@ define(["nominalView", "dataWrapper", "filterData"],
 
                 var fieldType = stratObj.field_type;
                 var validationType = stratObj.text_validation_type_or_show_slider_number;
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer")) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
                     stratCategories = getNumericalCategories(self.stratData, stratObj);
                     createNumericalStratObj(stratCategories,stratDataObj);
                 }

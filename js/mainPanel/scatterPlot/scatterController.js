@@ -414,6 +414,7 @@ define(["scatterView", "viewVariablePanel", "filterData", "d3-tip", "rugPlotHand
                     }
                     else if( d.type === "text" && d.validation.match(/^date_/) ) {
                         flag = false;
+                        console.log(JSON.stringify(d.data));
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
                     else if(d.type === "dropdown" ||d.type === "radio" ){

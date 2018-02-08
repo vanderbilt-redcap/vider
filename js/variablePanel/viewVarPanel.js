@@ -72,7 +72,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                             var fieldType = data[form].fields[field].obj.field_type;
                             var validationType = data[form].fields[field].obj.text_validation_type_or_show_slider_number;
 
-                            if ((fieldType === "text" && (validationType === "number" || validationType === "integer"))
+                            if ((fieldType === "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/)))
                                 || (fieldType === "dropdown" || fieldType === "radio" || fieldType == "checkbox")
                                 || fieldType === "text") {
 
@@ -81,7 +81,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 fieldData['type'] = _data[form].fields[field].obj.field_type;
                                 fieldData['validation'] = _data[form].fields[field].obj.text_validation_type_or_show_slider_number;
                                 fieldData['chart'] = ''; 
-                                if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
+                                if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer") || fieldData['validation'].match(/^date_/)) {
                                     fieldData['chart'] = '(Histogram)'; 
                                 }
                                 else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
@@ -143,7 +143,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     fieldData['type'] = _data[d.formName].fields[d.variableName].obj.field_type;
                     fieldData['validation'] = _data[d.formName].fields[d.variableName].obj.text_validation_type_or_show_slider_number;
                     fieldData['chart'] = 'ABCD'; 
-                    if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer")) {
+                    if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer") || fieldData['validation'].match(/^date_/)) {
                         fieldData['chart'] = '(Histogram)'; 
                     }
                     else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
@@ -507,6 +507,11 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     }
                     else if( d.type === "text" && d.validation === "number" ) {
                         flag = false;
+                        rugPlotHandler.create(d3.select(this), d.data);
+                    }
+                    else if( d.type === "text" && d.validation.match(/^date_/) ) {
+                        flag = false;
+			console.log(JSON.stringify(d.data));
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
                     else if(d.type === "dropdown" ||d.type === "radio" ){

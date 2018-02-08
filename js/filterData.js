@@ -509,7 +509,50 @@ define(["require","stateCtrl" , "dataWrapper"],function(require,stateCtrl,dataWr
         var fieldType = self.data[_formName].fields[_varName].obj.field_type;
         var validationType = self.data[_formName].fields[_varName].obj.text_validation_type_or_show_slider_number;
 
-        if (fieldType === "text" && (validationType === "number" || validationType === "integer")) {
+        if (fieldType === "text" && (validationType.match(/^date_/))) {
+            if (!self.forms.hasOwnProperty(_formName)) {
+                self.forms[_formName] = {
+                    "label": self.data[_formName].label,
+                    "variables": {}
+                };
+            }
+
+            if (!self.forms[_formName].variables.hasOwnProperty(_varName)) {
+                self.forms[_formName].variables[_varName] = {
+                    "label": self.data[_formName].fields[_varName].obj.field_label,
+                    "form": _formName,
+                    "var": _varName,
+                    "type": NUMERICAL,
+                    "selections": [],
+                    "queryData": []
+                }
+            }
+
+            var operation = AND;
+            if (event.altKey) {
+                operation = NOT;
+            }
+
+            if (!self.forms[_formName].variables[_varName].selections.hasOwnProperty(_selection.x)) {
+                self.forms[_formName].variables[_varName].selections[_selection.x] = {
+                    "form": _formName,
+                    "var": _varName,
+                    "value": 1000 + _selection.x,
+                    "data": _selection,
+                    "label": (_selection.x).toString() + " - " + (_selection.x + _selection.dx).toString(),//this will contain the label for filtering information
+                    "opr": operation,
+                    "state": -1,
+                    "filterOperation": _filterOperation
+
+                }
+            }
+
+            //this will manage the state
+            var state = self.forms[_formName].variables[_varName].selections[_selection.x].state;
+            state = state < self.operation ? self.operation : state;
+            self.forms[_formName].variables[_varName].selections[_selection.x].state = state;
+	}
+        else if (fieldType === "text" && (validationType === "number" || validationType === "integer")) {
             if (!self.forms.hasOwnProperty(_formName)) {
                 self.forms[_formName] = {
                     "label": self.data[_formName].label,

@@ -138,7 +138,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                     //task
                     oprDiv.append("div")
                         .classed("col-xs-1", true)
-                        .append("a").attr("data-toggle","tooltip").attr("title","Re-Bin")
+                        .append("a").attr("data-toggle","tooltip").attr("title","Re-Categorize")
                         .append("span")
                         .attr("class", "glyphicon glyphicon-object-align-left")
                         .on("click", function () {
@@ -153,7 +153,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                     //task
                     oprDiv.append("div")
                         .classed("col-xs-1", true)
-                        .append("a").attr("data-toggle","tooltip").attr("title","Reset Bin")
+                        .append("a").attr("data-toggle","tooltip").attr("title","Reset Cloud")
                         .append("span")
                         .attr("class", "glyphicon glyphicon-retweet")
                         .on("click", function () {

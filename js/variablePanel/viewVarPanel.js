@@ -549,10 +549,9 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                     dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
                                 }
                                 var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));  
-                                d.data[i] = date.getTime();
+                                d.data[i] = date.getTime() / 1000;
                             }
                         }
-                        console.log("d.data [out]: "+JSON.stringify(d.data));
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
                     else if(d.type === "dropdown" ||d.type === "radio" ){

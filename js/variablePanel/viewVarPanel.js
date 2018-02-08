@@ -511,7 +511,6 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     }
                     else if( d.type === "text" && d.validation.match(/^date/) ) {
                         flag = false;
-                        console.log("d.data [in]: "+JSON.stringify(d.data));
                         for (var i = 0; i < d.data.length; i++) {
                             if (d.data[i]) {
                                 var dateAry = new Array(1970, 1, 1);

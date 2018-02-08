@@ -166,14 +166,10 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);
-                console.log("domain: "+domain[0]+" "+domain[1]);
                 var yTotalData = d3.layout.histogram()
                     .bins(domain.ticks(10))//this will take the partitions
                     (self.varData);
                 self.categories = yTotalData;
-                console.log("min: "+Math.min.apply(Math, self.varData));
-                console.log("max: "+Math.max.apply(Math, self.varData));
-                console.log("categories[0].x: "+self.categories[0].x+" "+self.categories[0].dx);
             }
 
             var keyIndex = 0;
@@ -260,10 +256,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             if (self.type == 1) {
                 for (var i = 0; i < self.categories.length; i++) {
                     var d = self.categories[i];
-                    console.log(i+": d.x: "+d.x+" d.dx: "+d.dx+" value: "+value);
                     if (d.x <= value && value < (d.x + d.dx)) {
                         key = d.x;
-                        console.log("Found key "+key);
                         break;
                     }
                 }
@@ -583,12 +577,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var filterHover = filterData.getHoverArr();
                 var isHovered = (filterHover != null && filterHover.length > 0);
 
-                console.log("varData.length: "+self.varData.length);
-                console.log("filterCount: "+filterCount);
                 for (var i = 0; i < self.varData.length; i++) {
                     //this key is good for nominal data
                     var key = getKey(self.varData[i]);
-                    console.log(i+": "+self.varData[i]+" "+key);
 
                     if( key == null) continue;
 
@@ -597,7 +588,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                     if (!self.isQueried) {
                         origKeyValuePair[key].originalCount++;
-                        console.log("A");
 
                         //if color by obj
                         var colorBy = filterData.getColorBy();
@@ -663,9 +653,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         if (self.eventRecordsObj != null && origKeyValuePair[key].event.hasOwnProperty(self.eventRecordsObj[i])) {
                             origKeyValuePair[key].event[self.eventRecordsObj[i]].count++;
                         }
-                    }
-                    else {
-                        console.log(i+": "+JSON.stringify(filtering));
                     }
 
                     if ((null != filterHover && true == filterHover[i])

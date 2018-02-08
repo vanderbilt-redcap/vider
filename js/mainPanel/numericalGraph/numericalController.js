@@ -256,7 +256,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             if (self.type == 1) {
                 for (var i = 0; i < self.categories.length; i++) {
                     var d = self.categories[i];
-                    console.log(i+": d.x: "+d.x+" d.dx: "+d.dx+ value: "+value);
+                    console.log(i+": d.x: "+d.x+" d.dx: "+d.dx+" value: "+value);
                     if (d.x <= value && value < (d.x + d.dx)) {
                         key = d.x;
                         console.log("Found key "+key);

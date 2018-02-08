@@ -63,7 +63,7 @@ define(["require", "colorbrewer", "filterData", "dataWrapper",
 
             self.margin = {top: 30, right: 20, bottom: 60, left: 40},
             self.width = 750 - self.margin.left - self.margin.right,
-            self.height = 700 + self.margin.top + self.margin.bottom;
+            self.height = 500 + self.margin.top + self.margin.bottom;
 
             self.x = d3.scale.linear()
                 .range([0, self.width]);

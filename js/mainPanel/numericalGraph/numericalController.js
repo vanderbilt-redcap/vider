@@ -174,7 +174,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
             console.log("categories 2: "+JSON.stringify(self.categories));
             var keyIndex = 0;
+            var i = 0;
             self.categories.forEach(function (cat) {
+                console.log(i+" "+key);
                 var key = cat.x;
                 var value = cat.x + " - " + (cat.x + cat.dx);
                 if (validation.match(/^date/)) {
@@ -214,6 +216,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     index: keyIndex++
                 }
                 createColorObj(origKeyValuePair[key].colorByObj);
+                i++;
             });
 
             //adding extra handling for the empty string
@@ -274,6 +277,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          * @param colorDataObj
          */
         var createColorObj = function (colorDataObj) {
+            console.log("createColorObj");
             var self = this;
 
             var isColorBy = filterData.getColorBy().isColorBy;

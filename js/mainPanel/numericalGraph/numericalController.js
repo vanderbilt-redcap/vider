@@ -174,10 +174,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
             console.log("categories 2: "+JSON.stringify(self.categories));
             var keyIndex = 0;
-            var i = 0;
             self.categories.forEach(function (cat) {
                 var key = cat.x;
-                console.log(i+" "+key);
                 var value = cat.x + " - " + (cat.x + cat.dx);
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
@@ -216,7 +214,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     index: keyIndex++
                 }
                 createColorObj(origKeyValuePair[key].colorByObj);
-                i++;
             });
 
             //adding extra handling for the empty string
@@ -248,7 +245,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 colorByObj: {}
             }
             createColorObj(origKeyValuePair[""].colorByObj);
-            console.log("done");
         }
 
         /**
@@ -407,6 +403,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
+                    console.log("A");
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
@@ -572,6 +569,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
+                    console.log("B");
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal

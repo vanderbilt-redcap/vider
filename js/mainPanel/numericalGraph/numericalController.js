@@ -580,9 +580,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 console.log("varData.length: "+self.varData.length);
                 console.log("filterCount: "+filterCount);
                 for (var i = 0; i < self.varData.length; i++) {
-                    console.log(i);
                     //this key is good for nominal data
                     var key = getKey(self.varData[i]);
+                    console.log(i+": "+self.varData[i]+" "+key);
 
                     if( key == null) continue;
 
@@ -626,7 +626,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                         if (self.isQueried) {
                             origKeyValuePair[key].originalCount++;
-                            console.log("B");
+                            console.log("B "+key+" "+origValuePair[key].originalCount);
 
                             //if color by obj
                             var colorBy = filterData.getColorBy();

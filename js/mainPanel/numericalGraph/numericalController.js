@@ -243,7 +243,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     var categories = getNumericalCategories(colorData, colorObj);
-                    console.log(JSON.stringify(categories);
+                    console.log(JSON.stringify(categories));
                     categories.forEach(function (cat) {
                         var key = cat.x;
                         var value = {

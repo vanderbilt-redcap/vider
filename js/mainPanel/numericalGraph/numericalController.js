@@ -773,6 +773,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             }
 
             //this will print the nominal graph
+            console.log("formName: "+self.formName+", varName: "+self.varName+", field_label: "+self.varObj.field_label+", "+JSON.stringify(stratDataObj));
             numericalView.create(_container,
                 self.formName,
                 self.varName,

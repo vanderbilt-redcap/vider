@@ -95,7 +95,7 @@ define(["d3","stateCtrl", "viewVariablePanel", "rugPlotHandler",
                     var obj = forms[form].fields[variable].obj;
                     var fieldType = obj.field_type;
                     var validationType = obj.text_validation_type_or_show_slider_number;
-                    if (fieldType == "text" && (validationType=== "number" || validationType === "integer")){
+                    if (fieldType == "text" && (validationType=== "number" || validationType === "integer") || validationType.match(/^date/)){
                         numericalObjs.push(obj);
 
                         xAxis.append("option")

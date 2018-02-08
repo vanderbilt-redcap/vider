@@ -170,6 +170,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     .bins(domain.ticks(10))//this will take the partitions
                     (self.varData);
                 self.categories = yTotalData;
+                console.log("min: "+Math.min.apply(Math, self.varData));
+                console.log("categories: "+JSON.stringify(self.categories));
             }
 
             var keyIndex = 0;

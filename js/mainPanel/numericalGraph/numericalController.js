@@ -178,7 +178,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var key = cat.x;
                 var value = cat.x + " - " + (cat.x + cat.dx);
                 if (validation.match(/^date/)) {
-                    value = getFormattedDate(cat.x, validation) " - " + getFormattedDate(cat.x + cat.dx, validation);
+                    value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
                 }
 
                 //event object
@@ -306,7 +306,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                                 dataType: "NUMERICAL"
                             }
                             if (validationType.match(/^date/)) {
-                                colorDataObj[key]['value'] = getFormattedDate(cat.x, validationType) " - " + getFormattedDate(cat.x + cat.dx, validationType);
+                                colorDataObj[key]['value'] = getFormattedDate(cat.x, validationType) + " - " + getFormattedDate(cat.x + cat.dx, validationType);
                             }
                         }
                     });

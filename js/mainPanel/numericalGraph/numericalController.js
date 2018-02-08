@@ -172,7 +172,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = yTotalData;
                 console.log("min: "+Math.min.apply(Math, self.varData));
                 console.log("categories[0].x: "+self.categories[0].x+" "+self.categories[0].dx);
-                console.log("domain: "+JSON.stringify(domain.ticks(10)));
+                console.log("domain: "+domain[0]+" "+domain[1]);
             }
 
             var keyIndex = 0;

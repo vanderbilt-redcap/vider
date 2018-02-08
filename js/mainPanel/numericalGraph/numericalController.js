@@ -166,13 +166,14 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);
+                console.log("domain: "+domain[0]+" "+domain[1]);
                 var yTotalData = d3.layout.histogram()
                     .bins(domain.ticks(10))//this will take the partitions
                     (self.varData);
                 self.categories = yTotalData;
                 console.log("min: "+Math.min.apply(Math, self.varData));
+                console.log("max: "+Math.max.apply(Math, self.varData));
                 console.log("categories[0].x: "+self.categories[0].x+" "+self.categories[0].dx);
-                console.log("domain: "+domain[0]+" "+domain[1]);
             }
 
             var keyIndex = 0;

@@ -662,6 +662,7 @@
       this.removeAttributeNS(name.space, name.local);
     }
     function attrConstant() {
+      console.log("name = "+name+"; value = "+value);
       this.setAttribute(name, value);
     }
     function attrConstantNS() {

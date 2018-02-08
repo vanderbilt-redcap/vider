@@ -201,6 +201,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 obj: {x: "", dx:""},
                 colorByObj: {}
             }
+            console.log("categories: "+JSON.stringify(self.categories));
             createColorObj(origKeyValuePair[""].colorByObj);
         }
 

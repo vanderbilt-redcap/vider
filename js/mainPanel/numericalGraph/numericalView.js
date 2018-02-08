@@ -41,7 +41,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
             //strat
             var self = this;
-            var textWidth = 80;
+            var textWidth = 120;
             var margin = {top: 40, right: 20, bottom: 60, left: 40},
                 width = 750 - margin.left - margin.right,
                 height = 25 * Object.keys(stratData[0].original).length + margin.top + margin.bottom;
@@ -421,11 +421,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .attr("opacity", 1);
 
             textEnter.text(function (d) {
-                if(d.length <= 13 ) {
+                if(d.length <= 16 ) {
                     return d;
                 }
                 else{
-                    return d.substring(0,10) + "...";
+                    return d.substring(0,13) + "...";
                 }
             }).attr("x", textWidth - 10)
                 // dy is a shift along the y axis

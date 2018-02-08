@@ -542,6 +542,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 d.data[i] = date.getTime() / 1000;
                             }
                         }
+                        console.log(JSON.stringify(d.data));
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
                     else if(d.type === "dropdown" ||d.type === "radio" ){

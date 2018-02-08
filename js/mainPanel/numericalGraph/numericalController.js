@@ -656,6 +656,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                             origKeyValuePair[key].event[self.eventRecordsObj[i]].count++;
                         }
                     }
+                    else {
+                        console.log(i+": "+JSON.stringify(filtering));
+                    }
 
                     if ((null != filterHover && true == filterHover[i])
                         && ( !isStrat || (strat.x <= value && value  < strat.x + strat.dx ))) {

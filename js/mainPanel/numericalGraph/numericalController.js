@@ -124,6 +124,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
             }
             else{
+                console.log("varData: "+JSON.stringify(self.varData));
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);

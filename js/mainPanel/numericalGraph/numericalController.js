@@ -121,11 +121,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
         var generateNumericalStructure = function (origKeyValuePair) {
 
             if(rebinning.check(self.formName,self.varName)) {
-                console.log("A");
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
             }
             else{
-                console.log("B: "+JSON.stringify(self.varData));
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);
@@ -640,6 +638,50 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             });
         }
 
+        var transformForDate = function (data, validation) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i]) {
+                    var dateAry = new Array(1970, 1, 1);
+                    var sections = data[i].split(/\s/);
+                    var dnodes = sections[0].split(/-/);
+                    var tnodes = new Array(0, 0, 0);
+                    if (sections.length >= 2) {
+                        var mytnodes = sections[1].split(/:/);
+                        if (mytnodes.length > 0) {
+                            tnodes[0] = mytnodes[0];
+                        }
+                        if (mytnodes.length > 1) {
+                            tnodes[1] = mytnodes[1];
+                        }
+                        if (mytnodes.length > 2) {
+                            tnodes[2] = mytnodes[2];
+                        }
+                    }
+                    if (validation.match(/date_ymd/)) {
+                        dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
+                    }
+                    else if (validation.match(/date_mdy/)) {
+                        dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
+                    }
+                    else if (validation.match(/date_dmy/)) {
+                        dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
+                    }
+                    else if (validation.match(/datetime_ymd/)) {
+                        dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
+                    }
+                    else if (validation.match(/datetime_mdy/)) {
+                        dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
+                    }
+                    else if (validation.match(/datetime_dmy/)) {
+                        dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
+                    }
+                    var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
+                    data[i] = date.getTime() / 1000;
+                }
+            }
+            return data;
+        };
+
         /**
          *
          * @param _obj
@@ -673,6 +715,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                 var fieldType = stratObj.field_type;
                 var validationType = stratObj.text_validation_type_or_show_slider_number;
+                if (validationType.match(/^date/)) {
+                    self.varData = transformForDate(self.varData, validationType);
+                }
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     stratCategories = getNumericalCategories(self.stratData, stratObj);
                     createNumericalStratObj(stratCategories,stratDataObj);

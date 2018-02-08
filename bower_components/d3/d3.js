@@ -642,7 +642,7 @@
     }
   };
   d3_selectionPrototype.attr = function(name, value) {
-    console.log("attr1 "+value);
+    console.log("attr1 "+name+" "+value);
     if (arguments.length < 2) {
       if (typeof name === "string") {
         var node = this.node();
@@ -663,7 +663,6 @@
       this.removeAttributeNS(name.space, name.local);
     }
     function attrConstant() {
-      console.log("name = "+name+"; value = "+value);
       this.setAttribute(name, value);
     }
     function attrConstantNS() {
@@ -8702,7 +8701,6 @@
     }));
   }
   d3_transitionPrototype.attr = function(nameNS, value) {
-    console.log("attr2 "+value);
     if (arguments.length < 2) {
       for (value in nameNS) this.attr(value, nameNS[value]);
       return this;

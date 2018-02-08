@@ -425,7 +425,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                     if (!self.isQueried) {
                         origKeyValuePair[key].originalCount++;
-                        console.log("A");
 
                         //if color by obj
                         var colorBy = filterData.getColorBy();
@@ -456,7 +455,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     if ((null == filtering || true == filtering[i]) && ( !isStrat || stratKey == self.stratData[i] )) {
                         if (self.isQueried) {
                             origKeyValuePair[key].originalCount++;
-                            console.log("B");
 
                             //if color by obj
                             var colorBy = filterData.getColorBy();
@@ -579,6 +577,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var filterHover = filterData.getHoverArr();
                 var isHovered = (filterHover != null && filterHover.length > 0);
 
+                console.log("varData.length: "+self.varData.length);
+                console.log("filterCount: "+filterCount);
                 for (var i = 0; i < self.varData.length; i++) {
                     //this key is good for nominal data
                     var key = getKey(self.varData[i]);
@@ -590,7 +590,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                     if (!self.isQueried) {
                         origKeyValuePair[key].originalCount++;
-                        console.log("C");
 
                         //if color by obj
                         var colorBy = filterData.getColorBy();
@@ -625,7 +624,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                         if (self.isQueried) {
                             origKeyValuePair[key].originalCount++;
-                            console.log("D");
 
                             //if color by obj
                             var colorBy = filterData.getColorBy();

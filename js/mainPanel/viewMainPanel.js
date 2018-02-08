@@ -61,7 +61,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
 
             var fieldType = obj.field_type;
             var validationType = obj.text_validation_type_or_show_slider_number;
-            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                 return "NUMERICAL";
             }
             else if (fieldType === "dropdown" || fieldType === "radio") {
@@ -341,7 +341,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                 var validationType = data[d.formName].fields[d.variableName].obj.text_validation_type_or_show_slider_number;
 
                 //todo added for temporary purpose
-                if (fieldType === "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+                if (fieldType === "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     var container = self.createContainer(d.formName, d.variableName);
                     var isQueried = self.isQueried[d.formName].variable[d.variableName].status;
                     numericalController.create(d, data, container.htmlDiv, isQueried);

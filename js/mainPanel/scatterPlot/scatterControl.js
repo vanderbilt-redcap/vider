@@ -191,7 +191,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
 
             var fieldType = stratObj.field_type;
             var validationType = stratObj.text_validation_type_or_show_slider_number;
-            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                 //stratCategories = getNumericalCategories(self.stratData, stratObj);
                 ////createNumericalStratObj(stratCategories,stratDataObj);
             }

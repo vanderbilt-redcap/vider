@@ -412,7 +412,7 @@ define(["scatterView", "viewVariablePanel", "filterData", "d3-tip", "rugPlotHand
                         flag = false;
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
-                    else if( d.type === "text" && d.validation.match(/^date_/) ) {
+                    else if( d.type === "text" && d.validation.match(/^date/) ) {
                         flag = false;
                         console.log(JSON.stringify(d.data));
                         rugPlotHandler.create(d3.select(this), d.data);

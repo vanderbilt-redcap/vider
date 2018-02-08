@@ -241,7 +241,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var fieldType = colorObj.field_type;
                 var validationType = colorObj.text_validation_type_or_show_slider_number;
 
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     var categories = getNumericalCategories(colorData, colorObj);
                     categories.forEach(function (cat) {
                         var key = cat.x;
@@ -309,7 +309,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
         var getDataType = function(obj){
             var fieldType = obj.field_type;
             var validationType = obj.text_validation_type_or_show_slider_number;
-            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+            if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                 return "NUMERICAL";
             }
             else if (fieldType === "dropdown" || fieldType === "radio") {
@@ -349,7 +349,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 //for each category
                 var fieldType = self.varObj.field_type;
                 var validationType = self.varObj.text_validation_type_or_show_slider_number;
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
                     generateNumericalStructure(origKeyValuePair);
                 }
@@ -511,7 +511,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                 var fieldType = self.varObj.field_type;
                 var validationType = self.varObj.text_validation_type_or_show_slider_number;
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
                     generateNumericalStructure(origKeyValuePair);
                 }
@@ -669,7 +669,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                 var fieldType = stratObj.field_type;
                 var validationType = stratObj.text_validation_type_or_show_slider_number;
-                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date_/))) {
+                if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     stratCategories = getNumericalCategories(self.stratData, stratObj);
                     createNumericalStratObj(stratCategories,stratDataObj);
                 }

@@ -114,7 +114,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             createColorObj(origKeyValuePair[""].colorByObj);
         }
 
-        var getFormattedDate = function (unixTs, validation)  
+        var getFormattedDate = function (unixTs, validation) {  
             var d = new Date(unixTs * 1000);
             var year = d.getFullYear();
             var month = ("0" + (d.getMonth() + 1)).substr(-2);

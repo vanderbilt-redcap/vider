@@ -24,9 +24,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          */
         var getNumericalCategories = function (data, obj, validation) {
 
-            console.log("data: "+JSON.stringify(data));
             var max = Math.max.apply(Math, data);
-            console.log("Max: "+max);
             var domain = d3.scale.linear()
                 .domain([Math.min.apply(Math, data), max]);
 
@@ -165,8 +163,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
             }
             else{
-                console.log("data: "+JSON.stringify(self.varData));
-                console.log("max: "+Math.max.apply(Math, self.varData));
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);
@@ -176,6 +172,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = yTotalData;
             }
 
+            console.log("categories: "+JSON.stringify(self.categories));
             var keyIndex = 0;
             self.categories.forEach(function (cat) {
                 var key = cat.x;

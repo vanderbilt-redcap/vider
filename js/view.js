@@ -100,11 +100,11 @@ define(["d3","stateCtrl", "viewVariablePanel", "rugPlotHandler",
 
                         xAxis.append("option")
                             .attr("value",form+";"+variable)
-                            .text(obj.field_label)
+                            .text(stripHtml(obj.field_label))
 
                         yAxis.append("option")
                             .attr("value",form+";"+variable)
-                            .text(obj.field_label);
+                            .text(stripHtml(obj.field_label));
                     }
                 }
             }

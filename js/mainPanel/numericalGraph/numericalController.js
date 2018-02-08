@@ -114,11 +114,50 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             createColorObj(origKeyValuePair[""].colorByObj);
         }
 
+        var getFormattedDate = function (unixTs, validation)  
+            var d = new Date(unixTs * 1000);
+            var year = d.getFullYear();
+            var month = ("0" + (d.getMonth() + 1)).substr(-2);
+            var day = ("0" + (d.getDate())).substr(-2);
+
+            var hours = ("0" + d.getHours()).substr(-2);
+            var minutes = ("0" + d.getMinutes()).substr(-2);
+            var seconds = ("0" + d.getSeconds()).substr(-2);
+
+            if (validation == "date_ymd") {
+                return year + "-" + month + "-" + day;
+            }
+            if (validation == "date_dmy") {
+                return day + "-" + month + "-" + year;
+            }
+            if (validation == "date_mdy") {
+                return month + "-" + day + "-" + year;
+            }
+            if (validation == "datetime_ymd") {
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+            }
+            if (validation == "datetime_dmy") {
+                return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
+            }
+            if (validation == "datetime_mdy") {
+                return month + "-" + day + "-" + year + " " + hours + ":" + minutes;
+            }
+            if (validation == "datetime_seconds_ymd") {
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            }
+            if (validation == "datetime_seconds_dmy") {
+                return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+            }
+            if (validation == "datetime_seconds_mdy") {
+                return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+            }
+        };
+
         /**
          *
          * @param origKeyValuePair
          */
-        var generateNumericalStructure = function (origKeyValuePair) {
+        var generateNumericalStructure = function (origKeyValuePair, validation) {
 
             if(rebinning.check(self.formName,self.varName)) {
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
@@ -138,6 +177,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             self.categories.forEach(function (cat) {
                 var key = cat.x;
                 var value = cat.x + " - " + (cat.x + cat.dx);
+                if (validation.match(/^date/)) {
+                    value = getFormattedDate(cat.x, validation) " - " + getFormattedDate(cat.x + cat.dx, validation);
+                }
 
                 //event object
                 var eventObj = {};
@@ -193,7 +235,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 x: 0,
                 y: 0,
                 key: "",
-                value: "Empty003",
+                value: "Empty",
                 originalCount: 0,      //counter
                 queryCount: 0,
                 hoverCount: 0,
@@ -262,6 +304,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                                 count: 0,
                                 total: 0,
                                 dataType: "NUMERICAL"
+                            }
+                            if (validationType.match(/^date/)) {
+                                colorDataObj[key]['value'] = getFormattedDate(cat.x, validationType) " - " + getFormattedDate(cat.x + cat.dx, validationType);
                             }
                         }
                     });
@@ -357,7 +402,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     if (validationType.match(/^date/)) {
                         self.varData = transformForDate(self.varData, validationType);
                     }
-                    generateNumericalStructure(origKeyValuePair);
+                    generateNumericalStructure(origKeyValuePair, validationType);
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
@@ -522,7 +567,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     if (validationType.match(/^date/)) {
                         self.varData = transformForDate(self.varData, validationType);
                     }
-                    generateNumericalStructure(origKeyValuePair);
+                    generateNumericalStructure(origKeyValuePair, validationType);
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
@@ -665,22 +710,13 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                             tnodes[2] = mytnodes[2];
                         }
                     }
-                    if (validation.match(/date_ymd/)) {
+                    if (validation.match(/_ymd$/)) {
                         dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
                     }
-                    else if (validation.match(/date_mdy/)) {
+                    else if (validation.match(/_mdy$/)) {
                         dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
                     }
-                    else if (validation.match(/date_dmy/)) {
-                        dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
-                    }
-                    else if (validation.match(/datetime_ymd/)) {
-                        dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
-                    }
-                    else if (validation.match(/datetime_mdy/)) {
-                        dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
-                    }
-                    else if (validation.match(/datetime_dmy/)) {
+                    else if (validation.match(/_dmy$/)) {
                         dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
                     }
                     var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));

@@ -529,22 +529,13 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                         tnodes[2] = mytnodes[2];
                                     }
                                 }
-                                if (d.validation.match(/date_ymd/)) {
+                                if (d.validation.match(/_ymd$/)) {
                                     dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
                                 }
-                                else if (d.validation.match(/date_mdy/)) {
+                                else if (d.validation.match(/_mdy$/)) {
                                     dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
                                 }
-                                else if (d.validation.match(/date_dmy/)) {
-                                    dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
-                                }
-                                else if (d.validation.match(/datetime_ymd/)) {
-                                    dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
-                                }
-                                else if (d.validation.match(/datetime_mdy/)) {
-                                    dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
-                                }
-                                else if (d.validation.match(/datetime_dmy/)) {
+                                else if (d.validation.match(/_dmy$/)) {
                                     dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
                                 }
                                 var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));  

@@ -176,8 +176,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             var keyIndex = 0;
             var i = 0;
             self.categories.forEach(function (cat) {
-                console.log(i+" "+key);
                 var key = cat.x;
+                console.log(i+" "+key);
                 var value = cat.x + " - " + (cat.x + cat.dx);
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
@@ -248,6 +248,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 colorByObj: {}
             }
             createColorObj(origKeyValuePair[""].colorByObj);
+            console.log("done");
         }
 
         /**

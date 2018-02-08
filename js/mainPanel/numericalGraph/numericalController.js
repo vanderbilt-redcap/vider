@@ -28,6 +28,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 .domain([Math.min.apply(Math, data),
                     Math.max.apply(Math, data)]);
 
+            console.log("Max: "+Math.max.apply(Math, data));
+            console.log("Min: "+Math.min.apply(Math, data));
+
             var yTotalData = d3.layout.histogram()
                 .bins(domain.ticks(10))//this will take the partitions
                 (data);
@@ -102,7 +105,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 x: 0,
                 y: 0,
                 key: "",
-                value: "Empty002",
+                value: "Empty",
                 originalCount: 0,      //counter
                 queryCount: 0,
                 hoverCount: 0,
@@ -313,7 +316,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                     colorDataObj[""] = {
                         key: "",
-                        value: "Empty000",
+                        value: "Empty",
                         obj: "",
                         count: 0,
                         total: 0,
@@ -337,7 +340,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     });
                     colorDataObj[""] = {
                         key: "",
-                        value: "Empty001",
+                        value: "Empty",
                         count: 0,
                         total: 0,
                         dataType: "CATEGORICAL"

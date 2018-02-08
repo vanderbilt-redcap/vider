@@ -172,7 +172,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = yTotalData;
             }
 
-            console.log("categories: "+JSON.stringify(self.categories));
+            console.log("categories 2: "+JSON.stringify(self.categories));
             var keyIndex = 0;
             self.categories.forEach(function (cat) {
                 var key = cat.x;
@@ -244,7 +244,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 obj: {x: "", dx:""},
                 colorByObj: {}
             }
-            console.log("categories: "+JSON.stringify(self.categories));
             createColorObj(origKeyValuePair[""].colorByObj);
         }
 
@@ -287,7 +286,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     var categories = getNumericalCategories(colorData, colorObj, validationType);
-                    console.log("categories: "+JSON.stringify(categories));
+                    console.log("categories 1: "+JSON.stringify(categories));
                     categories.forEach(function (cat) {
                         var key = cat.x;
                         var value = {

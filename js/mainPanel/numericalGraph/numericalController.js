@@ -121,9 +121,11 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
         var generateNumericalStructure = function (origKeyValuePair) {
 
             if(rebinning.check(self.formName,self.varName)) {
+                console.log("A");
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
             }
             else{
+                console.log("B: "+JSON.stringify(self.varData));
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);

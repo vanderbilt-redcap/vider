@@ -22,14 +22,12 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          * @param data
          * @param obj
          */
-        var getNumericalCategories = function (data, obj) {
+        var getNumericalCategories = function (data, obj, validation) {
 
+            var max = Math.max.apply(Math, data);
+            console.log("Max: "+max);
             var domain = d3.scale.linear()
-                .domain([Math.min.apply(Math, data),
-                    Math.max.apply(Math, data)]);
-
-            console.log("Max: "+Math.max.apply(Math, data));
-            console.log("Min: "+Math.min.apply(Math, data));
+                .domain([Math.min.apply(Math, data), max]);
 
             var yTotalData = d3.layout.histogram()
                 .bins(domain.ticks(10))//this will take the partitions
@@ -289,8 +287,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var validationType = colorObj.text_validation_type_or_show_slider_number;
 
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
-                    var categories = getNumericalCategories(colorData, colorObj);
-                    console.log(JSON.stringify(categories));
+                    var categories = getNumericalCategories(colorData, colorObj, validationType);
+                    console.log("categories: "+JSON.stringify(categories));
                     categories.forEach(function (cat) {
                         var key = cat.x;
                         var value = {
@@ -764,7 +762,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var fieldType = stratObj.field_type;
                 var validationType = stratObj.text_validation_type_or_show_slider_number;
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
-                    stratCategories = getNumericalCategories(self.stratData, stratObj);
+                    stratCategories = getNumericalCategories(self.stratData, stratObj, validationType);
                     createNumericalStratObj(stratCategories,stratDataObj);
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {

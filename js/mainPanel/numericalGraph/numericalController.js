@@ -403,7 +403,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
-                    console.log("A");
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
@@ -569,7 +568,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
-                    console.log("B");
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
@@ -583,6 +581,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var isHovered = (filterHover != null && filterHover.length > 0);
 
                 for (var i = 0; i < self.varData.length; i++) {
+                    console.log(i+"/"+self.varData.length);
 
                     //this key is good for nominal data
                     var key = getKey(self.varData[i]);

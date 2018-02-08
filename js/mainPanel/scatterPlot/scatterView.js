@@ -270,8 +270,8 @@ define(["require", "colorbrewer", "filterData", "dataWrapper",
                 dot.transition()
                     .duration(1000)
                     .attr({
-                        "cx": function(d) { return self.x(d[0]); }
-                        , "cy": function(d) { return self.y(d[1]); }
+                        "cx": function(d) { return self.x(1000 + d[0]); }
+                        , "cy": function(d) { return self.y(10000 + d[1]); }
                         , "r": 3.5
                     });
                 // enter

@@ -102,7 +102,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 x: 0,
                 y: 0,
                 key: "",
-                value: "Empty",
+                value: "Empty002",
                 originalCount: 0,      //counter
                 queryCount: 0,
                 hoverCount: 0,
@@ -192,7 +192,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 x: 0,
                 y: 0,
                 key: "",
-                value: "Empty",
+                value: "Empty003",
                 originalCount: 0,      //counter
                 queryCount: 0,
                 hoverCount: 0,
@@ -290,7 +290,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     });
                     colorDataObj[""] = {
                         key: "",
-                        value: "Empty",
+                        value: "Empty001",
                         count: 0,
                         total: 0,
                         dataType: "CATEGORICAL"

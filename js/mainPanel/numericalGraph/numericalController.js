@@ -165,7 +165,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
             }
             else{
-                console.log("varData: "+JSON.stringify(self.varData));
+                console.log("data: "+JSON.stringify(self.varData));
+                console.log("max: "+Math.max.apply(Math, self.varData));
                 var domain = d3.scale.linear()
                     .domain([Math.min.apply(Math, self.varData),
                         Math.max.apply(Math, self.varData)]);
@@ -693,7 +694,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
         }
 
         var transformForDate = function (data, validation) {
-            console.log("data [in]: "+JSON.stringify(data));
             for (var i = 0; i < data.length; i++) {
                 if (data[i] && isNaN(data[i])) {
                     var dateAry = new Array(1970, 1, 1);
@@ -725,7 +725,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     data[i] = date.getTime() / 1000;
                 }
             }
-            console.log("data [out]: "+JSON.stringify(data));
             return data;
         };
 

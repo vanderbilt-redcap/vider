@@ -29,7 +29,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         var textWidth = 80;
         var margin = {top: 40, right: 20, bottom: 60, left: 80},
             width = 750 - margin.left - margin.right,
-            height = 700;
+            height = 500;
 
         //find the x max value
         var maxXValue = Number.MIN_VALUE;

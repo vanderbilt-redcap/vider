@@ -511,7 +511,41 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     }
                     else if( d.type === "text" && d.validation.match(/^date/) ) {
                         flag = false;
-			console.log(JSON.stringify(d.data));
+                        for (var i = 0; i < d.data.length; i++) {
+                            if (d.data[i]) {
+                                var dateAry = new Array(1970, 1, 1);
+                                var timeAry = new Array(0, 0, 0);
+                                var sections = d.data[i].split(/\s/);
+                                var dnodes = sections[0].split(/-/);
+                                var tnodes = new Array(0, 0, 0);
+                                if (sections.length >= 2) {
+                                    tnodes = sections[1].split(/:/);
+                                }
+                                if (d.validation.match(/date_ymd/)) {
+                                    dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
+                                }
+                                else if (d.validation.match(/date_mdy/)) {
+                                    dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
+                                }
+                                else if (d.validation.match(/date_dmy/)) {
+                                    dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
+                                }
+                                else if (d.validation.match(/datetime_ymd/)) {
+                                    dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
+                                    timeAry = tnodes;
+                                }
+                                else if (d.validation.match(/datetime_mdy/)) {
+                                    dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
+                                    timeAry = tnodes;
+                                }
+                                else if (d.validation.match(/datetime_dmy/)) {
+                                    dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
+                                    timeAry = tnodes;
+                                }
+                                var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], timeAry[0], timeAry[1], timeAry[2]));  
+                                d.data[i] = date.getTime();
+                            }
+                        }
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
                     else if(d.type === "dropdown" ||d.type === "radio" ){

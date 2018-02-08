@@ -354,6 +354,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var validationType = self.varObj.text_validation_type_or_show_slider_number;
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
+                    if (validationType.match(/^date/)) {
+                        self.varData = transformForDate(self.varData, validationType);
+                    }
                     generateNumericalStructure(origKeyValuePair);
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
@@ -516,6 +519,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var validationType = self.varObj.text_validation_type_or_show_slider_number;
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
+                    if (validationType.match(/^date/)) {
+                        self.varData = transformForDate(self.varData, validationType);
+                    }
                     generateNumericalStructure(origKeyValuePair);
                 }
                 else if (fieldType === "dropdown" || fieldType === "radio") {
@@ -640,8 +646,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
         }
 
         var transformForDate = function (data, validation) {
+            console.log("data [in]: "+JSON.stringify(data));
             for (var i = 0; i < data.length; i++) {
-                if (data[i]) {
+                if (data[i] && isNaN(data[i])) {
                     var dateAry = new Array(1970, 1, 1);
                     var sections = data[i].split(/\s/);
                     var dnodes = sections[0].split(/-/);
@@ -680,6 +687,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     data[i] = date.getTime() / 1000;
                 }
             }
+            console.log("data [out]: "+JSON.stringify(data));
             return data;
         };
 
@@ -716,9 +724,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                 var fieldType = stratObj.field_type;
                 var validationType = stratObj.text_validation_type_or_show_slider_number;
-                if (validationType.match(/^date/)) {
-                    self.varData = transformForDate(self.varData, validationType);
-                }
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     stratCategories = getNumericalCategories(self.stratData, stratObj);
                     createNumericalStratObj(stratCategories,stratDataObj);

@@ -425,7 +425,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                     if (!self.isQueried) {
                         origKeyValuePair[key].originalCount++;
-                        console.log(key+": "+origKeyValuePair[key].originalCount);
+                        console.log("A");
 
                         //if color by obj
                         var colorBy = filterData.getColorBy();
@@ -456,6 +456,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     if ((null == filtering || true == filtering[i]) && ( !isStrat || stratKey == self.stratData[i] )) {
                         if (self.isQueried) {
                             origKeyValuePair[key].originalCount++;
+                            console.log("B");
 
                             //if color by obj
                             var colorBy = filterData.getColorBy();
@@ -589,6 +590,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                     if (!self.isQueried) {
                         origKeyValuePair[key].originalCount++;
+                        console.log("C");
 
                         //if color by obj
                         var colorBy = filterData.getColorBy();
@@ -623,6 +625,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
 
                         if (self.isQueried) {
                             origKeyValuePair[key].originalCount++;
+                            console.log("D");
 
                             //if color by obj
                             var colorBy = filterData.getColorBy();

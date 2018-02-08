@@ -39,7 +39,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
          */
         var init = function () {
 
-            console.log("init A");
             //strat
             var self = this;
             var textWidth = 80;
@@ -153,7 +152,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     });
             }
 
-            console.log("Tips");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Tips
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +170,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
              + d.count; });*/
 
 
-            console.log("Create container");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Create Container
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,7 +242,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
             svg.call(textTip);
             svg.call(colorByTip);
 
-            console.log("Set the Scales");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Set the Scales
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -302,7 +298,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 }]);
             });
 
-            console.log("Bar group");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Bar group
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -464,14 +459,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .attr("width", function (d) {
                     // here we call the scale function.
                     var xScale = d3.select(this.parentNode.parentNode).datum().xScale;
-                    console.log("this: "+JSON.stringify(this));
-                    console.log("parentNode: "+JSON.stringify(this.parentNode));
-                    console.log("parentNode x2: "+JSON.stringify(this.parentNode.parentNode));
-                    console.log("datum: "+JSON.stringify(d3.select(this.parentNode.parentNode).datum()));
-                    console.log("xScale: "+JSON.stringify(xScale));
-                    console.log("xScale(0): "+JSON.stringify(xScale(0)));
-                    console.log("xScale(d.originalCount): "+JSON.stringify(xScale(d.originalCount)));
-                    console.log("d.originalCount: "+JSON.stringify(d.originalCount));
                     return Math.abs(xScale(d.originalCount) - xScale(0));
                 });
 
@@ -596,7 +583,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .on("mouseout",colorByTip.hide);
 
             colorRectEnter.exit().remove();
-            console.log("init done");
         }
 
         var _create = function (_container, _localFormName, _localVarName, _fieldLabel, _stratData) {

@@ -464,6 +464,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .attr("width", function (d) {
                     // here we call the scale function.
                     var xScale = d3.select(this.parentNode.parentNode).datum().xScale;
+                    console.log("xScale: "+JSON.stringify(xScale));
                     return Math.abs(xScale(d.originalCount) - xScale(0));
                 });
 

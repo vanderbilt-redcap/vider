@@ -642,7 +642,9 @@
     }
   };
   d3_selectionPrototype.attr = function(name, value) {
-    console.log("attr1 name="+name+" value="+value);
+    if (name == "x") {
+      console.log("attr1 name="+name+" value="+value);
+    }
     if (arguments.length < 2) {
       if (typeof name === "string") {
         var node = this.node();

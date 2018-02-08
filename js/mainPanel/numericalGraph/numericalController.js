@@ -171,7 +171,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     (self.varData);
                 self.categories = yTotalData;
                 console.log("min: "+Math.min.apply(Math, self.varData));
-                console.log("categories: "+JSON.stringify(self.categories));
+                console.log("categories: "+count(self.categories));
             }
 
             var keyIndex = 0;

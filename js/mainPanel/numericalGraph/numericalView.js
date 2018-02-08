@@ -39,6 +39,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
          */
         var init = function () {
 
+            console.log("init A");
             //strat
             var self = this;
             var textWidth = 80;
@@ -149,9 +150,10 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                             //this will refresh the view with the new state
                             require("view").updateNewState(require("stateCtrl").top());
                         }
-                    })
+                    });
             }
 
+            console.log("Tips");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Tips
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -170,6 +172,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
              + d.count; });*/
 
 
+            console.log("Create container");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Create Container
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -242,6 +245,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
             svg.call(textTip);
             svg.call(colorByTip);
 
+            console.log("Set the Scales");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Set the Scales
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -298,6 +302,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 }]);
             });
 
+            console.log("Bar group");
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Bar group
             ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -583,6 +588,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .on("mouseout",colorByTip.hide);
 
             colorRectEnter.exit().remove();
+            console.log("init done");
         }
 
         var _create = function (_container, _localFormName, _localVarName, _fieldLabel, _stratData) {

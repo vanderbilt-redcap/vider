@@ -581,8 +581,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var isHovered = (filterHover != null && filterHover.length > 0);
 
                 for (var i = 0; i < self.varData.length; i++) {
-                    console.log(i+"/"+self.varData.length);
-
                     //this key is good for nominal data
                     var key = getKey(self.varData[i]);
 
@@ -773,7 +771,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             }
 
             //this will print the nominal graph
-            console.log("formName: "+self.formName+", varName: "+self.varName+", field_label: "+self.varObj.field_label+", "+JSON.stringify(stratDataObj));
             numericalView.create(_container,
                 self.formName,
                 self.varName,

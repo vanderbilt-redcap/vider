@@ -511,9 +511,8 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     }
                     else if( d.type === "text" && d.validation.match(/^date/) ) {
                         flag = false;
-                        console.log("data1: "+JSON.stringify(d.data));
                         for (var i = 0; i < d.data.length; i++) {
-                            if (d.data[i]) {
+                            if (d.data[i] && isNaN(d.data[i])) {
                                 var dateAry = new Array(1970, 1, 1);
                                 var sections = String(d.data[i]).split(/\s/);
                                 var dnodes = sections[0].split(/-/);
@@ -543,7 +542,6 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 d.data[i] = date.getTime() / 1000;
                             }
                         }
-                        console.log("data2: "+JSON.stringify(d.data));
                         rugPlotHandler.create(d3.select(this), d.data);
                     }
                     else if(d.type === "dropdown" ||d.type === "radio" ){

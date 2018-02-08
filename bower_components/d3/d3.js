@@ -9051,6 +9051,7 @@
         }).style("cursor", function(d) {
           return d3_svg_brushCursor[d];
         }).append("rect").attr("x", function(d) {
+          console.log("A "+d);
           return /[ew]$/.test(d) ? -3 : null;
         }).attr("y", function(d) {
           return /^[ns]/.test(d) ? -3 : null;
@@ -9059,6 +9060,7 @@
         var gUpdate = d3.transition(g), backgroundUpdate = d3.transition(background), range;
         if (x) {
           range = d3_scaleRange(x);
+          console.log("B "+JSON.stringify(range));
           backgroundUpdate.attr("x", range[0]).attr("width", range[1] - range[0]);
           redrawX(gUpdate);
         }
@@ -9130,6 +9132,7 @@
       });
     }
     function redrawX(g) {
+      console.log("C "+JSON.stringify(xExtent));
       g.select(".extent").attr("x", xExtent[0]);
       g.selectAll(".extent,.n>rect,.s>rect").attr("width", xExtent[1] - xExtent[0]);
     }

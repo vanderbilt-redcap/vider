@@ -67,7 +67,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
 
         var textWidth = 80;
         var margin = {top: 40, right: 20, bottom: 60, left: 80},
-            width = 750 - margin.left - margin.right,
+            width = 800 - margin.left - margin.right,
             height = 500;
 
         // disqualify date values with 0. Assume that no one has a midnight 1-1-1970 date.

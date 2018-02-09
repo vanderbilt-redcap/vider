@@ -207,14 +207,16 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
 
         // reformat for dates
         if (stratData[0].xValidation.match(/^date/)) {
-            $(svgElements).find(".tick").each(function(idx, ob) {
+            console.log("xes");
+            $(svgElements).each(function(idx, ob) {
                 console.log("x "+idx);
                 // var d1 = $(ob).html();
                 // $(ob).html(getFormattedDate(d1));
             });
         }
         if (stratData[0].yValidation.match(/^date/)) {
-            $(svgElements).find(".tick").each(function(idx, ob) {
+            console.log("ys");
+            $(svgElements)..each(function(idx, ob) {
                 console.log("y "+idx);
                 // var d1 = $(ob).html();
                 // $(ob).html(getFormattedDate(d1));

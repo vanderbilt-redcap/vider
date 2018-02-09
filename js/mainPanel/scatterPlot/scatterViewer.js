@@ -233,7 +233,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
     var _create = function (_container, _stratData, _isBrushEnabled, _xLabel, _yLabel) {
 
         console.log(_xLabel, _yLabel);
-        console.log(JSON.stringify(stratData));
+        console.log(JSON.stringify(_stratData));
 
         sel = _container;
         stratData = _stratData;

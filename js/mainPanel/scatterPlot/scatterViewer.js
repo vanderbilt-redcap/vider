@@ -26,6 +26,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
     var yValidation = "";
 
     var getFormattedDate = function (unixTs, validation) {
+        console.log("getFormattedDate "+unixTs+" "+validation);
         var date = new Date(unixTs * 1000);
         var year = date.getFullYear();
         var month = ("0" + (date.getMonth() + 1)).substr(-2);
@@ -34,6 +35,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         var hours = ("0" + date.getHours()).substr(-2);
         var minutes = ("0" + date.getMinutes()).substr(-2);
         var seconds = ("0" + date.getSeconds()).substr(-2);
+        console.log(year+" "+month+" "+day+" "+hours+" "+minutes+" "+seconds);
 
         if (validation == "date_ymd") {
             return year + "-" + month + "-" + day;
@@ -62,6 +64,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         if (validation == "datetime_seconds_mdy") {
             return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
         }
+        return unixTs;
     };
 
     var init = function () {

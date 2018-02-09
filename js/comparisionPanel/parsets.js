@@ -348,7 +348,12 @@ define(["require","comparisionPanel"],
                         .tween("ribbon", ribbonTweenX);
 
                     categoryEnter.append("rect")
-                        .attr("width", function(d) { return d.dx; })
+                        .attr("width", function(d) {
+                            if (d.dx >= 0) {
+                                return d.dx;
+                            }
+                            return 0;
+                        })
                         .attr("y", -20)
                         .attr("height", 20)
                         .attr("class", "parasets");

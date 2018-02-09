@@ -380,9 +380,13 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                              else {
                                  $(ob).html(dateParts[1]);
                              }
-                         } else {
+                         }
+                         else {
                              $(ob).html(dateParts[0]);
                          }
+                     }
+                     else {
+                         $(ob).html(date);
                      }
                  }
              });

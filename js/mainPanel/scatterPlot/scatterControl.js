@@ -367,7 +367,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                      $(ob).parent().hide();
                  }
                  else {
-                     $(ob).css({'font-size': '12px');
+                     $(ob).css({'font-size': '12px'});
 
                      var date = getFormattedDate(n, validation_x);
                      var dateParts = date.split(/\s+/);

@@ -345,7 +345,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
 
         scatterViewer.create(_container, self.stratDataObj, _isQueried, objx.obj.field_label, objy.obj.field_label);
 
-        console.log("tick.length: "+$('.tick').length);
+        console.log("x tick.length: "+$('svg .x .tick').length);
+        console.log("y tick.length: "+$('svg .y .tick').length);
     }
 
 

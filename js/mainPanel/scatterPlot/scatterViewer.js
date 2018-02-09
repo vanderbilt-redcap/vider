@@ -136,7 +136,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         function brushend(d){
             var e = brush.extent();
             filterData.setAllHoverToFalse();
-            console.log("brushend");
             d3.select(this).selectAll(".point")
                 .each(function(d){
 

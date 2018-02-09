@@ -210,13 +210,13 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             $(svgElements).find(".x .tick text").each(function(idx, ob) {
                 var d = $(ob).html();
                 $(ob).html(getFormattedDate(d));
-            );
+            });
         }
         if (stratData[0].yValidation.match(/^date/)) {
             $(svgElements).find(".y .tick text").each(function(idx, ob) {
                 var d = $(ob).html();
                 $(ob).html(getFormattedDate(d));
-            );
+            });
         }
 
         // Add the points!

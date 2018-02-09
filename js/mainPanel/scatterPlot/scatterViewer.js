@@ -216,7 +216,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         }
         if (stratData[0].yValidation.match(/^date/)) {
             console.log("ys");
-            $(svgElements)..each(function(idx, ob) {
+            $(svgElements).each(function(idx, ob) {
                 console.log("y "+idx);
                 // var d1 = $(ob).html();
                 // $(ob).html(getFormattedDate(d1));

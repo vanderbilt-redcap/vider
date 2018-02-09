@@ -35,8 +35,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         var minXValue = Number.MAX_VALUE;
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
+                console.log("x: "+d.x);
                 if((minXValue > d.x) && (d.x !== "")){
-                    console.log("x: "+d.x);
                     minXValue = d.x;
                 }
             })

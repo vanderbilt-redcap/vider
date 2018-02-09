@@ -345,8 +345,13 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
 
         scatterViewer.create(_container, self.stratDataObj, _isQueried, objx.obj.field_label, objy.obj.field_label);
 
-        console.log("x tick.length: "+$('svg .x .tick').length);
-        console.log("y tick.length: "+$('svg .y .tick').length);
+        console.log("x tick.length: "+$('svg .x .tick text').length);
+        console.log("y tick.length: "+$('svg .y .tick text').length);
+        if (xValidation.match(/^date/)) {
+             $('svg .x .tick text').each(function(idx, ob) {
+                 console.log(idx+": "+$(ob).html());
+             });
+        }
     }
 
 

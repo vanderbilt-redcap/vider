@@ -22,6 +22,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
     var isBrushEnabled;
     var xLabel;
     var yLabel;
+    var xValidation = "";
+    var yValidation = "";
 
     var getFormattedDate = function (unixTs, validation) {
         var d = new Date(unixTs * 1000);
@@ -153,6 +155,10 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         }
 
 
+
+        var xValidation = stratData[0].xValidation;
+        var yValidation = stratData[0].yValidation;
+
         //svg
         var svg = sel.selectAll("svg").data(stratData);
         svg.enter().append("svg")
@@ -230,10 +236,15 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return d.c;
             })
             .on("mouseover",function(d){
-                console.log("2 mouseover");
-                console.log("2 d: "+JSON.stringify(d));
-                console.log("Rec : "+ d.r+" Event: "+ d.e+" Val : " + d.x + ", " + d.y);
-                global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val : " + d.x + ", " + d.y);
+                var x = d.x;
+                if (!isNaN(x) && validationX.match(/^date/)) {
+                    x = getFormattedDate(x);
+                }
+                var y = d.y;
+                if (!isNaN(y) && validationX.match(/^date/)) {
+                    y = getFormattedDate(y);
+                }
+                global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
             })
             .on("mouseout",global.tips.numTextTip.hide);
 
@@ -260,9 +271,15 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return "translate(" + x(d.x) + "," + y(d.y) + ")";
             })
             .on("mouseover",function(d){
-                console.log("1 mouseover");
-                console.log("1 d: "+JSON.stringify(d));
-                global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val : " +d.x + ", " + d.y);
+                var x = d.x;
+                if (!isNaN(x) && validationX.match(/^date/)) {
+                    x = getFormattedDate(x);
+                }
+                var y = d.y;
+                if (!isNaN(y) && validationX.match(/^date/)) {
+                    y = getFormattedDate(y);
+                }
+                global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
             })
             .on("mouseout",global.tips.numTextTip.hide);
 

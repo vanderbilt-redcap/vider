@@ -288,6 +288,7 @@
       }
 
       var bbox       = {},
+          point      = {},
           matrix     = targetel.getScreenCTM(),
           tbbox      = targetel.getBBox(),
           width      = tbbox.width,

@@ -77,6 +77,45 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         return data;
     };
 
+    var getFormattedDate = function (unixTs, validation) {
+        var d = new Date(unixTs * 1000);
+        var year = d.getFullYear();
+        var month = ("0" + (d.getMonth() + 1)).substr(-2);
+        var day = ("0" + (d.getDate())).substr(-2);
+
+        var hours = ("0" + d.getHours()).substr(-2);
+        var minutes = ("0" + d.getMinutes()).substr(-2);
+        var seconds = ("0" + d.getSeconds()).substr(-2);
+
+        if (validation == "date_ymd") {
+            return year + "-" + month + "-" + day;
+        }
+        if (validation == "date_dmy") {
+            return day + "-" + month + "-" + year;
+        }
+        if (validation == "date_mdy") {
+            return month + "-" + day + "-" + year;
+        }
+        if (validation == "datetime_ymd") {
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_dmy") {
+            return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_mdy") {
+            return month + "-" + day + "-" + year + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_seconds_ymd") {
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        }
+        if (validation == "datetime_seconds_dmy") {
+            return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+        }
+        if (validation == "datetime_seconds_mdy") {
+            return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+        }
+    };
+
     /**
      *
      * @param stratCategories
@@ -169,8 +208,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.datax = [];
         self.datay = [];
 
-        var validation_x = objx.obj['text_validation_type_or_show_slider_number'];
-        var validation_y = objy.obj['text_validation_type_or_show_slider_number'];
+        self.validation_x = objx.obj['text_validation_type_or_show_slider_number'];
+        self.validation_y = objy.obj['text_validation_type_or_show_slider_number'];
 	var objx_data = objx.data;
         var objy_data = objy.data;
         if (validation_x.match(/^date_/)) {
@@ -262,14 +301,15 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                 if(self.eventArr != null){
                     event = eventArr[index];
                 }
-                visData.push({
+                var datum = {
                     x: Number(self.datax[index]),
                     y: Number(self.datay[index]),
                     c: self.colorByArr[index],
                     r: record,
                     e: event,
                     index: index
-                });
+                };
+                visData.push(datum);
             }
 
             var visHoverData = [];

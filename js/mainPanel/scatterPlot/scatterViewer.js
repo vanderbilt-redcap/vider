@@ -244,6 +244,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 if (!isNaN(y) && yValidation.match(/^date/)) {
                     y = getFormattedDate(y);
                 }
+                console.log("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
             })
             .on("mouseout",global.tips.numTextTip.hide);
@@ -279,6 +280,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 if (!isNaN(y) && yValidation.match(/^date/)) {
                     y = getFormattedDate(y);
                 }
+                console.log("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
             })
             .on("mouseout",global.tips.numTextTip.hide);

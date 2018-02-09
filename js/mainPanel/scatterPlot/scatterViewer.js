@@ -241,11 +241,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             .on("mouseover",function(d){
                 var x = d.x;
                 if (!isNaN(x) && xValidation.match(/^date/)) {
-                    x = getFormattedDate(x);
+                    x = getFormattedDate(x, xValidation);
                 }
                 var y = d.y;
                 if (!isNaN(y) && yValidation.match(/^date/)) {
-                    y = getFormattedDate(y);
+                    y = getFormattedDate(y, yValidation);
                 }
                 console.log("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + d.x + ", " + d.y + ") (" + x + ", " + y + ") "+xValidation+" "+yValidation);
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");
@@ -277,11 +277,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             .on("mouseover",function(d){
                 var x = d.x;
                 if (!isNaN(x) && xValidation.match(/^date/)) {
-                    x = getFormattedDate(x);
+                    x = getFormattedDate(x, xValidation);
                 }
                 var y = d.y;
                 if (!isNaN(y) && yValidation.match(/^date/)) {
-                    y = getFormattedDate(y);
+                    y = getFormattedDate(y, yValidation);
                 }
                 console.log("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + d.x + ", " + d.y + ") (" + x + ", " + y + ") "+xValidation+" "+yValidation);
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");

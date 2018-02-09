@@ -118,12 +118,14 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.obj = _obj;
         self.container = _container;
 
-        console.log(JSON.stringify(self.data));
-
         var objx = self.data[self.obj.form1].fields[self.obj.var1];
         var objy = self.data[self.obj.form2].fields[self.obj.var2];
         var query = filterData.getQuery();
         self.hover = filterData.getHoverArr();
+
+        console.log("objx: "+JSON.stringify(objx));
+        console.log("objy: "+JSON.stringify(objy));
+
 
         self.eventArr = dataWrapper.getEventRecords();
         self.recordArr = dataWrapper.getRecordId();

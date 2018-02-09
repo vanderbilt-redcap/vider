@@ -230,6 +230,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return d.c;
             })
             .on("mouseover",function(d){
+                console.log("mouseover");
                 console.log("d: "+JSON.stringify(d));
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val : " + d.x + ", " + d.y);
             })
@@ -258,6 +259,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return "translate(" + x(d.x) + "," + y(d.y) + ")";
             })
             .on("mouseover",function(d){
+                console.log("1 mouseover");
+                console.log("2 d: "+JSON.stringify(d));
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val : " +d.x + ", " + d.y);
             })
             .on("mouseout",global.tips.numTextTip.hide);

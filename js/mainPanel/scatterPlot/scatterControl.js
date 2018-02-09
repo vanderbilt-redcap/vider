@@ -5,6 +5,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
 
 
     var self = this;
+    var validation_x = "";
+    var validation_y = "";
 
     /**
      *
@@ -168,8 +170,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                 label: stratValue,
                 data: visData,
                 hoverData: visHoverData,
-                xValidation: validation_x,
-                yValidation: validation_y
+                xValidation: self.validation_x,
+                yValidation: self.validation_y
             };
             //generateScatterStructure(origDataPair);
 
@@ -208,6 +210,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
 
         var validation_x = objx.obj['text_validation_type_or_show_slider_number'];
         var validation_y = objy.obj['text_validation_type_or_show_slider_number'];
+        self.validation_x = validation_x;
+        self.validation_y = validation_y;
 	var objx_data = objx.data;
         var objy_data = objy.data;
         if (validation_x.match(/^date_/)) {

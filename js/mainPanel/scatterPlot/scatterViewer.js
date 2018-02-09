@@ -136,6 +136,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         function brushend(d){
             var e = brush.extent();
             filterData.setAllHoverToFalse();
+            console.log("brushend");
             d3.select(this).selectAll(".point")
                 .each(function(d){
 
@@ -204,24 +205,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 .attr("dy", ".71em")
                 .style("text-anchor", "end")
                 .text(yLabel);
-
-        // reformat for dates
-        if (stratData[0].xValidation.match(/^date/)) {
-            console.log("xes");
-            $(svgElements).find(".tick").each(function(idx, ob) {
-                console.log("x "+idx);
-                // var d1 = $(ob).html();
-                // $(ob).html(getFormattedDate(d1));
-            });
-        }
-        if (stratData[0].yValidation.match(/^date/)) {
-            console.log("ys "+svgElements);
-            $(svgElements).find(".tick").each(function(idx, ob) {
-                console.log("y "+idx);
-                // var d1 = $(ob).html();
-                // $(ob).html(getFormattedDate(d1));
-            });
-        }
 
         // Add the points!
         var scatterPlot = svgElements.append("g")

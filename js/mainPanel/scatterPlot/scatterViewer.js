@@ -237,11 +237,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             })
             .on("mouseover",function(d){
                 var x = d.x;
-                if (!isNaN(x) && validationX.match(/^date/)) {
+                if (!isNaN(x) && xValidation.match(/^date/)) {
                     x = getFormattedDate(x);
                 }
                 var y = d.y;
-                if (!isNaN(y) && validationX.match(/^date/)) {
+                if (!isNaN(y) && yValidation.match(/^date/)) {
                     y = getFormattedDate(y);
                 }
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val: (" + x + ", " + y + ")");

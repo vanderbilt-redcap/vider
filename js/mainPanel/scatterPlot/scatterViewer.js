@@ -142,13 +142,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return d.label;
             });
 
-        console.log("x: "+JSON.stringify(x));
-        console.log("y: "+JSON.stringify(y));
         // Add the x-axis.
         svgElements.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(50," + (height + 40) + ")")
-            .call(d3.svg.axis().scale(x).orient("bottom"))
+            .call(d3.svg.axis().scale(x).orient("bottom").data([1000, 2000, 3000]))
                 .append("text")
                 .attr("class", "label")
                 .attr("x", width)
@@ -159,7 +157,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         svgElements.append("g")
             .attr("class", "y axis")
             .attr("transform", "translate(50,40)")
-            .call(d3.svg.axis().scale(y).orient("left"))
+            .call(d3.svg.axis().scale(y).orient("left").data([1000, 2000, 3000]))
                 .append("text")
                 .attr("class", "label")
                 .attr("transform", "rotate(-90)")

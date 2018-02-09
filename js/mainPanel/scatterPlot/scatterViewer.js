@@ -71,10 +71,12 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             })
         })
 
+        console.log("x: min "+minXValue+", max "+maxXValue);
         var x = d3.scale.linear()
             .domain([minXValue, maxXValue])
             .range([ 0, width ]);
 
+        console.log("y: min "+minYValue+", max "+maxYValue);
         var y = d3.scale.linear()
             .domain([minYValue, maxYValue])
             .range([ height, 0 ]);

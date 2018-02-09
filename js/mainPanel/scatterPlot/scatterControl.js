@@ -354,9 +354,11 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
              $('svg .y .tick text').each(function(idx, ob) {
                  var n = $(ob).html();
                  n = n.replace(/,/g, "");
-                 $(ob).html(getFormattedDate(n, validation_y));
-                 if ((idx == 0) || (idx == yTicks - 1)) {
-                     $(ob).parent().hide();
+                 if (!isNaN(n)) {
+                     $(ob).html(getFormattedDate(n, validation_y));
+                     if ((idx == 0) || (idx == yTicks - 1)) {
+                         $(ob).parent().hide();
+                     }
                  }
              });
         }
@@ -366,31 +368,33 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
              $('svg .x .tick text').each(function(idx, ob) {
                  var n = $(ob).html();
                  n = n.replace(/,/g, "");
-                 if ((idx == 0) || (idx == xTicks - 1)) {
-                     xVal = Number(n);
-                     $(ob).parent().hide();
-                 }
-                 else {
-                     $(ob).css({'font-size': '12px'});
-
-                     var date = getFormattedDate(n, validation_x);
-                     var dateParts = date.split(/\s+/);
-                     if (dateParts.length > 1) {
-                         if ((n - xVal) / idx < 3600 * 24 / xTicks) {
-                             // less than a day traversed => display hours on all but first
-                             if (idx == 1) {
-                                 $(ob).html(date);
+                 if (!isNaN(n)) {
+                     if ((idx == 0) || (idx == xTicks - 1)) {
+                         xVal = Number(n);
+                         $(ob).parent().hide();
+                     }
+                     else {
+                         $(ob).css({'font-size': '12px'});
+    
+                         var date = getFormattedDate(n, validation_x);
+                         var dateParts = date.split(/\s+/);
+                         if (dateParts.length > 1) {
+                             if ((n - xVal) / idx < 3600 * 24 / xTicks) {
+                                 // less than a day traversed => display hours on all but first
+                                 if (idx == 1) {
+                                     $(ob).html(date);
+                                 }
+                                 else {
+                                     $(ob).html(dateParts[1]);
+                                     }
                              }
                              else {
-                                 $(ob).html(dateParts[1]);
+                                 $(ob).html(dateParts[0]);
                              }
                          }
                          else {
-                             $(ob).html(dateParts[0]);
+                             $(ob).html(date);
                          }
-                     }
-                     else {
-                         $(ob).html(date);
                      }
                  }
              });

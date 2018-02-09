@@ -349,7 +349,9 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         console.log("y tick.length: "+$('svg .y .tick text').length);
         if (validation_x.match(/^date/)) {
              $('svg .x .tick text').each(function(idx, ob) {
-                 console.log(idx+": "+$(ob).html());
+                 var n = $(ob).html();
+                 n = n.replace(/,/g, "");
+                 $(ob).html(getFormattedDate(n, validation_x));
              });
         }
     }

@@ -346,18 +346,25 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         scatterViewer.create(_container, self.stratDataObj, _isQueried, objx.obj.field_label, objy.obj.field_label);
 
         if (validation_x.match(/^date/)) {
+             var xTicks = $('svg .x .tick text').length();
              $('svg .x .tick text').each(function(idx, ob) {
                  var n = $(ob).html();
                  n = n.replace(/,/g, "");
                  $(ob).html(getFormattedDate(n, validation_x));
+                 if ((idx == 0) || (idx == xTicks - 1)) {
+                     $(ob).hide();
+                 }
              });
         }
         if (validation_y.match(/^date/)) {
+             var yTicks = $('svg .y .tick text').length();
              $('svg .y .tick text').each(function(idx, ob) {
                  var n = $(ob).html();
                  n = n.replace(/,/g, "");
-                 console.log(idx+" "+n+" "+getFormattedDate(n, validation_y));
                  $(ob).html(getFormattedDate(n, validation_y));
+                 if ((idx == 0) || (idx == yTicks - 1)) {
+                     $(ob).hide();
+                 }
              });
         }
     }

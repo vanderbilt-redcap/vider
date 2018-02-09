@@ -37,7 +37,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         var minXValue = Number.MAX_VALUE;
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
-                console.log("x: "+d.x);
                 if((minXValue > d.x) && (d.x !== "")){
                     if ((d.x !== 0) || !strat.xValidation.match(/^date/)) {
                         minXValue = d.x;
@@ -82,12 +81,10 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             })
         })
 
-        console.log("x: min "+minXValue+", max "+maxXValue);
         var x = d3.scale.linear()
             .domain([minXValue, maxXValue])
             .range([ 0, width ]);
 
-        console.log("y: min "+minYValue+", max "+maxYValue);
         var y = d3.scale.linear()
             .domain([minYValue, maxYValue])
             .range([ height, 0 ]);
@@ -145,6 +142,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return d.label;
             });
 
+        console.log("x: "+JSON.stringify(x));
+        console.log("y: "+JSON.stringify(y));
         // Add the x-axis.
         svgElements.append("g")
             .attr("class", "x axis")
@@ -241,9 +240,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
     };
 
     var _create = function (_container, _stratData, _isBrushEnabled, _xLabel, _yLabel) {
-
-        console.log(_xLabel, _yLabel);
-        console.log(JSON.stringify(_stratData));
 
         sel = _container;
         stratData = _stratData;

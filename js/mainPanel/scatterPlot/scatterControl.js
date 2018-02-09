@@ -118,6 +118,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.obj = _obj;
         self.container = _container;
 
+        echo json_encode(self.data);
+
         var objx = self.data[self.obj.form1].fields[self.obj.var1];
         var objy = self.data[self.obj.form2].fields[self.obj.var2];
         var query = filterData.getQuery();

@@ -352,7 +352,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                  n = n.replace(/,/g, "");
                  $(ob).html(getFormattedDate(n, validation_x));
                  if ((idx == 0) || (idx == xTicks - 1)) {
-                     $(ob).hide();
+                     $(ob).parent().hide();
                  }
              });
         }
@@ -363,7 +363,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                  n = n.replace(/,/g, "");
                  $(ob).html(getFormattedDate(n, validation_y));
                  if ((idx == 0) || (idx == yTicks - 1)) {
-                     $(ob).hide();
+                     $(ob).parent().hide();
                  }
              });
         }

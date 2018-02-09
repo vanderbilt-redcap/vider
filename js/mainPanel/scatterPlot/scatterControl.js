@@ -208,8 +208,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.datax = [];
         self.datay = [];
 
-        self.validation_x = objx.obj['text_validation_type_or_show_slider_number'];
-        self.validation_y = objy.obj['text_validation_type_or_show_slider_number'];
+        var validation_x = objx.obj['text_validation_type_or_show_slider_number'];
+        var validation_y = objy.obj['text_validation_type_or_show_slider_number'];
 	var objx_data = objx.data;
         var objy_data = objy.data;
         if (validation_x.match(/^date_/)) {
@@ -301,15 +301,14 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                 if(self.eventArr != null){
                     event = eventArr[index];
                 }
-                var datum = {
+                visData.push({
                     x: Number(self.datax[index]),
                     y: Number(self.datay[index]),
                     c: self.colorByArr[index],
                     r: record,
                     e: event,
                     index: index
-                };
-                visData.push(datum);
+                });
             }
 
             var visHoverData = [];

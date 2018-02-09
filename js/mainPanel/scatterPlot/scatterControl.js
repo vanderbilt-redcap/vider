@@ -167,7 +167,9 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             var origDataPair = {
                 label: stratValue,
                 data: visData,
-                hoverData: visHoverData
+                hoverData: visHoverData,
+                xValidation = validation_x,
+                yValidation = validation_y
             };
             //generateScatterStructure(origDataPair);
 

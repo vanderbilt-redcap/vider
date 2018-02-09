@@ -31,13 +31,17 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             width = 750 - margin.left - margin.right,
             height = 500;
 
+        // disqualify date values with 0. Assume that no one has a midnight 1-1-1970 date.
+
         //find the x min value
         var minXValue = Number.MAX_VALUE;
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 console.log("x: "+d.x);
                 if((minXValue > d.x) && (d.x !== "")){
-                    minXValue = d.x;
+                    if ((d.x !== 0) || !stratData.xValidation.match(/^date/)) {
+                        minXValue = d.x;
+                    }
                 }
             })
         })
@@ -47,7 +51,9 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if(maxXValue < d.x){
-                    maxXValue = d.x;
+                    if ((d.x !== 0) || !stratData.xValidation.match(/^date/)) {
+                        maxXValue = d.x;
+                    }
                 }
             })
         })
@@ -57,7 +63,9 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if((minYValue > d.y) && (d.y !== "")) {
-                    minYValue = d.y;
+                    if ((d.y !== 0) || !stratData.yValidation.match(/^date/)) {
+                        minYValue = d.y;
+                    }
                 }
             })
         })
@@ -67,7 +75,9 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if(maxYValue < d.y){
-                    maxYValue = d.y;
+                    if ((d.y !== 0) || !stratData.yValidation.match(/^date/)) {
+                        maxYValue = d.y;
+                    }
                 }
             })
         })

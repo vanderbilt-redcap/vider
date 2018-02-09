@@ -31,12 +31,32 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             width = 750 - margin.left - margin.right,
             height = 500;
 
+        //find the x min value
+        var minXValue = Number.MAX_VALUE;
+        stratData.forEach(function(strat){
+            strat.data.forEach(function(d){
+                if(minXValue > d.x){
+                    minXValue = d.x;
+                }
+            })
+        })
+
         //find the x max value
         var maxXValue = Number.MIN_VALUE;
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if(maxXValue < d.x){
                     maxXValue = d.x;
+                }
+            })
+        })
+
+        //find the y min value
+        var minYValue = Number.MAX_VALUE;
+        stratData.forEach(function(strat){
+            strat.data.forEach(function(d){
+                if(minYValue > d.y){
+                    minYValue = d.y;
                 }
             })
         })
@@ -52,11 +72,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         })
 
         var x = d3.scale.linear()
-            .domain([0, maxXValue])
+            .domain([minXValue, maxXValue])
             .range([ 0, width ]);
 
         var y = d3.scale.linear()
-            .domain([0, maxYValue])
+            .domain([minYVale, maxYValue])
             .range([ height, 0 ]);
 
         var brush = d3.svg.brush()

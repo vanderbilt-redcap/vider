@@ -23,6 +23,45 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
     var xLabel;
     var yLabel;
 
+    var getFormattedDate = function (unixTs, validation) {
+        var d = new Date(unixTs * 1000);
+        var year = d.getFullYear();
+        var month = ("0" + (d.getMonth() + 1)).substr(-2);
+        var day = ("0" + (d.getDate())).substr(-2);
+
+        var hours = ("0" + d.getHours()).substr(-2);
+        var minutes = ("0" + d.getMinutes()).substr(-2);
+        var seconds = ("0" + d.getSeconds()).substr(-2);
+
+        if (validation == "date_ymd") {
+            return year + "-" + month + "-" + day;
+        }
+        if (validation == "date_dmy") {
+            return day + "-" + month + "-" + year;
+        }
+        if (validation == "date_mdy") {
+            return month + "-" + day + "-" + year;
+        }
+        if (validation == "datetime_ymd") {
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_dmy") {
+            return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_mdy") {
+            return month + "-" + day + "-" + year + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_seconds_ymd") {
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        }
+        if (validation == "datetime_seconds_dmy") {
+            return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+        }
+        if (validation == "datetime_seconds_mdy") {
+            return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+        }
+    };
+
     var init = function () {
         var self = this;
 
@@ -145,7 +184,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         // Add the x-axis.
         svgElements.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(50," + (height + 40) + ")")
+            .attr("transform", "translate(100," + (height + 40) + ")")
             .call(d3.svg.axis().scale(x).orient("bottom"))
                 .append("text")
                 .attr("class", "label")
@@ -156,7 +195,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
 
         svgElements.append("g")
             .attr("class", "y axis")
-            .attr("transform", "translate(50,40)")
+            .attr("transform", "translate(100,40)")
             .call(d3.svg.axis().scale(y).orient("left"))
                 .append("text")
                 .attr("class", "label")
@@ -166,11 +205,24 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 .style("text-anchor", "end")
                 .text(yLabel);
 
+        // reformat for dates
+        if (stratData[0].xValidation.match(/^date/)) {
+            $(svgElements).find(".x .tick text").each(function(idx, ob) {
+                var d = $(ob).html();
+                $(ob).html(getFormattedDate(d));
+            );
+        }
+        if (stratData[0].yValidation.match(/^date/)) {
+            $(svgElements).find(".y .tick text").each(function(idx, ob) {
+                var d = $(ob).html();
+                $(ob).html(getFormattedDate(d));
+            );
+        }
 
         // Add the points!
         var scatterPlot = svgElements.append("g")
                             .attr("transform",
-                                "translate(50,40)");
+                                "translate(100,40)");
 
         var point = scatterPlot.selectAll(".point")
             .data(function(d){
@@ -200,7 +252,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
 
         var hoverPlot = svgElements.append("g")
             .attr("transform",
-                "translate(50,40)");
+                "translate(100,40)");
 
         var hoverPoint = hoverPlot.selectAll(".hover-point")
             .data(function(d){

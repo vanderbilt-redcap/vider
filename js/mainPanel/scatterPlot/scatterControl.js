@@ -356,6 +356,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
              $('svg .y .tick text').each(function(idx, ob) {
                  var n = $(ob).html();
                  n = n.replace(/,/g, "");
+                 console.log(idx+" "+n+" "+getFormattedDate(n, validation_y));
                  $(ob).html(getFormattedDate(n, validation_y));
              });
         }

@@ -184,7 +184,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         // Add the x-axis.
         svgElements.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(70," + (height + 40) + ")")
+            .attr("transform", "translate(80," + (height + 40) + ")")
             .call(d3.svg.axis().scale(x).orient("bottom"))
                 .append("text")
                 .attr("class", "label")
@@ -195,7 +195,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
 
         svgElements.append("g")
             .attr("class", "y axis")
-            .attr("transform", "translate(70,40)")
+            .attr("transform", "translate(80,40)")
             .call(d3.svg.axis().scale(y).orient("left"))
                 .append("text")
                 .attr("class", "label")
@@ -208,7 +208,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         // Add the points!
         var scatterPlot = svgElements.append("g")
                             .attr("transform",
-                                "translate(70,40)");
+                                "translate(80,40)");
 
         var point = scatterPlot.selectAll(".point")
             .data(function(d){
@@ -238,7 +238,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
 
         var hoverPlot = svgElements.append("g")
             .attr("transform",
-                "translate(70,40)");
+                "translate(80,40)");
 
         var hoverPoint = hoverPlot.selectAll(".hover-point")
             .data(function(d){

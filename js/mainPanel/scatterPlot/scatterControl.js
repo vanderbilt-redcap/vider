@@ -345,17 +345,6 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
 
         scatterViewer.create(_container, self.stratDataObj, _isQueried, objx.obj.field_label, objy.obj.field_label);
 
-        if (validation_x.match(/^date/)) {
-             var xTicks = $('svg .x .tick text').length;
-             $('svg .x .tick text').each(function(idx, ob) {
-                 var n = $(ob).html();
-                 n = n.replace(/,/g, "");
-                 $(ob).html(getFormattedDate(n, validation_x));
-                 if ((idx == 0) || (idx == xTicks - 1)) {
-                     $(ob).parent().hide();
-                 }
-             });
-        }
         if (validation_y.match(/^date/)) {
              var yTicks = $('svg .y .tick text').length;
              $('svg .y .tick text').each(function(idx, ob) {
@@ -364,6 +353,37 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                  $(ob).html(getFormattedDate(n, validation_y));
                  if ((idx == 0) || (idx == yTicks - 1)) {
                      $(ob).parent().hide();
+                 }
+             });
+        }
+        if (validation_x.match(/^date/)) {
+             var xTicks = $('svg .x .tick text').length;
+             var xVal;
+             $('svg .x .tick text').each(function(idx, ob) {
+                 var n = $(ob).html();
+                 n = n.replace(/,/g, "");
+                 if ((idx == 0) || (idx == xTicks - 1)) {
+                     xVal = Number(n);
+                     $(ob).parent().hide();
+                 }
+                 else {
+                     $(ob).css({'font-size': '12px');
+
+                     var date = getFormattedDate(n, validation_x);
+                     var dateParts = date.split(/\s+/);
+                     if (dateParts.length > 1) {
+                         if ((n - xVal) / idx < 3600 * 24 / xTicks) {
+                             // less than a day traversed => display hours on all but first
+                             if (idx == 1) {
+                                 $(ob).html(date);
+                             }
+                             else {
+                                 $(ob).html(dateParts[1]);
+                             }
+                         } else {
+                             $(ob).html(dateParts[0]);
+                         }
+                     }
                  }
              });
         }

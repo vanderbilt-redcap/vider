@@ -39,7 +39,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             strat.data.forEach(function(d){
                 console.log("x: "+d.x);
                 if((minXValue > d.x) && (d.x !== "")){
-                    if ((d.x !== 0) || !stratData.xValidation.match(/^date/)) {
+                    if ((d.x !== 0) || !strat.xValidation.match(/^date/)) {
                         minXValue = d.x;
                     }
                 }
@@ -51,7 +51,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if(maxXValue < d.x){
-                    if ((d.x !== 0) || !stratData.xValidation.match(/^date/)) {
+                    if ((d.x !== 0) || !strat.xValidation.match(/^date/)) {
                         maxXValue = d.x;
                     }
                 }
@@ -63,7 +63,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if((minYValue > d.y) && (d.y !== "")) {
-                    if ((d.y !== 0) || !stratData.yValidation.match(/^date/)) {
+                    if ((d.y !== 0) || !strat.yValidation.match(/^date/)) {
                         minYValue = d.y;
                     }
                 }
@@ -75,7 +75,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         stratData.forEach(function(strat){
             strat.data.forEach(function(d){
                 if(maxYValue < d.y){
-                    if ((d.y !== 0) || !stratData.yValidation.match(/^date/)) {
+                    if ((d.y !== 0) || !strat.yValidation.match(/^date/)) {
                         maxYValue = d.y;
                     }
                 }

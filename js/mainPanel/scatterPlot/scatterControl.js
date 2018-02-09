@@ -42,6 +42,41 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         //}
     }
 
+    var transformForDate = function (data, validation) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i] && isNaN(data[i])) {
+                var dateAry = new Array(1970, 1, 1);
+                var sections = data[i].split(/\s/);
+                var dnodes = sections[0].split(/-/);
+                var tnodes = new Array(0, 0, 0);
+                if (sections.length >= 2) {
+                    var mytnodes = sections[1].split(/:/);
+                    if (mytnodes.length > 0) {
+                        tnodes[0] = mytnodes[0];
+                    }
+                    if (mytnodes.length > 1) {
+                        tnodes[1] = mytnodes[1];
+                    }
+                    if (mytnodes.length > 2) {
+                        tnodes[2] = mytnodes[2];
+                    }
+                }
+                if (validation.match(/_ymd$/)) {
+                    dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
+                }
+                else if (validation.match(/_mdy$/)) {
+                    dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
+                }
+                else if (validation.match(/_dmy$/)) {
+                    dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
+                }
+                var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
+                data[i] = date.getTime() / 1000;
+            }
+        }
+        return data;
+    };
+
     /**
      *
      * @param stratCategories
@@ -134,10 +169,20 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.datax = [];
         self.datay = [];
 
+        var validation_x = objx.obj['text_validation_type_or_show_slider_number'];
+        var validation_y = objy.obj['text_validation_type_or_show_slider_number'];
+	var objx_data = objx.data;
+        var objy_data = objy.data;
+        if (validation_x.match(/^date_/)) {
+            objx_data = transformForDate(objx_data, validation_x);
+        }
+        if (validation_y.match(/^date_/)) {
+            objy_data = transformForDate(objy_data, validation_y);
+        }
         for(var qIndex = 0 ; qIndex < query.length ; qIndex++){
             if ( true == query[qIndex] || 1 == query[qIndex]){
-                self.datax.push(objx.data[qIndex]);
-                self.datay.push(objy.data[qIndex]);
+                self.datax.push(objx_data[qIndex]);
+                self.datay.push(objy_data[qIndex]);
             }
         }
 
@@ -149,8 +194,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.hoverDataY = [];
 
         for(var hIndex = 0 ; hIndex < self.hover.length ; hIndex++){
-            self.hoverDataX.push(objx.data[hIndex]);
-            self.hoverDataY.push(objy.data[hIndex]);
+            self.hoverDataX.push(objx_data[hIndex]);
+            self.hoverDataY.push(objy_data[hIndex]);
         }
         var hoverDataLen = self.hoverDataX.length < self.hoverDataY.length
             ? self.hoverDataX.length : self.hoverDataY.length;

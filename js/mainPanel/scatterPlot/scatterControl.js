@@ -168,8 +168,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
                 label: stratValue,
                 data: visData,
                 hoverData: visHoverData,
-                xValidation = validation_x,
-                yValidation = validation_y
+                xValidation: validation_x,
+                yValidation: validation_y
             };
             //generateScatterStructure(origDataPair);
 

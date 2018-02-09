@@ -335,7 +335,9 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             var origDataPair = {
                 label: "",
                 data: visData,
-                hoverData:visHoverData
+                hoverData:visHoverData,
+                xValidation: validation_x,
+                yValidation: validation_y
             };
 
             self.stratDataObj.push(origDataPair);

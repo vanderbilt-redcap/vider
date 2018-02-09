@@ -76,7 +76,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             .range([ 0, width ]);
 
         var y = d3.scale.linear()
-            .domain([minYVale, maxYValue])
+            .domain([minYValue, maxYValue])
             .range([ height, 0 ]);
 
         var brush = d3.svg.brush()

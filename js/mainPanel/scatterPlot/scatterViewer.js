@@ -230,8 +230,9 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
                 return d.c;
             })
             .on("mouseover",function(d){
-                console.log("mouseover");
-                console.log("d: "+JSON.stringify(d));
+                console.log("2 mouseover");
+                console.log("2 d: "+JSON.stringify(d));
+                console.log("Rec : "+ d.r+" Event: "+ d.e+" Val : " + d.x + ", " + d.y);
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val : " + d.x + ", " + d.y);
             })
             .on("mouseout",global.tips.numTextTip.hide);
@@ -260,7 +261,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
             })
             .on("mouseover",function(d){
                 console.log("1 mouseover");
-                console.log("2 d: "+JSON.stringify(d));
+                console.log("1 d: "+JSON.stringify(d));
                 global.tips.numTextTip.show("Rec : "+ d.r+" Event: "+ d.e+" Val : " +d.x + ", " + d.y);
             })
             .on("mouseout",global.tips.numTextTip.hide);

@@ -208,12 +208,14 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         // reformat for dates
         if (stratData[0].xValidation.match(/^date/)) {
             $(svgElements).find(".x .tick text").each(function(idx, ob) {
+                console.log("x "+idx);
                 var d = $(ob).html();
                 $(ob).html(getFormattedDate(d));
             });
         }
         if (stratData[0].yValidation.match(/^date/)) {
             $(svgElements).find(".y .tick text").each(function(idx, ob) {
+                console.log("y "+idx);
                 var d = $(ob).html();
                 $(ob).html(getFormattedDate(d));
             });

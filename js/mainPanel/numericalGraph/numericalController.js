@@ -687,6 +687,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
+            console.log("varData: "+JSON.stringify(self.varData));
         }
 
         // must be called only for date information

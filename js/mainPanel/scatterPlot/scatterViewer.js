@@ -26,45 +26,45 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
     var yValidation = "";
 
     var getFormattedDate = function (unixTs, validation) {
-        console.log("getFormattedDate "+unixTs+" "+validation);
-        var date = new Date(unixTs * 1000);
-        var year = date.getFullYear();
-        var month = ("0" + (date.getMonth() + 1)).substr(-2);
-        var day = ("0" + (date.getDate())).substr(-2);
+        if (unixTs) {
+            var d = new Date(unixTs * 1000);
+            var year = d.getFullYear();
+            var month = ("0" + (d.getMonth() + 1)).substr(-2);
+            var day = ("0" + (d.getDate())).substr(-2);
 
-        var hours = ("0" + date.getHours()).substr(-2);
-        var minutes = ("0" + date.getMinutes()).substr(-2);
-        var seconds = ("0" + date.getSeconds()).substr(-2);
-        console.log(year+" "+month+" "+day+" "+hours+" "+minutes+" "+seconds);
+            var hours = ("0" + d.getHours()).substr(-2);
+            var minutes = ("0" + d.getMinutes()).substr(-2);
+            var seconds = ("0" + d.getSeconds()).substr(-2);
 
-        if (validation == "date_ymd") {
-            return year + "-" + month + "-" + day;
+            if (validation == "date_ymd") {
+                return year + "-" + month + "-" + day;
+            }
+            if (validation == "date_dmy") {
+                return day + "-" + month + "-" + year;
+            }
+            if (validation == "date_mdy") {
+                return month + "-" + day + "-" + year;
+            }
+            if (validation == "datetime_ymd") {
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+            }
+            if (validation == "datetime_dmy") {
+                return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
+            }
+            if (validation == "datetime_mdy") {
+                return month + "-" + day + "-" + year + " " + hours + ":" + minutes;
+            }
+            if (validation == "datetime_seconds_ymd") {
+                return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+            }
+            if (validation == "datetime_seconds_dmy") {
+                return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+            }
+            if (validation == "datetime_seconds_mdy") {
+                return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+            }
         }
-        if (validation == "date_dmy") {
-            return day + "-" + month + "-" + year;
-        }
-        if (validation == "date_mdy") {
-            return month + "-" + day + "-" + year;
-        }
-        if (validation == "datetime_ymd") {
-            return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
-        }
-        if (validation == "datetime_dmy") {
-            return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
-        }
-        if (validation == "datetime_mdy") {
-            return month + "-" + day + "-" + year + " " + hours + ":" + minutes;
-        }
-        if (validation == "datetime_seconds_ymd") {
-            return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
-        }
-        if (validation == "datetime_seconds_dmy") {
-            return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
-        }
-        if (validation == "datetime_seconds_mdy") {
-            return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
-        }
-        return unixTs;
+        return "";
     };
 
     var init = function () {

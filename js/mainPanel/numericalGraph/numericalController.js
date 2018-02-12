@@ -23,7 +23,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          * @param obj
          */
         var getNumericalCategories = function (data, obj, validation) {
-            console.log(JSON.stringify(data));
+            console.log("data: "+JSON.stringify(data));
 
             var max = Math.max.apply(Math, data);
             var domain = d3.scale.linear()

@@ -689,6 +689,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             });
         }
 
+        // must be called only for date information
         var transformForDate = function (data, validation) {
             for (var i = 0; i < data.length; i++) {
                 if (data[i] && isNaN(data[i])) {
@@ -719,6 +720,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                     var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
                     data[i] = date.getTime() / 1000;
+                }
+                else if (!data[i]) {
+                    data[i] = "";
                 }
             }
             return data;

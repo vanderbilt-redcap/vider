@@ -23,8 +23,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          * @param obj
          */
         var getNumericalCategories = function (data, obj, validation) {
-            console.log("data: "+JSON.stringify(data));
-
             var max = Math.max.apply(Math, data);
             var domain = d3.scale.linear()
                 .domain([Math.min.apply(Math, data), max]);
@@ -526,6 +524,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
+            console.log("varData: "+JSON.stringify(self.varData));
         }
 
         /**

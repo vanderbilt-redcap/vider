@@ -527,7 +527,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
-            console.log("varData 1: "+JSON.stringify(self.varData));
+            // console.log("varData 1: "+JSON.stringify(self.varData));
         }
 
         /**
@@ -690,7 +690,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
-            console.log("varData 2: "+JSON.stringify(self.varData));
+            // console.log("varData 2: "+JSON.stringify(self.varData));
         }
 
         // must be called only for date information

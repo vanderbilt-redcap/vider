@@ -24,8 +24,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          */
         var getNumericalCategories = function (data, obj, validation) {
             var max = Math.max.apply(Math, data);
-            console.log("min 1: "+Math.min.apply(Math, data));
-            console.log("data 1: "+JSON.stringify(data));
             var domain = d3.scale.linear()
                 .domain([Math.min.apply(Math, data), max]);
 
@@ -125,9 +123,14 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 self.categories = d3.values(rebinning.get(self.formName,self.varName))[0];
             }
             else{
-                console.log("min 2: "+Math.min.apply(Math, self.varData));
+                var min = Math.max.apply(Math, self.varData);
+                for (var i = 0; i < self.varData.length; i++) {
+                    if (min !== "" && self.varData[i] < min) {
+                        min = self.varData[i];
+                    }
+                }
                 var domain = d3.scale.linear()
-                    .domain([Math.min.apply(Math, self.varData),
+                    .domain([min,
                         Math.max.apply(Math, self.varData)]);
                 var yTotalData = d3.layout.histogram()
                     .bins(domain.ticks(10))//this will take the partitions

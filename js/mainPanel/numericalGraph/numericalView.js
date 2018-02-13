@@ -257,6 +257,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     .range([textWidth, width])
                     .nice();
 
+                console.log("yScale "+localHeight);
+                console.log("original "+JSON.stringify(original));
                 var yScale = d3.scale.ordinal()
                     .rangeRoundBands([0, localHeight], .1);
 
@@ -269,10 +271,12 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     }
                     return (a.key - b.key);
                 });
+                console.log("original: "+JSON.stringify(original));
                 var mapped = [];
                 for (var i = 0; i < original.length; i++) {
                     mapped.push(original[i].value);
                 }
+                console.log("mapped: "+JSON.stringify(mapped));
                 yScale.domain(mapped);
 
                 var xAxis = d3.svg.axis();

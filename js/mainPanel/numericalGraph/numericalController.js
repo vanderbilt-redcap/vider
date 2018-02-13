@@ -477,6 +477,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     origKeyValuePair[key].colorTotal = total;
                 }
 
+                console.log("origKeyValuePair 2: "+JSON.stringify(origKeyValuePair));
                 //create the structure required for the
                 //creation of the stratified data
                 if (!stratDataObj.hasOwnProperty(stratValue)) {
@@ -639,6 +640,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     origKeyValuePair[key].colorTotal = total;
                 }
 
+                console.log("origKeyValuePair 1: "+JSON.stringify(origKeyValuePair));
                 //create the structure required for the
                 //creation of the stratified data
                 if (!stratDataObj.hasOwnProperty(stratValue)) {

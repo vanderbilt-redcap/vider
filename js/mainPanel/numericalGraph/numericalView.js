@@ -260,7 +260,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     .rangeRoundBands([0, localHeight], .1);
 
                 original.sort(function(a, b) {
-                    return (a.x - b.x);
+                    return (a.key - b.key);
                 });
                 console.log("original: "+JSON.stringify(original));
                 var mapped = [];

@@ -127,7 +127,6 @@ define(["d3","d3-tip","colorbrewer"],function(d3,d3tip,colorbrewer) {
      * @returns {*}
      */
     Global.prototype.getPID = function(){
-        console.log(instance.pid)
         return instance.pid;
     }
 
@@ -169,5 +168,82 @@ define(["d3","d3-tip","colorbrewer"],function(d3,d3tip,colorbrewer) {
     return Global.getInstance();
 });
 
+function getFormattedDate(unixTs, validation) {
+    if (unixTs !== "") {
+        var d = new Date(unixTs * 1000);
+        var year = d.getFullYear();
+        var month = ("0" + (d.getMonth() + 1)).substr(-2);
+        var day = ("0" + (d.getDate())).substr(-2);
 
+        var hours = ("0" + d.getHours()).substr(-2);
+        var minutes = ("0" + d.getMinutes()).substr(-2);
+        var seconds = ("0" + d.getSeconds()).substr(-2);
+
+        if (validation == "date_ymd") {
+            return year + "-" + month + "-" + day;
+        }
+        if (validation == "date_dmy") {
+            return day + "-" + month + "-" + year;
+        }
+        if (validation == "date_mdy") {
+            return month + "-" + day + "-" + year;
+        }
+        if (validation == "datetime_ymd") {
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_dmy") {
+            return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_mdy") {
+            return month + "-" + day + "-" + year + " " + hours + ":" + minutes;
+        }
+        if (validation == "datetime_seconds_ymd") {
+            return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
+        }
+        if (validation == "datetime_seconds_dmy") {
+            return day + "-" + month + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+        }
+        if (validation == "datetime_seconds_mdy") {
+            return month + "-" + day + "-" + year + " " + hours + ":" + minutes + ":" + seconds;
+        }
+    }
+    return "";
+}
+
+
+// must only be called for date information
+function transformForDate(data, validation) {
+    for (var i = 0; i < data.length; i++) {
+        if (data[i] && isNaN(data[i])) {
+            var dateAry = new Array(1970, 1, 1);
+            var sections = data[i].split(/\s/);
+            var dnodes = sections[0].split(/-/);
+            var tnodes = new Array(0, 0, 0);
+            if (sections.length >= 2) {
+                var mytnodes = sections[1].split(/:/);
+                if (mytnodes.length > 0) {
+                    tnodes[0] = mytnodes[0];
+                }
+                if (mytnodes.length > 1) {
+                    tnodes[1] = mytnodes[1];
+                }
+                if (mytnodes.length > 2) {
+                    tnodes[2] = mytnodes[2];
+                }
+            }
+            if (validation.match(/_ymd$/)) {
+                dateAry = new Array(dnodes[0], dnodes[1], dnodes[2]);
+            }
+            else if (validation.match(/_mdy$/)) {
+                dateAry = new Array(dnodes[2], dnodes[0], dnodes[1]);
+            }
+            else if (validation.match(/_dmy$/)) {
+                dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
+            }
+            var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
+            data[i] = date.getTime() / 1000;
+        }
+    }
+    return data;
+}
 

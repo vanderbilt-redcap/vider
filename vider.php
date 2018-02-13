@@ -258,12 +258,12 @@ header('X-Frame-Options: GOFORIT');
                     </div>
                     <div class="modal-body">
                         <form>
-                            X - Axis :
+                            X-Axis:
                             <select id="xAxis">
                             </select>
                             <!--<input type="text" name="token" id="token" value="EA9391F955A3536F26E0547699E94117" style="width: 100%;"><br>-->
                             <br><br>
-                            Y -  Axis :
+                            Y- Axis:
                             <select id="yAxis">
                             </select>
                         </form>

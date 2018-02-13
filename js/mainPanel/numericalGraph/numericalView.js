@@ -260,14 +260,15 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     .rangeRoundBands([0, localHeight], .1);
 
                 var order = [];
-                for (var key in original) {
-                    if (isNaN(key)) {
-                        order.push(key);
-                    } else {
-                        order.push(Number(key));
+                order.sort(function(a, b) {
+                    if (a.x < b.x) {
+                        return 1;
                     }
-                }
-                order.sort();
+                    else if (a.x > b.x) {
+                        return -1;
+                    }
+                    return 0;
+                });
                 var mapped = [];
                 for (var i = 0; i < order.length; i++) {
                     mapped.push(original[order[i]].value);

@@ -139,6 +139,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
                 }
+                console.log("key: "+key+" "+value);
 
                 //event object
                 var eventObj = {};

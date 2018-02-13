@@ -677,7 +677,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
             else if(d.isSelected){
                 return "#8199C9";
             }
-            return d._children ? "#5C81CD" : d.children ? "#5C81CD" : i % 2  ? "#FFFFFF" : "#d3d3d3";
+            return d._children ? "#122f6a" : d.children ? "#122f6a" : i % 2  ? "#FFFFFF" : "#d3d3d3";
         }
 
 

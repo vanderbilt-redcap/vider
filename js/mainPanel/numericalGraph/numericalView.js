@@ -261,10 +261,10 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
                 original.sort(function(a, b) {
                     if (a.key === "" || isNaN(a.key)) {
-                        return -1;
+                        return 1;
                     }
                     if (b.key === "" || isNaN(b.key)) {
-                        return 1;
+                        return -1;
                     }
                     return (a.key - b.key);
                 });

@@ -259,6 +259,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     .rangeRoundBands([0, localHeight], .1);
 
                 yScale.domain(original.map(function (d) {
+                    console.log("d.value = "+d.value);
                     return d.value;
                 }))
 

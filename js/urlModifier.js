@@ -34,7 +34,6 @@ define(["require"],function(require){
 
         var urlToUpdate = require("global").baseURL + "?";
         var pid = require("global").getPID();
-        console.log(pid);
         //check if current url contains www.example.com/ajax/project.aspx
         if (currentUrl.indexOf(require("global").baseURL) != -1 ) {
 

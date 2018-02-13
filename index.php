@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
 	if (($_POST['event'] != "") && ($_POST['event'] != "all___all")) {
 		$eventValue = "&event=".$_POST['event'];
 	}
-	header("Location: ".getUrl("vider.php")."&pid=$pid".$formValue.$eventValue);
+	header("Location: ".getUrl("vider.php").$formValue.$eventValue);
 } else {
 	$instruments = \REDCap::getInstrumentNames();
 

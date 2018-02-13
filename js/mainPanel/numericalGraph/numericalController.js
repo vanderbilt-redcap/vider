@@ -723,7 +723,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     data[i] = date.getTime() / 1000;
                 }
                 else if (!data[i]) {
-                    echo ("data["+i+"] = '"+data[i]+"');
+                    echo ("data["+i+"] = '"+data[i]+"'");
                     data[i] = "";
                 }
             }

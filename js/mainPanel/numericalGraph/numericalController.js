@@ -129,7 +129,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         min = self.varData[i];
                     }
                 }
-                console.log("min: "+min);
                 var domain = d3.scale.linear()
                     .domain([min,
                         Math.max.apply(Math, self.varData)]);

@@ -24,6 +24,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
          */
         var getNumericalCategories = function (data, obj, validation) {
             var max = Math.max.apply(Math, data);
+            console.log("min: "+Math.min.apply(Math, data));
             var domain = d3.scale.linear()
                 .domain([Math.min.apply(Math, data), max]);
 

@@ -270,7 +270,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 order.sort();
                 var mapped = [];
                 for (var i = 0; i < order.length; i++) {
-                    mapped.push(original[key].value);
+                    mapped.push(original[order[i]].value);
                 }
                 console.log("mapped: "+JSON.stringify(mapped));
                 yScale.domain(mapped);

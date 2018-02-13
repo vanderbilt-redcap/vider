@@ -257,12 +257,14 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 console.log("yScale "+localHeight);
                 console.log("original "+JSON.stringify(original));
                 var yScale = d3.scale.ordinal()
-                    .rangeRoundBands([-1000, localHeight], .1);
+                    .rangeRoundBands([0, localHeight], .1);
 
-                yScale.domain(original.map(function (d) {
+                var mapped = original.map(function (d) {
                     console.log("d.value = "+d.value);
                     return d.value;
-                }))
+                });
+                console.log("mapped: "+JSON.stringify(mapped));
+                yScale.domain(mappped);
 
                 var xAxis = d3.svg.axis();
                 xAxis.scale(xScale);

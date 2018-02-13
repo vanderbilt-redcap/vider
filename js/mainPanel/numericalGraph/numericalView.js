@@ -43,8 +43,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
             var self = this;
             var textWidth = 140;
             var margin = {top: 40, right: 20, bottom: 60, left: 40},
-                width = 750 - margin.left - margin.right,
+                width = 750 - margin.left - margin.right;
+            var height = 0;
+            if (self.stratData && self.stratData.length > 0) {
                 height = 25 * Object.keys(self.stratData[0].original).length + margin.top + margin.bottom;
+            }
             var flag = false;
 
             var drag= d3.behavior.drag()

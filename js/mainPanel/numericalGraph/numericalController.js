@@ -524,7 +524,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
-            console.log("varData: "+JSON.stringify(self.varData));
+            console.log("varData 1: "+JSON.stringify(self.varData));
         }
 
         /**
@@ -687,7 +687,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
-            console.log("varData: "+JSON.stringify(self.varData));
+            console.log("varData 2: "+JSON.stringify(self.varData));
         }
 
         // must be called only for date information
@@ -723,6 +723,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     data[i] = date.getTime() / 1000;
                 }
                 else if (!data[i]) {
+                    echo ("data["+i+"] = '"+data[i]+"');
                     data[i] = "";
                 }
             }

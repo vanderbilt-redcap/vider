@@ -259,9 +259,9 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 var yScale = d3.scale.ordinal()
                     .rangeRoundBands([0, localHeight], .1);
 
-                // original.sort(function(a, b) {
-                    // return (a.x - b.x);
-                // });
+                original.sort(function(a, b) {
+                    return (a.x - b.x);
+                });
                 console.log("original: "+JSON.stringify(original));
                 var mapped = [];
                 for (var i = 0; i < original.length; i++) {

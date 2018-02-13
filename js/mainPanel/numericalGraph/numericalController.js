@@ -139,7 +139,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
                 }
-                console.log("key: "+key+" "+value);
 
                 //event object
                 var eventObj = {};
@@ -205,20 +204,8 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 colorByObj: {}
             }
             createColorObj(origKeyValuePair[""].colorByObj);
-            function compareXs(thing1, thing2) {
-                if (!isNaN(thing1.x) && !isNaN(thing2.x)) {
-                    if (thing1.x > thing2.x) {
-                        return 1;
-                    } else if (thing2.x > thing1.x) {
-                        return -1;
-                    }
-                    return 0;
-                }
-                return 1;
-            }
 
             origKeyValuePair.sort(compareXs);
-            console.log("origKeyValuePair 4: "+JSON.stringify(origKeyValuePair));
         }
 
 
@@ -492,7 +479,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     origKeyValuePair[key].colorTotal = total;
                 }
 
-                console.log("origKeyValuePair 2: "+JSON.stringify(origKeyValuePair));
                 //create the structure required for the
                 //creation of the stratified data
                 if (!stratDataObj.hasOwnProperty(stratValue)) {
@@ -550,7 +536,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     self.type = 2; //two for nominal
                     generateNominalStructure(origKeyValuePair);
                 }
-                console.log("origKeyValuePair 3: "+JSON.stringify(origKeyValuePair));
 
                 //increment the counter for all
                 var filtering = require("filterData").getQuery();
@@ -656,7 +641,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     origKeyValuePair[key].colorTotal = total;
                 }
 
-                console.log("origKeyValuePair 1: "+JSON.stringify(origKeyValuePair));
                 //create the structure required for the
                 //creation of the stratified data
                 if (!stratDataObj.hasOwnProperty(stratValue)) {

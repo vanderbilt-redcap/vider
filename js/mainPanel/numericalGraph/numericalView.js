@@ -259,12 +259,21 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 var yScale = d3.scale.ordinal()
                     .rangeRoundBands([0, localHeight], .1);
 
-                var mapped = original.map(function (d) {
-                    console.log("d.value = "+d.value);
-                    return d.value;
-                });
+                var order = [];
+                for (var key in original) {
+                    if (isNaN(key)) {
+                        order.push(key);
+                    } else {
+                        order.push(Number(key));
+                    }
+                }
+                order.sort();
+                var mapped = [];
+                for (var i = 0; i < order.length; i++) {
+                    mapped.push(original[key].value);
+                }
                 console.log("mapped: "+JSON.stringify(mapped));
-                yScale.domain(mappped);
+                yScale.domain(mapped);
 
                 var xAxis = d3.svg.axis();
                 xAxis.scale(xScale);

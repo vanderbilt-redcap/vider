@@ -205,8 +205,22 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 colorByObj: {}
             }
             createColorObj(origKeyValuePair[""].colorByObj);
+            function compareXs(thing1, thing2) {
+                if (!isNaN(thing1.x) && !isNaN(thing2.x)) {
+                    if (thing1.x > thing2.x) {
+                        return 1;
+                    } else if (thing2.x > thing1.x) {
+                        return -1;
+                    }
+                    return 0;
+                }
+                return 1;
+            }
+
+            origKeyValuePair.sort(compareXs);
             console.log("origKeyValuePair 4: "+JSON.stringify(origKeyValuePair));
         }
+
 
         /**
          *

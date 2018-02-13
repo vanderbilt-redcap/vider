@@ -114,7 +114,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
         }
 
         var getFormattedDate = function (unixTs, validation) {  
-            if (unixTs) {
+            if (unixTs !== "") {
                 var d = new Date(unixTs * 1000);
                 var year = d.getFullYear();
                 var month = ("0" + (d.getMonth() + 1)).substr(-2);
@@ -180,6 +180,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 var value = cat.x + " - " + (cat.x + cat.dx);
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
+                    console.log("x: "+cat.x+" dx: "+cat.dx+" value: "+value);
                 }
 
                 //event object
@@ -399,7 +400,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
                     if (validationType.match(/^date/)) {
-                        // self.varData = transformForDate(self.varData, validationType);
+                        self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
                 }
@@ -565,7 +566,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
                     if (validationType.match(/^date/)) {
-                        // self.varData = transformForDate(self.varData, validationType);
+                        self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
                 }

@@ -128,7 +128,9 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
                 }
             }
             else{
-                console.log("Error - Invalid Form name mentioned in the field: "+field.form_name+" for "+field.field_name)
+                if (field.field_name != "record_id") {
+                    console.log("Error - Invalid Form name mentioned in the field: "+field.form_name+" for "+field.field_name)
+                }
             }
         });
 

@@ -265,7 +265,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                                 total: 0,
                                 dataType: "NUMERICAL"
                             }
-                            console.log("1: "+value.x + " - " + value.dx);
                             if (validationType.match(/^date/)) {
                                 colorDataObj[key]['value'] = getFormattedDate(cat.x, validationType) + " - " + getFormattedDate(cat.x + cat.dx, validationType);
                             }
@@ -531,6 +530,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
                 }
+                console.log("origKeyValuePair 3: "+JSON.stringify(origKeyValuePair));
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
                     generateNominalStructure(origKeyValuePair);

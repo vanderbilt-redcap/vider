@@ -530,11 +530,11 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
                 }
-                console.log("origKeyValuePair 3: "+JSON.stringify(origKeyValuePair));
                 else if (fieldType === "dropdown" || fieldType === "radio") {
                     self.type = 2; //two for nominal
                     generateNominalStructure(origKeyValuePair);
                 }
+                console.log("origKeyValuePair 3: "+JSON.stringify(origKeyValuePair));
 
                 //increment the counter for all
                 var filtering = require("filterData").getQuery();

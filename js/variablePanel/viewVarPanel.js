@@ -17,6 +17,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
         var varPanel = d3.select("#varPanel");
         $("#left-top").prepend("<h3 style='margin-top: 0px;'>Choose Your Variables to<br>Chart/Plot, Recolor, &amp; Stratify</h3>");
+        $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Stratifications</h3>");
         var dataPanel = document.getElementById("dataPanel");
 
         var svgElement = varPanel.attr("width", "100%")

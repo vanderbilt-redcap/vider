@@ -205,6 +205,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 colorByObj: {}
             }
             createColorObj(origKeyValuePair[""].colorByObj);
+            console.log("origKeyValuePair 4: "+JSON.stringify(origKeyValuePair));
         }
 
         /**

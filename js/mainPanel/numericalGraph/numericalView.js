@@ -257,7 +257,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 console.log("yScale "+localHeight);
                 console.log("original "+JSON.stringify(original));
                 var yScale = d3.scale.ordinal()
-                    .rangeRoundBands([0, localHeight], .1);
+                    .rangeRoundBands([-1000, localHeight], .1);
 
                 yScale.domain(original.map(function (d) {
                     console.log("d.value = "+d.value);

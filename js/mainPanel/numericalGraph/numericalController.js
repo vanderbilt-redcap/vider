@@ -136,7 +136,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             self.categories.forEach(function (cat) {
                 var key = cat.x;
                 var value = cat.x + " - " + (cat.x + cat.dx);
-                console.log("2: "+value);
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
                 }
@@ -428,7 +427,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                                 var colorData = self.data[colorBy.form].fields[colorBy.variable].data;
                                 var colorByObj = self.data[colorBy.form].fields[colorBy.variable].obj;
                                 var dataType = getDataType(colorByObj);
-                                console.log("colorData 1: "+JSON.stringify(colorData));
 
                                 if(dataType === "NUMERICAL"){
                                     var listObj = origKeyValuePair[key].colorByObj;
@@ -476,7 +474,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         var colorBy = origKeyValuePair[key].colorByObj[col];
                         colorBy.total = total;
                     }
-                    console.log(key+" totals "+total);
                     origKeyValuePair[key].colorTotal = total;
                 }
 
@@ -489,7 +486,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
-            // console.log("varData 1: "+JSON.stringify(self.varData));
         }
 
         /**
@@ -652,7 +648,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     }
                 }
             });
-            // console.log("varData 2: "+JSON.stringify(self.varData));
         }
 
         /**

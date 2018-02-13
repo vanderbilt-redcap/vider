@@ -466,6 +466,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                                 var colorData = self.data[colorBy.form].fields[colorBy.variable].data;
                                 var colorByObj = self.data[colorBy.form].fields[colorBy.variable].obj;
                                 var dataType = getDataType(colorByObj);
+                                console.log("colorData 1: "+JSON.stringify(colorData));
 
                                 if(dataType === "NUMERICAL"){
                                     var listObj = origKeyValuePair[key].colorByObj;
@@ -513,6 +514,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                         var colorBy = origKeyValuePair[key].colorByObj[col];
                         colorBy.total = total;
                     }
+                    console.log(key+" totals "+total);
                     origKeyValuePair[key].colorTotal = total;
                 }
 

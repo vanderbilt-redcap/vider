@@ -134,8 +134,6 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
             }
         });
 
-        console.log(self.mapInstToFields);
-
         if(null != self.fieldToDataMap["redcap_event_name"]) {
             var eventNames = self.fieldToDataMap["redcap_event_name"];
             var uEventNames = {};
@@ -165,8 +163,6 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
                 "data" : eventNames
             };
 
-            console.log(self.mapInstToFields);
-        }
     };
 
     /**

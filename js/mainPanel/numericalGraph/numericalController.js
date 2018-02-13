@@ -217,12 +217,11 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             if (value === "") {
                 return "";
             }
-            console.log("categories: "+JSON.stringify(self.categories));
             if (self.type == 1) {
                 for (var i = 0; i < self.categories.length; i++) {
                     var d = self.categories[i];
+                    console.log("getKey for "+value+" in x: "+d.x+"; dx: "+d.dx);
                     if (d.x <= value && value < (d.x + d.dx)) {
-                        console.log("getKey for "+value+" in x: "+d.x+"; dx: "+d.dx);
                         key = d.x;
                         break;
                     }

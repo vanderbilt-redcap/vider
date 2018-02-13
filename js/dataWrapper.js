@@ -162,7 +162,7 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
                 },
                 "data" : eventNames
             };
-
+        }
     };
 
     /**

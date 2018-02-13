@@ -204,8 +204,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 colorByObj: {}
             }
             createColorObj(origKeyValuePair[""].colorByObj);
-
-            origKeyValuePair.sort(compareXs);
         }
 
 

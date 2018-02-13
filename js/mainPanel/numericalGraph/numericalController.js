@@ -125,10 +125,11 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             else{
                 var min = Math.max.apply(Math, self.varData);
                 for (var i = 0; i < self.varData.length; i++) {
-                    if (!isNaN(self.varData[i]) && self.varData[i] < min) {
+                    if (!isNaN(self.varData[i]) && self.varData[i] !== "" && self.varData[i] < min) {
                         min = self.varData[i];
                     }
                 }
+                console.log("min: "+min);
                 var domain = d3.scale.linear()
                     .domain([min,
                         Math.max.apply(Math, self.varData)]);

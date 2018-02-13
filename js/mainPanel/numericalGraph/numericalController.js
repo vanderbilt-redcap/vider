@@ -399,7 +399,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
                     if (validationType.match(/^date/)) {
-                        self.varData = transformForDate(self.varData, validationType);
+                        // self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
                 }
@@ -565,7 +565,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                 if (fieldType == "text" && (validationType === "number" || validationType === "integer" || validationType.match(/^date/))) {
                     self.type = 1; //one for numerical
                     if (validationType.match(/^date/)) {
-                        self.varData = transformForDate(self.varData, validationType);
+                        // self.varData = transformForDate(self.varData, validationType);
                     }
                     generateNumericalStructure(origKeyValuePair, validationType);
                 }
@@ -723,7 +723,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                     data[i] = date.getTime() / 1000;
                 }
                 else if (!data[i]) {
-                    console.log("data["+i+"] = '"+data[i]+"'");
                     data[i] = "";
                 }
             }

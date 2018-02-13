@@ -259,8 +259,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 var yScale = d3.scale.ordinal()
                     .rangeRoundBands([0, localHeight], .1);
 
-                var order = [];
-                order.sort(function(a, b) {
+                original.sort(function(a, b) {
                     if (a.x < b.x) {
                         return 1;
                     }
@@ -270,8 +269,8 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     return 0;
                 });
                 var mapped = [];
-                for (var i = 0; i < order.length; i++) {
-                    mapped.push(original[order[i]].value);
+                for (var i = 0; i < original.length; i++) {
+                    mapped.push(original[i].value);
                 }
                 console.log("mapped: "+JSON.stringify(mapped));
                 yScale.domain(mapped);

@@ -136,9 +136,9 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             self.categories.forEach(function (cat) {
                 var key = cat.x;
                 var value = cat.x + " - " + (cat.x + cat.dx);
+                console.log("2: "+value);
                 if (validation.match(/^date/)) {
                     value = getFormattedDate(cat.x, validation) + " - " + getFormattedDate(cat.x + cat.dx, validation);
-                    console.log("x: "+cat.x+" dx: "+cat.dx+" value: "+value);
                 }
 
                 //event object
@@ -220,7 +220,6 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
             if (self.type == 1) {
                 for (var i = 0; i < self.categories.length; i++) {
                     var d = self.categories[i];
-                    console.log("getKey for "+value+" in x: "+d.x+"; dx: "+d.dx);
                     if (d.x <= value && value < (d.x + d.dx)) {
                         key = d.x;
                         break;
@@ -267,6 +266,7 @@ define(["numericalView", "dataWrapper", "filterData","rebinning"],
                                 total: 0,
                                 dataType: "NUMERICAL"
                             }
+                            console.log("1: "+value.x + " - " + value.dx);
                             if (validationType.match(/^date/)) {
                                 colorDataObj[key]['value'] = getFormattedDate(cat.x, validationType) + " - " + getFormattedDate(cat.x + cat.dx, validationType);
                             }

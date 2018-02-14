@@ -326,9 +326,6 @@ define(["require", "colorbrewer", "filterData", "dataWrapper",
                         });
                     });
                 }
-                else{
-                    console.log('In else ');
-                }
 
                 d3.select(this).select("g").call(self.brush);
 

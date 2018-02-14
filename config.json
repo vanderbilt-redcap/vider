@@ -1,5 +1,5 @@
 {
-	"name": "ViDER",
+	"name": "ViDER Visualizations",
 
 	"namespace": "Vanderbilt\\ViderExternalModule",
 
@@ -7,26 +7,26 @@
 
     "authors": [
         {
-            "name": "Bob Wong",
-            "email": "bob.wong@nurs.utah.edu",
+			"name": "Bob Wong",
+			"email": "bob.wong@nurs.utah.edu",
 			"institution": "University of Utah"
         },
         {
-            "name": "Alexander Lex",
-            "email": "alex@sci.utah.edu",
+			"name": "Alexander Lex",
+			"email": "alex@sci.utah.edu",
 			"institution": "University of Utah"
         },
         {
-            "name": "Sunny Hardasani",
+			"name": "Sunny Hardasani",
 			"institution": "University of Utah"
         },
         {
-            "name": "Sateesh Tata",
+			"name": "Sateesh Tata",
 			"institution": "University of Utah"
         },
         {
-            "name": "Scott J. Pearson",
-            "email": "datacore@vanderbilt.edu",
+			"name": "Scott J. Pearson",
+			"email": "datacore@vanderbilt.edu",
 			"institution": "Vanderbilt University Medical Center"
         }
     ],

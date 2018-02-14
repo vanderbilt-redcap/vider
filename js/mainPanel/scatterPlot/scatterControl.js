@@ -147,7 +147,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             objy_data = transformForDate(objy_data, validation_y);
         }
         for(var qIndex = 0 ; qIndex < query.length ; qIndex++){
-            if ( true == query[qIndex] || 1 == query[qIndex] && objx_data[qIndex] !== "" && objy_data[qIndex] !== ""){
+            if ( true == query[qIndex] || 1 == query[qIndex] && (objx_data[qIndex] !== "" || objy_data[qIndex] !== "")){
                 self.datax.push(objx_data[qIndex]);
                 self.datay.push(objy_data[qIndex]);
             } else {
@@ -163,7 +163,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.hoverDataY = [];
 
         for(var hIndex = 0 ; hIndex < self.hover.length ; hIndex++){
-            if (objx_data[qIndex] !== "" && objy_data[qIndex] !== ""){
+            if (objx_data[qIndex] !== "" || objy_data[qIndex] !== ""){
                 self.hoverDataX.push(objx_data[hIndex]);
                 self.hoverDataY.push(objy_data[hIndex]);
             } else {

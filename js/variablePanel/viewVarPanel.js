@@ -260,12 +260,12 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         var select = d3.select(this)
                             .append("g")
                             .classed("selection", true)
-                           .attr("transform", "translate(" + (barWidth - 100) + "," + ((-barHeight / 2) + 10) + ")");     // 140
+                           .attr("transform", "translate(" + (barWidth - 140) + "," + ((-barHeight / 2) + 10) + ")");
 
                         if(!d.isSelected || d.isTopLevel) {
 
                             var fo = select.append("foreignObject")
-                                .attr("width", 100)   // 140
+                                .attr("width", 140)
                                 .attr("height", 30)
                                 .style("float", "left");
 
@@ -307,22 +307,15 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                     .attr("aria-hidden", 'true')
                                     .style("visibility", 'hidden');
 
-                                // fo.append("xhtml:a")
-                                    // .attr("data-toggle","tooltip")
-                                    // .attr("title","Stratify by category in this variable")
-                                    // .append("xhtml:i")
-                                        // .attr("class", 'fa fa-columns fa-2x')
-                                        // .attr("aria-hidden", 'true')
-                                        // //.style("font-size", "25")
-                                        // .on("click", function (d) {
-                                            // require("filterData").setStrat(d.form, d.variable);
-                                            // require("view").updateNewState(require("stateCtrl").top());
-                                        // })
+                                fo.append("xhtml:i")
+                                    .attr("class", 'fa fa-columns fa-2x')
+                                    .attr("aria-hidden", 'true')
+                                    .style("visibility", 'hidden');
 
-                                // fo.append("xhtml:i")
-                                    // .attr("class", 'fa fa-columns')
-                                    // .attr("aria-hidden", 'true')
-                                    // .style("visibility", 'hidden');
+                                fo.append("xhtml:i")
+                                    .attr("class", 'fa fa-columns')
+                                    .attr("aria-hidden", 'true')
+                                    .style("visibility", 'hidden');
 
 
                                 fo.append("xhtml:a")

@@ -542,8 +542,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
                     var colorByMap = {};
                     var indexCounter = textWidth ;
+                    console.log("CC");
                     for(var key in d.colorByObj){
+                        console.log("key: "+key);
                         d.colorByObj[key].color  = color(key);
+                        console.log("C0");
                         d.colorByObj[key].xIndex = indexCounter;
                         console.log("C1");
                         d.colorByObj[key].width  = scale(d.colorByObj[key].count);

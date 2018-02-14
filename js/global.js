@@ -242,6 +242,8 @@ function transformForDate(data, validation) {
             }
             var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
             data[i] = date.getTime() / 1000;
+        } else if (!data[i]) {
+            data[i] = "";
         }
     }
     return data;

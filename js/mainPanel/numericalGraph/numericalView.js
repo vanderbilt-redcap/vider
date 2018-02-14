@@ -538,14 +538,18 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     var colorKeys = d3.keys(d.colorByObj);
                     var color = d3.scale.ordinal().domain(colorKeys).range(colorbrewer.Set1[colorKeys.length % 11]);
 
+                    console.log("C");
 
                     var colorByMap = {};
                     var indexCounter = textWidth ;
                     for(var key in d.colorByObj){
                         d.colorByObj[key].color  = color(key);
                         d.colorByObj[key].xIndex = indexCounter;
+                        console.log("C1");
                         d.colorByObj[key].width  = scale(d.colorByObj[key].count);
+                        console.log("C2");
                         indexCounter += scale(d.colorByObj[key].count);
+                        console.log("C3");
 
 
                         //todo: this is the work around solution to get the colors
@@ -560,7 +564,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                         }
                     }
 
+                    console.log("D");
+
                     filterData.setColorByScale(colorByMap);
+
+                    console.log("E");
 
                     return [d.colorByObj];
                 });

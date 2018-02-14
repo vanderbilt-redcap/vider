@@ -540,11 +540,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     }
                     var color = d3.scale.ordinal().domain(colorKeys).range(colorbrewer.Set1[set]);
 
-                    console.log("colorByObj 1: "+JSON.stringify(d.colorByObj));
-                    console.log("colorKeys: "+JSON.stringify(colorKeys));
-		    console.log("set: "+set);
-                    console.log("colorbrewer.Set1: "+JSON.stringify(colorbrewer.Set1));
-
                     var colorByMap = {};
                     var indexCounter = textWidth ;
                     for(var key in d.colorByObj){
@@ -566,11 +561,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                         }
                     }
 
-                    console.log("D");
-
                     filterData.setColorByScale(colorByMap);
-
-                    console.log("E");
 
                     return [d.colorByObj];
                 });

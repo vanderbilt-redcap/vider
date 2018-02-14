@@ -542,7 +542,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
                     var colorByMap = {};
                     var indexCounter = textWidth ;
-                    console.log("CC");
+                    console.log("colorByObj: "+JSON.stringify(colorByObj));
                     for(var key in d.colorByObj){
                         console.log("key: "+key);
                         // d.colorByObj[key].color  = color(key);
@@ -558,9 +558,11 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                         //todo: this is the work around solution to get the colors
                         //todo: on the view filter panel
                         if (d.colorByObj[key].obj != null) { // this is number
-                            colorByMap[d.colorByObj[key].obj.x + " - "
-                            + (d.colorByObj[key].obj.x + d.colorByObj[key].obj.dx)]
-                                = color(key);
+                            console.log("colorByObj: "+JSON.stringify(colorByObj));
+                            console.log("obj.x: "+d.colorByObj[key].obj.x);
+                            // colorByMap[d.colorByObj[key].obj.x + " - "
+                            // + (d.colorByObj[key].obj.x + d.colorByObj[key].obj.dx)]
+                                // = color(key);
                         }
                         else{
                             colorByMap[d.colorByObj[key].value] = color(key)

@@ -42,7 +42,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
             //strat
             var self = this;
             var textWidth = 140;
-            console.log("stratData: "+JSON.stringify(stratData));
             var margin = {top: 40, right: 20, bottom: 60, left: 40},
                 width = 750 - margin.left - margin.right;
             var height = 0;
@@ -241,7 +240,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .classed("main",true)
                 .attr("transform", "translate(" + 0 + "," + margin.top  + ")");
 
-            console.log("stratData 2: "+JSON.stringify(stratData));
             if (stratData.length > 0) {
                 svg.call(tip);
                 svg.call(queryTip);

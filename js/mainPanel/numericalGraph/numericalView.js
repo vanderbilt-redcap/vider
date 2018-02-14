@@ -527,45 +527,39 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
 
 
-           console.log("A");
            var colorGroup = groupEnter.selectAll(".color-grp")
                 .data(function(d){
-                    console.log("B");
 
                     var xScale = d3.select(this.parentNode.parentNode).datum().xScale;
                     var range = Math.abs(xScale(d.originalCount) - xScale(0));
                     var scale = d3.scale.linear().domain([0, d.colorTotal]).range([0,range]);
                     var colorKeys = d3.keys(d.colorByObj);
-                    var color = d3.scale.ordinal().domain(colorKeys).range(colorbrewer.Set1[colorKeys.length % 11]);
+                    var set = colorKeys.length % 10;
+                    if (set < 3) {
+                        set = 3;
+                    }
+                    var color = d3.scale.ordinal().domain(colorKeys).range(colorbrewer.Set1[set]);
 
                     console.log("colorByObj 1: "+JSON.stringify(d.colorByObj));
                     console.log("colorKeys: "+JSON.stringify(colorKeys));
-		    console.log("colorbrewer: "+colorbrewer);
+		    console.log("set: "+set);
                     console.log("colorbrewer.Set1: "+JSON.stringify(colorbrewer.Set1));
 
                     var colorByMap = {};
                     var indexCounter = textWidth ;
                     for(var key in d.colorByObj){
-                        console.log("key: "+key);
-                        console.log("color: "+color);
                         d.colorByObj[key].color  = color(key);
-                        console.log("C0");
                         d.colorByObj[key].xIndex = indexCounter;
-                        console.log("C1");
                         d.colorByObj[key].width  = scale(d.colorByObj[key].count);
-                        console.log("C2");
                         indexCounter += scale(d.colorByObj[key].count);
-                        console.log("C3");
 
 
                         //todo: this is the work around solution to get the colors
                         //todo: on the view filter panel
                         if (d.colorByObj[key].obj != null) { // this is number
-                            console.log("colorByObj 2: "+JSON.stringify(d.colorByObj));
-                            console.log("obj.x: "+d.colorByObj[key].obj.x);
-                            // colorByMap[d.colorByObj[key].obj.x + " - "
-                            // + (d.colorByObj[key].obj.x + d.colorByObj[key].obj.dx)]
-                                // = color(key);
+                            colorByMap[d.colorByObj[key].obj.x + " - "
+                            + (d.colorByObj[key].obj.x + d.colorByObj[key].obj.dx)]
+                                = color(key);
                         }
                         else{
                             colorByMap[d.colorByObj[key].value] = color(key)

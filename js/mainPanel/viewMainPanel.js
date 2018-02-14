@@ -86,7 +86,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
             var self = this;
 
             var varLabel = self.data[_formName].fields[_variableName].obj.field_label;
-            console.log(JSON.stringify(self.data[_formName].fields[_variableName]));
+            var validation = self.data[_formName].fields[_variableName].obj.text_validation_type_or_show_slider_number;
             var data = self.data[_formName].fields[_variableName].data;
             var dataType = self.getDataType(self.data[_formName].fields[_variableName].obj);
             var newLabel = varLabel.substring(0, 60);
@@ -134,7 +134,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                 var oprDiv = div.append("div").classed("col-xs-8", true);
 
                 //if numerical then add rebinning icon
-                if (dataType === "NUMERICAL") {
+                if (dataType === "NUMERICAL" && !validation.match(/^date/)) {
 
                     //task
                     oprDiv.append("div")
@@ -169,20 +169,22 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                 }
 
                 //task
-                oprDiv.append("div")
-                    .classed("col-xs-1", true)
-                    .append("a").attr("data-toggle","tooltip").attr("title","Show All Data Distribution")
-                    .append("span")
-                    .attr("class", "glyphicon glyphicon-tasks")
-                    .on("click", function () {
-                        if (self.isQueried[_formName].variable[_variableName].status == false) {
-                            self.isQueried[_formName].variable[_variableName].status = true;
-                        }
-                        else {
-                            self.isQueried[_formName].variable[_variableName].status = false;
-                        }
-                        require("view").updateNewState(require("stateCtrl").top());
-                    });
+                if (!validation.match(/^date/)) {
+                    oprDiv.append("div")
+                        .classed("col-xs-1", true)
+                        .append("a").attr("data-toggle","tooltip").attr("title","Show All Data Distribution")
+                        .append("span")
+                        .attr("class", "glyphicon glyphicon-tasks")
+                        .on("click", function () {
+                            if (self.isQueried[_formName].variable[_variableName].status == false) {
+                                self.isQueried[_formName].variable[_variableName].status = true;
+                            }
+                            else {
+                                self.isQueried[_formName].variable[_variableName].status = false;
+                            }
+                            require("view").updateNewState(require("stateCtrl").top());
+                        });
+                }
 
                 //remove
                 oprDiv.append("div")

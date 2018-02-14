@@ -134,6 +134,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                 var oprDiv = div.append("div").classed("col-xs-8", true);
 
                 if (!validation.match(/^date/)) {
+                    console.log("dataType: "+dataType);
                     //if numerical then add rebinning icon
                     if (dataType === "NUMERICAL") {
 
@@ -168,10 +169,8 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                                 require("view").updateNewState(data);
                             });
                     }
-                }
 
-                //task
-                if (!validation.match(/^date/)) {
+                    //task
                     oprDiv.append("div")
                         .classed("col-xs-1", true)
                         .append("a").attr("data-toggle","tooltip").attr("title","Show All Data Distribution")

@@ -147,7 +147,7 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             objy_data = transformForDate(objy_data, validation_y);
         }
         for(var qIndex = 0 ; qIndex < query.length ; qIndex++){
-            if ( objx_data[qIndex] === "" || objy_data[qIndex] ) {
+            if ( objx_data[qIndex] === "" || objy_data[qIndex] === "" ) {
                 console.log("A Skipping '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
             }
             else if ( true == query[qIndex] || 1 == query[qIndex] ){

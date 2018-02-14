@@ -246,6 +246,7 @@ function transformForDate(data, validation) {
             data[i] = "";
         }
     }
+    console.log(JSON.stringify(data));
     return data;
 }
 

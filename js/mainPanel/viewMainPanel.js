@@ -86,6 +86,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
             var self = this;
 
             var varLabel = self.data[_formName].fields[_variableName].obj.field_label;
+            console.log(JSON.stringify(self.data[_formName].fields[_variableName]));
             var data = self.data[_formName].fields[_variableName].data;
             var dataType = self.getDataType(self.data[_formName].fields[_variableName].obj);
             var newLabel = varLabel.substring(0, 60);

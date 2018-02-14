@@ -538,15 +538,14 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     var colorKeys = d3.keys(d.colorByObj);
                     var color = d3.scale.ordinal().domain(colorKeys).range(colorbrewer.Set1[colorKeys.length % 11]);
 
-                    console.log("C");
+                    console.log("colorByObj 1: "+JSON.stringify(d.colorByObj));
+                    console.log("colorKeys: "+JSON.stringify(colorKeys));
 
                     var colorByMap = {};
                     var indexCounter = textWidth ;
-                    console.log("colorByObj 1: "+JSON.stringify(d.colorByObj));
                     for(var key in d.colorByObj){
                         console.log("key: "+key);
                         console.log("color: "+color);
-                        console.log("color: "+JSON.stringify(color));
                         d.colorByObj[key].color  = color(key);
                         console.log("C0");
                         d.colorByObj[key].xIndex = indexCounter;

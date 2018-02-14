@@ -32,7 +32,9 @@
         target    = null
 
     function tip(vis) {
-      console.log("vis: "+JSON.stringify(vis));
+      if (vis[0].length === 0) {
+        return;
+      }
       svg = getSVGNode(vis)
       point = svg.createSVGPoint()
       document.body.appendChild(node)

@@ -147,11 +147,13 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             objy_data = transformForDate(objy_data, validation_y);
         }
         for(var qIndex = 0 ; qIndex < query.length ; qIndex++){
-            if ( true == query[qIndex] || 1 == query[qIndex] && (objx_data[qIndex] !== "" || objy_data[qIndex] !== "")){
+            if ( objx_data[qIndex] === "" || objy_data[qIndex] ) {
+                console.log("A Skipping '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
+            }
+            else if ( true == query[qIndex] || 1 == query[qIndex] ){
+                console.log("Adding '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
                 self.datax.push(objx_data[qIndex]);
                 self.datay.push(objy_data[qIndex]);
-            } else {
-                console.log("A Skipping '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
             }
         }
 
@@ -163,11 +165,11 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
         self.hoverDataY = [];
 
         for(var hIndex = 0 ; hIndex < self.hover.length ; hIndex++){
-            if (objx_data[qIndex] !== "" || objy_data[qIndex] !== ""){
+            if (objx_data[hIndex] !== "" && objy_data[hIndex] !== ""){
                 self.hoverDataX.push(objx_data[hIndex]);
                 self.hoverDataY.push(objy_data[hIndex]);
             } else {
-                console.log("B Skipping '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
+                console.log("B Skipping '"+objx_data[hIndex]+"', '"+objy_data[hIndex]+"'");
             }
         }
         var hoverDataLen = self.hoverDataX.length < self.hoverDataY.length

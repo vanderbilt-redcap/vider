@@ -432,6 +432,8 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         }
                     }
 
+                    console.log("stratData: "+stratData);
+                    console.log("d.Name "+d.Name);
                     if(d.Name.length > 25) {
                         global.tips.numTextTip.show(d.Name);
                     }

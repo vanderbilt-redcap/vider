@@ -545,8 +545,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                     console.log("CC");
                     for(var key in d.colorByObj){
                         console.log("key: "+key);
-                        console.log("colorByObj: "+JSON.stringify(d.colorByObj[key]));
-                        d.colorByObj[key].color  = color(key);
+                        // d.colorByObj[key].color  = color(key);
                         console.log("C0");
                         d.colorByObj[key].xIndex = indexCounter;
                         console.log("C1");

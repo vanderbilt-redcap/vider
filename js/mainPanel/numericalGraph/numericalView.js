@@ -527,8 +527,10 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
 
 
+           console.log("A");
            var colorGroup = groupEnter.selectAll(".color-grp")
                 .data(function(d){
+                    console.log("B");
 
                     var xScale = d3.select(this.parentNode.parentNode).datum().xScale;
                     var range = Math.abs(xScale(d.originalCount) - xScale(0));

@@ -518,7 +518,6 @@ define(["require","stateCtrl" , "dataWrapper"],function(require,stateCtrl,dataWr
             }
 
             if (!self.forms[_formName].variables.hasOwnProperty(_varName)) {
-                console.log("field_label: "+self.data[_formName].fields[_varName].obj.field_label),
                 self.forms[_formName].variables[_varName] = {
                     "label": self.data[_formName].fields[_varName].obj.field_label,
                     "form": _formName,

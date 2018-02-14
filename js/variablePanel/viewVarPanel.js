@@ -265,7 +265,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         if(!d.isSelected || d.isTopLevel) {
 
                             var fo = select.append("foreignObject")
-                                .attr("width", 140)
+                                .attr("width", 100)     // 140
                                 .attr("height", 30)
                                 .style("float", "left");
 

@@ -547,7 +547,7 @@ define(["require","stateCtrl" , "dataWrapper"],function(require,stateCtrl,dataWr
 
                 };
                 if (validationType.match(/^date/)) {
-                    v["label"] = getFormattedDate((_selection.x).toString(), validationType) + " - " + getFormattedDate((_selection.x + _selection.dx).toString());
+                    v["label"] = getFormattedDate((_selection.x).toString(), validationType) + " - " + getFormattedDate((_selection.x + _selection.dx).toString(), validationType);
                 }
                 self.forms[_formName].variables[_varName].selections[_selection.x] = v;
             }

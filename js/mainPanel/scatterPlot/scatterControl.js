@@ -150,6 +150,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             if ( true == query[qIndex] || 1 == query[qIndex] && objx_data[qIndex] !== "" && objy_data[qIndex] !== ""){
                 self.datax.push(objx_data[qIndex]);
                 self.datay.push(objy_data[qIndex]);
+            } else {
+                console.log("A Skipping '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
             }
         }
 
@@ -164,6 +166,8 @@ define(["d3","scatterViewer", "dataWrapper", "filterData","colorbrewer"], functi
             if (objx_data[qIndex] !== "" && objy_data[qIndex] !== ""){
                 self.hoverDataX.push(objx_data[hIndex]);
                 self.hoverDataY.push(objy_data[hIndex]);
+            } else {
+                console.log("B Skipping '"+objx_data[qIndex]+"', '"+objy_data[qIndex]+"'");
             }
         }
         var hoverDataLen = self.hoverDataX.length < self.hoverDataY.length

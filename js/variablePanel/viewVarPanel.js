@@ -307,22 +307,22 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                     .attr("aria-hidden", 'true')
                                     .style("visibility", 'hidden');
 
-                                fo.append("xhtml:a")
-                                    .attr("data-toggle","tooltip")
-                                    .attr("title","Stratify by category in this variable")
-                                    .append("xhtml:i")
-                                        .attr("class", 'fa fa-columns fa-2x')
-                                        .attr("aria-hidden", 'true')
-                                        //.style("font-size", "25")
-                                        .on("click", function (d) {
-                                            require("filterData").setStrat(d.form, d.variable);
-                                            require("view").updateNewState(require("stateCtrl").top());
-                                        })
+                                // fo.append("xhtml:a")
+                                    // .attr("data-toggle","tooltip")
+                                    // .attr("title","Stratify by category in this variable")
+                                    // .append("xhtml:i")
+                                        // .attr("class", 'fa fa-columns fa-2x')
+                                        // .attr("aria-hidden", 'true')
+                                        // //.style("font-size", "25")
+                                        // .on("click", function (d) {
+                                            // require("filterData").setStrat(d.form, d.variable);
+                                            // require("view").updateNewState(require("stateCtrl").top());
+                                        // })
 
-                                fo.append("xhtml:i")
-                                    .attr("class", 'fa fa-columns')
-                                    .attr("aria-hidden", 'true')
-                                    .style("visibility", 'hidden');
+                                // fo.append("xhtml:i")
+                                    // .attr("class", 'fa fa-columns')
+                                    // .attr("aria-hidden", 'true')
+                                    // .style("visibility", 'hidden');
 
 
                                 fo.append("xhtml:a")
@@ -430,11 +430,6 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         if(!d.isSelected) {
                             d3.select(this).style("fill", "darkgrey");
                         }
-                    }
-
-                    console.log("d.Name "+d.Name);
-                    if(d.Name.length > 25) {
-                        global.tips.numTextTip.show(d.Name);
                     }
                 })
                 .on("mouseout",function(d){

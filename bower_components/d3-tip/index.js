@@ -32,7 +32,10 @@
         target    = null
 
     function tip(vis) {
-      if (vis[0].length === 0) {
+      if (vis.length === 0) {
+        return;
+      }
+      if (vis.length > 0 && vis[0].length === 0) {
         return;
       }
       svg = getSVGNode(vis)

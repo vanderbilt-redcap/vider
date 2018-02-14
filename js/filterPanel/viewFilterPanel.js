@@ -229,7 +229,7 @@ define(["jquery", "d3",  "d3-tip", "filterData", "global"],
             enterRow.append("td")
                 .classed("filter-sel",true)
                 .text(function(d){
-                    console.log("d.label: "+d.label);
+                    console.log("d: "+JSON.stringify(d));
                     return stripHtml(d.label);
                     //return d.label.length > 20 ? d.label.substr(0,17) + "..." : d.label;
                 });

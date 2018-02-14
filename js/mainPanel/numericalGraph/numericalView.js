@@ -242,10 +242,12 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
                 .attr("transform", "translate(" + 0 + "," + margin.top  + ")");
 
             console.log("stratData 2: "+JSON.stringify(stratData));
-            svg.call(tip);
-            svg.call(queryTip);
-            svg.call(textTip);
-            svg.call(colorByTip);
+            if (stratData.length > 0) {
+                svg.call(tip);
+                svg.call(queryTip);
+                svg.call(textTip);
+                svg.call(colorByTip);
+            }
 
             ////////////////////////////////////////////////////////////////////////////////////////////////
             //Set the Scales

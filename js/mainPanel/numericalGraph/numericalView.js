@@ -42,6 +42,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
             //strat
             var self = this;
             var textWidth = 140;
+            console.log("stratData: "+JSON.stringify(stratData));
             var margin = {top: 40, right: 20, bottom: 60, left: 40},
                 width = 750 - margin.left - margin.right,
                 height = 25 * Object.keys(stratData[0].original).length + margin.top + margin.bottom;

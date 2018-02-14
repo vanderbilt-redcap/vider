@@ -133,39 +133,41 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
 
                 var oprDiv = div.append("div").classed("col-xs-8", true);
 
-                //if numerical then add rebinning icon
-                if (dataType === "NUMERICAL" && !validation.match(/^date/)) {
+                if (!validation.match(/^date/)) {
+                    //if numerical then add rebinning icon
+                    if (dataType === "NUMERICAL") {
 
-                    //task
-                    oprDiv.append("div")
-                        .classed("col-xs-1", true)
-                        .append("a").attr("data-toggle","tooltip").attr("title","Re-Categorize")
-                        .append("span")
-                        .attr("class", "glyphicon glyphicon-object-align-left")
-                        .on("click", function () {
-                            self.rebinning(oprDiv,data,_formName,_variableName);
-                        })
-                        .on("dblclick", function () {
-                            rebinning.remove(_formName,_variableName);
-                        });
-                }
-                else if (dataType !== "CHECKBOX_CATEGORICAL") {
-
-                    //task
-                    oprDiv.append("div")
-                        .classed("col-xs-1", true)
-                        .append("a").attr("data-toggle","tooltip").attr("title","Reset Cloud")
-                        .append("span")
-                        .attr("class", "glyphicon glyphicon-retweet")
-                        .on("click", function () {
-                            var data = require("stateCtrl").top();
-                            if(data.binPanel != null){
-                                data.binPanel.param = data.binPanel.param.filter(function(el){
-                                    return !(el.form === _formName && el.var === _variableName);
-                                })
-                            }
-                            require("view").updateNewState(data);
-                        });
+                        //task
+                        oprDiv.append("div")
+                            .classed("col-xs-1", true)
+                            .append("a").attr("data-toggle","tooltip").attr("title","Re-Categorize")
+                            .append("span")
+                            .attr("class", "glyphicon glyphicon-object-align-left")
+                            .on("click", function () {
+                                self.rebinning(oprDiv,data,_formName,_variableName);
+                            })
+                            .on("dblclick", function () {
+                                rebinning.remove(_formName,_variableName);
+                            });
+                    }
+                    else if (dataType !== "CHECKBOX_CATEGORICAL") {
+    
+                        //task
+                        oprDiv.append("div")
+                            .classed("col-xs-1", true)
+                            .append("a").attr("data-toggle","tooltip").attr("title","Reset Cloud")
+                            .append("span")
+                            .attr("class", "glyphicon glyphicon-retweet")
+                                .on("click", function () {
+                                var data = require("stateCtrl").top();
+                                if(data.binPanel != null){
+                                    data.binPanel.param = data.binPanel.param.filter(function(el){
+                                        return !(el.form === _formName && el.var === _variableName);
+                                    })
+                                }
+                                require("view").updateNewState(data);
+                            });
+                    }
                 }
 
                 //task

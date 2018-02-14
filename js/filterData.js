@@ -524,7 +524,6 @@ define(["require","stateCtrl" , "dataWrapper"],function(require,stateCtrl,dataWr
                     "form": _formName,
                     "var": _varName,
                     "type": NUMERICAL,
-                    "validation": validationType,
                     "selections": [],
                     "queryData": []
                 }
@@ -536,7 +535,7 @@ define(["require","stateCtrl" , "dataWrapper"],function(require,stateCtrl,dataWr
             }
 
             if (!self.forms[_formName].variables[_varName].selections.hasOwnProperty(_selection.x)) {
-                self.forms[_formName].variables[_varName].selections[_selection.x] = {
+                var v = {
                     "form": _formName,
                     "var": _varName,
                     "value": _selection.x,
@@ -546,7 +545,11 @@ define(["require","stateCtrl" , "dataWrapper"],function(require,stateCtrl,dataWr
                     "state": -1,
                     "filterOperation": _filterOperation
 
+                };
+                if (validationType.match(/^date/)) {
+                    v["label"] = getFormattedDate((_selection.x).toString(), validationType) + " - " + getFormattedDate((_selection.x + _selection.dx).toString());
                 }
+                self.forms[_formName].variables[_varName].selections[_selection.x] = v;
             }
 
             //this will manage the state

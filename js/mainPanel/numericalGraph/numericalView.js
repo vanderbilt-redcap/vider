@@ -540,8 +540,7 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData","global"],
 
                     console.log("colorByObj 1: "+JSON.stringify(d.colorByObj));
                     console.log("colorKeys: "+JSON.stringify(colorKeys));
-                    console.log("colorbrewer: "+colorbrewer.Set1[colorKeys.length % 11]);
-                    console.log("colorbrewer 2: "+JSON.stringify(colorbrewer.Set1[colorKeys.length % 11]));
+                    console.log("colorbrewer: "+colorbrewer);
 
                     var colorByMap = {};
                     var indexCounter = textWidth ;

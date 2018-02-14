@@ -223,6 +223,7 @@ define(["jquery", "d3",  "d3-tip", "filterData", "global"],
                 .classed("filter-var",true)
                 .text(function(d){
                     var variable = self.forms[d.form].variables[d.var];
+                    console.log("forms = "+JSON.stringify(self.forms[d.form]));
                     return stripHtml(variable.label);
                     //return variable.label.length > 20 ? variable.label.substr(0,17) + "..." : variable.label;
                 });

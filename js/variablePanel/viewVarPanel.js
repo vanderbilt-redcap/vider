@@ -260,12 +260,12 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         var select = d3.select(this)
                             .append("g")
                             .classed("selection", true)
-u                           .attr("transform", "translate(" + (barWidth - 140) + "," + ((-barHeight / 2) + 10) + ")");
+                           .attr("transform", "translate(" + (barWidth - 100) + "," + ((-barHeight / 2) + 10) + ")");     // 140
 
                         if(!d.isSelected || d.isTopLevel) {
 
                             var fo = select.append("foreignObject")
-                                .attr("width", 140)
+                                .attr("width", 100)   // 140
                                 .attr("height", 30)
                                 .style("float", "left");
 

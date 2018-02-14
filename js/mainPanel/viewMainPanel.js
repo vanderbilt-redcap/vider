@@ -151,40 +151,41 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                                 rebinning.remove(_formName,_variableName);
                             });
                     }
-                    else if (dataType !== "CHECKBOX_CATEGORICAL") {
-    
+                    else if (dataType !== "CATEGORICAL") {
+                        if (dataType !== "CHECKBOX_CATEGORICAL") {
+                            //task
+                            oprDiv.append("div")
+                                .classed("col-xs-1", true)
+                                .append("a").attr("data-toggle","tooltip").attr("title","Reset Cloud")
+                                .append("span")
+                                .attr("class", "glyphicon glyphicon-retweet")
+                                    .on("click", function () {
+                                    var data = require("stateCtrl").top();
+                                        if(data.binPanel != null){
+                                        data.binPanel.param = data.binPanel.param.filter(function(el){
+                                            return !(el.form === _formName && el.var === _variableName);
+                                        })
+                                    }
+                                    require("view").updateNewState(data);
+                                });
+                        }
+
                         //task
                         oprDiv.append("div")
                             .classed("col-xs-1", true)
-                            .append("a").attr("data-toggle","tooltip").attr("title","Reset Cloud")
+                            .append("a").attr("data-toggle","tooltip").attr("title","Show All Data Distribution")
                             .append("span")
-                            .attr("class", "glyphicon glyphicon-retweet")
-                                .on("click", function () {
-                                var data = require("stateCtrl").top();
-                                if(data.binPanel != null){
-                                    data.binPanel.param = data.binPanel.param.filter(function(el){
-                                        return !(el.form === _formName && el.var === _variableName);
-                                    })
+                            .attr("class", "glyphicon glyphicon-tasks")
+                            .on("click", function () {
+                                if (self.isQueried[_formName].variable[_variableName].status == false) {
+                                    self.isQueried[_formName].variable[_variableName].status = true;
                                 }
-                                require("view").updateNewState(data);
+                                else {
+                                    self.isQueried[_formName].variable[_variableName].status = false;
+                                }
+                                require("view").updateNewState(require("stateCtrl").top());
                             });
                     }
-
-                    //task
-                    oprDiv.append("div")
-                        .classed("col-xs-1", true)
-                        .append("a").attr("data-toggle","tooltip").attr("title","Show All Data Distribution")
-                        .append("span")
-                        .attr("class", "glyphicon glyphicon-tasks")
-                        .on("click", function () {
-                            if (self.isQueried[_formName].variable[_variableName].status == false) {
-                                self.isQueried[_formName].variable[_variableName].status = true;
-                            }
-                            else {
-                                self.isQueried[_formName].variable[_variableName].status = false;
-                            }
-                            require("view").updateNewState(require("stateCtrl").top());
-                        });
                 }
 
                 //remove

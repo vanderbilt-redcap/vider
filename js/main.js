@@ -36,7 +36,7 @@ function getUrl(page) {
 
 	var pageTrunk = page.replace(/\.php.*$/, "");
 
-	main += "?pid="+params['pid']+"&id="+params['id']+"&page="+pageTrunk;
+	main += "?pid="+params['pid']+"&prefix="+params['prefix']+"&page="+pageTrunk;
 	return main;
 }
 

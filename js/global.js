@@ -240,7 +240,7 @@ function transformForDate(data, validation) {
             else if (validation.match(/_dmy$/)) {
                 dateAry = new Array(dnodes[2], dnodes[1], dnodes[0]);
             }
-            var date = new Date(Date.UTC(dateAry[0], dateAry[1], dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
+            var date = new Date(Date.UTC(dateAry[0], dateAry[1] - 1, dateAry[2], tnodes[0], tnodes[1], tnodes[2]));
             data[i] = date.getTime() / 1000;
         } else if (!data[i]) {
             data[i] = "";

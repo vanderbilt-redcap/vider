@@ -43,6 +43,7 @@ function getUrl(page) {
         main += "&prefix="+params['prefix'];
     }
     main += "&page="+pageTrunk;
+        console.log(main);
 	return main;
 }
 

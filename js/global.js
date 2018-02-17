@@ -51,6 +51,7 @@ define(["d3","d3-tip","colorbrewer"],function(d3,d3tip,colorbrewer) {
                 prefix = "&prefix=" + prefix;
             }
             var suffix = "?pid="+getParameterByName("pid")+prefix+"&page="+getParameterByName("page");
+            console.log("suffix: "+suffix);
             instance.baseURL = window.location.href.split('?')[0] + suffix;
 
             //store the pid when system initialize

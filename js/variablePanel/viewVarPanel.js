@@ -83,16 +83,16 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 fieldData['validation'] = _data[form].fields[field].obj.text_validation_type_or_show_slider_number;
                                 fieldData['chart'] = ''; 
                                 if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer") || fieldData['validation'].match(/^date/)) {
-                                    fieldData['chart'] = '(view Histogram)'; 
+                                    fieldData['chart'] = '(View Histogram)'; 
                                 }
                                 else if (fieldData['type'] === "dropdown" || fieldType === "radio") {
-                                    fieldData['chart'] = '(view Bar Chart)'; 
+                                    fieldData['chart'] = '(View Bar Chart)'; 
                                 }
                                 else if (fieldData['type'] === "checkbox") {
-                                    fieldData['chart'] = '(view Bar Chart)'; 
+                                    fieldData['chart'] = '(View Bar Chart)'; 
                                 }
                                 else if(fieldData['type'] === "text"){
-                                    fieldData['chart'] = '(view Word Cloud)'; 
+                                    fieldData['chart'] = '(View Word Cloud)'; 
                                 }
                                 fieldData['Name'] = _data[form].fields[field].obj.field_label;
                                 fieldData['id'] = field;

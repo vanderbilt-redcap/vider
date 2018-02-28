@@ -170,10 +170,9 @@ header('X-Frame-Options: GOFORIT');
                 <div class="graph-outer" id="scatterPlot"></div>
             </div>
         </div>
-        <div id="main-top-right" style="overflow: scroll;" class="split split-horizontal">
+        <!-- <div id="main-top-right" style="overflow: scroll;" class="split split-horizontal">
             <div id="comparisionPanel" style="text-align: center; vertical-align: middle;">
             </div>
-            <!-- Modal -->
             <div class="modal fade" id="selectField" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -186,12 +185,11 @@ header('X-Frame-Options: GOFORIT');
                         </div>
                         <div class="modal-footer" style="padding-bottom: 5px; padding-top: 5px">
                             <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 
@@ -260,7 +258,7 @@ header('X-Frame-Options: GOFORIT');
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
         <!--        this if for the settings modal      -->
         <div class="modal fade" role="dialog" id="scatterPlotModal">
@@ -277,7 +275,7 @@ header('X-Frame-Options: GOFORIT');
                             X-Axis:
                             <select id="xAxis">
                             </select>
-                            <!--<input type="text" name="token" id="token" value="EA9391F955A3536F26E0547699E94117" style="width: 100%;"><br>-->
+                            <!--<input type="text" name="token" id="token" value="" style="width: 100%;"><br>-->
                             <br><br>
                             Y- Axis:
                             <select id="yAxis">
@@ -307,8 +305,8 @@ header('X-Frame-Options: GOFORIT');
                     <div class="modal-body">
                         <form>
                             Token:<br>
-                            <input type="text" name="token" id="token" value="308EB88F77DCF662827EC71208BCC58A" style="width: 100%;"><br>
-                            <!--<input type="text" name="token" id="token" value="EA9391F955A3536F26E0547699E94117" style="width: 100%;"><br>-->
+                            <input type="text" name="token" id="token" value="" style="width: 100%;"><br>
+                            <!--<input type="text" name="token" id="token" value="" style="width: 100%;"><br>-->
                             URL:<br>
                             <input type="text" name="url" id="url" value="https://redcap-dev01.brisc.utah.edu/redcap/active/redcap/api/" style="width: 100%;">
                         </form>

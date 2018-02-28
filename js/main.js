@@ -124,7 +124,7 @@ require(["require","controller", "split", "global"],
         Split(['#leftPanel', '#mainPanel'],{gutterSize: 10, sizes: [20 , 80], minSize: [410]});
         Split(['#left-top', '#left-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [80, 20]/*, minSize: [200, 100]*/});
 	$('#main-top').css({ 'height' : '100%' });
-        Split(['#main-top-left', '#main-top-right'],{gutterSize: 10, sizes: [50, 50]});
+        // Split(['#main-top-left', '#main-top-right'],{gutterSize: 10, sizes: [50, 50]});
 
         //initialize the controller
 

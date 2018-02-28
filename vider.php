@@ -149,6 +149,15 @@ header('X-Frame-Options: GOFORIT');
 <!--            <div class="col-sm-12 col-md-12">-->
 <!--                <button type="button" class="btn btn-primary btn-sm" id = "createScatter">Add a ScatterPlot</button>-->
 <!--            </div>-->
+            <div id='intro'>
+                <h3>Available Types of Graphs</h3>
+                <p>Click on a variable to the left to view its graph. Available types of graphs include histograms (for numerical data or for data with dates/times), bar charts (for categorical data like checkboxes, dropdowns, and radio buttons), word clouds (for everything else), or scatter plots (for numerical data and data with dates/times).</p>
+                <h3>Highlighting in <span style='color: red;'>Red</h3>
+                <p>Moving your mouse over a bar in a bar chart or histogram will highlight that bar inside the graph. It will also highlight simultaneously the portions <b>in other graphs</b> that contain this bar.</p>
+                <h3>Data Filtering</h3>
+                <p>Next to a highlighted bar appears a filter icon. Clicking this will reduce your population <b>in this and other graphs</b> to the highlighted portion. The lower-left box keeps the record of what is being filtered.</p>
+            </div>
+
             <div class="col-sm-12 col-md-12 table-responsive"></div>
             <div class="col-sm-12 col-md-12">
                 <div class="graph-outer" id="scatterPlot"></div>

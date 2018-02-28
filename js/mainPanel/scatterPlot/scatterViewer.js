@@ -116,7 +116,6 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"], functi
         }
 
 
-        console.log(JSON.stringify(stratData));
         var xValidation = stratData[0].xValidation;
         var yValidation = stratData[0].yValidation;
 

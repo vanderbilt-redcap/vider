@@ -151,7 +151,7 @@ define(["require", "numHistogramHndlr", "nominalGraphHndlr", "dataWrapper",
                                 rebinning.remove(_formName,_variableName);
                             });
                     }
-                    else if (dataType !== "CATEGORICAL") {
+                    else if (dataType && dataType !== "CATEGORICAL") {
                         if (dataType !== "CHECKBOX_CATEGORICAL") {
                             //task
                             oprDiv.append("div")

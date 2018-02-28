@@ -483,7 +483,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     var suffix2 = "";
                     if (name && name != 'Selected Variables' && !d.variable) {
                         // form
-                        prefix = "Fields for Form ";
+                        prefix = "Form ";
                         suffix2 = " (Click Variable[s])";
                     }
                     if (name == 'Selected Variables') {
@@ -492,7 +492,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     if (d.chart) {
                         suffix = " " + d.chart;
                     }
-                    return prefix + name.substring(0,25) +  (name.length > 25 ? "..." : "") + suffix + suffix2;
+                    return prefix + name.substring(0,20) +  (name.length > 20 ? "..." : "") + suffix + suffix2;
                 });
 
             nodeEnter.append("g")

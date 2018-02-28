@@ -553,6 +553,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
   
                         //
                         categories.forEach(function(cat){
+                            console.log("cat: " + cat);
                             var pair = cat.split(",");
                             var key = pair[0].trim();
                             var value = pair[1].trim();

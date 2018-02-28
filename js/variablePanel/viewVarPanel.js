@@ -611,6 +611,8 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
             if(!d.empty) {
 
+                $('#intro').hide();
+
                 var curStateData = require("stateCtrl").top();
                 if (d.parent !== null && d.parent.Name === "Selected Variables") {
                     curStateData.mainPanel.param = curStateData.mainPanel.param.filter(function (el) {

@@ -48,6 +48,7 @@ h1,h2,h3 { text-align: center; }
 	if ($isLong) {
 		echo "<td style='width: 50%';>";
 		echo "<h3>Events</h3>";
+		echo json_encode($events)."<br>";
 		echo "<input type='radio' name='event' value='all___all' selected> <b>All</b><br>";
 		$eventList = array();
 		foreach ($events as $label => $event_id) {

@@ -33,7 +33,7 @@ h1,h2,h3 { text-align: center; }
 	echo "<h2>".\REDCap::getProjectTitle()."</h2>";
 	$style = "";
 	if ($isLong) {
-		$style = "width: 50%; vertical-align: top; border: 1px dotted black;";
+		$style = "width: 50%; vertical-align: top; border: 1px dotted black; padding: 8px;";
 	}
 	echo "<form action='' method='POST'>";
 	echo "<table style='margin-left: auto; margin-right: auto;'><tr><td style='$style'>";

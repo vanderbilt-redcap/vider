@@ -163,6 +163,8 @@ header('X-Frame-Options: GOFORIT');
                 <p>Moving your mouse over a bar in a bar chart or histogram will highlight that bar inside the graph. It will also highlight simultaneously the portions <b>in other graphs</b> that contain this bar.</p>
                 <h3>Data Filtering</h3>
                 <p>Next to a highlighted bar appears a filter icon. Clicking this will reduce your population <b>in this and other graphs</b> to the highlighted portion. The lower-left box keeps the record of what is being filtered.</p>
+                <h3>Parallel Sets</h3>
+                <p>Graphs can be compared in a vertical alignment by selecting more than one graph.</p>
             </div>
 
             <div class="col-sm-12 col-md-12 table-responsive"></div>

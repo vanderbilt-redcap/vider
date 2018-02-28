@@ -172,14 +172,14 @@ require(["require","controller", "split", "global"],
         self.isParallel = true;
         $("#parallel-sets").click(function(){
             if(self.isParallel) {
-                //$("#main-top-right").css("visibility", "hidden");
-                $('#main-top-left').css('width', '98.5%').css('width', '-=5px');
-                $('#main-top-right').css('width', '0.5%').css('width', '-=5px');
+                $("#main-top-right").css("visibility", "hidden");
+                // $('#main-top-left').css('width', '98.5%').css('width', '-=5px');
+                // $('#main-top-right').css('width', '0.5%').css('width', '-=5px');
 
                 $(this).css("color","#9d9d9d")
             }
             else{
-                //$("#main-top-right").css("visibility", "visible");
+                $("#main-top-right").css("visibility", "visible");
                 $('#main-top-left').css('width', '49.5%').css('width', '-=5px');
                 $('#main-top-right').css('width', '49.5%').css('width', '-=5px');
 

@@ -16,7 +16,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
             barWidth = width * 0.9;
 
         var varPanel = d3.select("#varPanel");
-        $("#left-top").prepend("<div id='scatterPlot' style='margin-left: 15px; margin-right: 15px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; background-color: #8199C9; font-size: 17px; border-radius: 10px; color: white; font-weight: bold; text-align: center;' data-toggle='modal' data-target='#scatterPlotModal'>Add a Scatter Plot</div>");
+        $("#left-top").prepend("<div id='scatterPlot' style='margin-left: 15px; margin-right: 15px; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; background-color: #8199C9; font-size: 17px; border-radius: 10px; color: white; font-weight: bold; text-align: center;' data-toggle='modal' data-target='#scatterPlotModal'>Add a Scatter Plot</div>");
         $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Data Filtering</h3>");
         var dataPanel = document.getElementById("dataPanel");
 

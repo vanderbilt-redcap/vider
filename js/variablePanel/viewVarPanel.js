@@ -81,6 +81,9 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                                 fieldData['variable'] = _data[form].fields[field].obj.field_name;
                                 fieldData['type'] = _data[form].fields[field].obj.field_type;
                                 fieldData['validation'] = _data[form].fields[field].obj.text_validation_type_or_show_slider_number;
+                                if (!fieldData['validation']) {
+                                    fieldData['validation'] = "";
+                                }
                                 fieldData['chart'] = ''; 
                                 if (fieldData['type'] === "text" && (fieldData['validation'] === "number" || fieldData['validation'] === "integer") || fieldData['validation'].match(/^date/)) {
                                     fieldData['chart'] = '(View Histogram)'; 

@@ -33,10 +33,10 @@ h1,h2,h3 { text-align: center; }
 	echo "<h2>".\REDCap::getProjectTitle()."</h2>";
 	$style = "";
 	if ($isLong) {
-		$style = "width: 50%;";
+		$style = "width: 50%; vertical-align: top;";
 	}
 	echo "<form action='' method='POST'>";
-	echo "<table style='margin-left: auto; margin-right: auto;'><tr><td style='$width'>";
+	echo "<table style='margin-left: auto; margin-right: auto;'><tr><td style='$style'>";
 	echo "<h3>Instruments</h3>";
 	echo "<input type='radio' name='instrument' value='all___all' selected> <b>All</b><br>";
 	$instrList = array();

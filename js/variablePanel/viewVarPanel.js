@@ -17,7 +17,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
         var varPanel = d3.select("#varPanel");
         $("#left-top").prepend("<h3 style='margin-top: 0px;'>Choose Your Variables to<br>Chart/Plot, Recolor, &amp; Stratify</h3>");
-        $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Modifications</h3>");
+        $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Filter Changes</h3>");
         var dataPanel = document.getElementById("dataPanel");
 
         var svgElement = varPanel.attr("width", "100%")
@@ -477,14 +477,19 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     var name = stripHtml(d.Name);
                     var prefix = "";
                     var suffix = "";
+                    var suffix2 = "";
                     if (name && name != 'Selected Variables' && !d.variable) {
                         // form
                         prefix = "Fields for Form ";
+                        suffix2 = "<br><i>Click Variable to Select View(s)</i>";
+                    }
+                    if (name == 'Selected Variables') {
+                        suffix2 = "<br><i>Click Variable to Hide View</i>";
                     }
                     if (d.chart) {
                         suffix = " " + d.chart;
                     }
-                    return prefix + name.substring(0,25) +  (name.length > 25 ? "..." : "") + suffix;
+                    return prefix + name.substring(0,25) +  (name.length > 25 ? "..." : "") + suffix + suffix2;
                 });
 
             nodeEnter.append("g")

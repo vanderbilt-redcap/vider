@@ -94,13 +94,13 @@ header('X-Frame-Options: GOFORIT');
 
 
 <div id="leftPanel" style="overflow: scroll;" class="split split-horizontal">
-    <div id="left-top" style="overflow: scroll; height: 70%;" class="split split-vertical">
+    <div id="left-top" style="overflow: scroll; height: 80%;" class="split split-vertical">
         <div class="col-sm-12 col-md-12">
             <svg id="varPanel"></svg>
         </div>
     </div>
 
-    <div id="left-bottom" style="overflow: scroll; height: 30%" class="split split-vertical">
+    <div id="left-bottom" style="overflow: scroll; height: 20%" class="split split-vertical">
         <div class="col-sm-12 col-md-12">
             <svg class="dataDistPanel" width="100%"></svg>
         </div>

@@ -17,7 +17,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
 
         var varPanel = d3.select("#varPanel");
         $("#left-top").prepend("<div id='scatterPlot' style='margin-left: 15px; margin-right: 15px; padding-left: 3px; padding-top: 10px; padding-bottom: 10px; background-color: #8199C9; font-size: 17px;'><a data-toggle='modal' data-target='#scatterPlotModal' style='color: white; font-weight: bold;'>Add a Scatter Plot</a></div>");
-        $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Filter Changes</h3>");
+        $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Data Filtering (in <span style='color: red;'>red</span>)</h3>");
         var dataPanel = document.getElementById("dataPanel");
 
         var svgElement = varPanel.attr("width", "100%")

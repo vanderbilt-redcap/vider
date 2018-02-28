@@ -372,6 +372,9 @@ define(["jquery", "d3", "d3-tip", "colorbrewer", "filterData", "global"],
                     .attr("class",'fa fa-filter')
                     .style("font-size","12")
                     .attr("aria-hidden",'true')
+                    .attr("title",function(d){
+                        return "Filter by " + d.value;
+                    })
                     .on("click", function (d) {
                         // add the filter in the filter data
                         filterData.add(d.form, d.variable, d.key, FILTER.SELECTION);

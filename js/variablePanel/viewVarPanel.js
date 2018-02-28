@@ -484,7 +484,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                         suffix2 = "(Click Variable[s])";
                     }
                     if (name == 'Selected Variables') {
-                        suffix2 = (Click Variable)";
+                        suffix2 = "(Click Variable)";
                     }
                     if (d.chart) {
                         suffix = " " + d.chart;

@@ -16,7 +16,7 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
             barWidth = width * 0.9;
 
         var varPanel = d3.select("#varPanel");
-        $("#left-top").prepend("<div id='scatterPlot'><a data-toggle='modal' data-target='#scatterPlotModal'>Add a Scatter Plot</a></div>");
+        $("#left-top").prepend("<div id='scatterPlot' style='backgroud-color: #8199C9'><a data-toggle='modal' data-target='#scatterPlotModal' style='color: white; font-weight: bold;'>Add a Scatter Plot</a></div>");
         $("#left-bottom").prepend("<h3 style='margin-top: 0px;'>Filter Changes</h3>");
         var dataPanel = document.getElementById("dataPanel");
 
@@ -481,10 +481,10 @@ define(["require","d3","d3-tip","rugPlotHandler","categoryPlotHndlr","global","f
                     if (name && name != 'Selected Variables' && !d.variable) {
                         // form
                         prefix = "Fields for Form ";
-                        suffix2 = "(Click Variable[s])";
+                        suffix2 = " (Click Variable[s])";
                     }
                     if (name == 'Selected Variables') {
-                        suffix2 = "(Click Variable)";
+                        suffix2 = " (Click Variable)";
                     }
                     if (d.chart) {
                         suffix = " " + d.chart;

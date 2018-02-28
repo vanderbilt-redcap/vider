@@ -82,6 +82,7 @@ header('X-Frame-Options: GOFORIT');
                 <li><a id="parallel-sets"><!--Toggle Parallel Sets for Comparison--></a></li>
                 <!-- <li><a id="data-panel">Data Panel</a></li> -->
                 <!-- <li><a data-toggle="modal" data-target="#settingsModal">Settings</a></li> -->
+                <li><a href="javascript:;" onclick="$('#intro').show(); return false;" target="_blank">Introduction</a></li>
                 <li><a href="<?= getUrl("aboutus.html"); ?>" target="_blank">About Us</a></li>
             </ul>
 <!--            <form class="navbar-form navbar-right">-->

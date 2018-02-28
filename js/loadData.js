@@ -113,7 +113,7 @@ define(["redCapData"],function(redCapData){
             suffix += "&event_id="+event_id;
         }
 
-        console.log(window.location.href, pid);
+        // console.log(window.location.href, pid);
 
 
         //this function will register the call back

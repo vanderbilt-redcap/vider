@@ -33,7 +33,7 @@ h1,h2,h3 { text-align: center; }
 	echo "<h2>".\REDCap::getProjectTitle()."</h2>";
 	$style = "";
 	if ($isLong) {
-		$style = "width: 50%; vertical-align: top;";
+		$style = "width: 50%; vertical-align: top; border: 1px dotted black;";
 	}
 	echo "<form action='' method='POST'>";
 	echo "<table style='margin-left: auto; margin-right: auto;'><tr><td style='$style'>";
@@ -46,12 +46,11 @@ h1,h2,h3 { text-align: center; }
 	echo implode("<br>", $instrList);
 	echo "</td>";
 	if ($isLong) {
-		echo "<td style='width: 50%';>";
+		echo "<td style='$style';>";
 		echo "<h3>Events</h3>";
-		echo json_encode($events)."<br>";
 		echo "<input type='radio' name='event' value='all___all' selected> <b>All</b><br>";
 		$eventList = array();
-		foreach ($events as $label => $event_id) {
+		foreach ($events as $event_id => $label) {
 			$eventList[] = "<input type='radio' name='event' value='$event_id'> $label";
 		}
 		echo implode("<br>", $eventList);

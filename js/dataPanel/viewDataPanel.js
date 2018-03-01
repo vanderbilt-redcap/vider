@@ -40,7 +40,7 @@ define(["dataWrapper"],function(dataWrapper){
             if(null != eventRecords && eventRecords.length > 0) {
                 fieldVals['label'] = "Event Name";
                 fieldVals['data'] = eventRecords;
-                fieldVals['parent'] = "Event Name";
+                fieldVals['parent'] = "Event Name 2";
                 fieldVals['parent_label'] = "Label";
                 panelData["eventName"] = fieldVals;
             }

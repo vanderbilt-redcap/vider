@@ -74,7 +74,7 @@ header('X-Frame-Options: GOFORIT');
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand">ViDER - Visual Data Explorer for REDCap</a>
+            <a class="navbar-brand">ViDER - Visual Data Explorer for REDCap <span style='font-size: 12px;'>(Best used with Google Chrome)</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -103,7 +103,9 @@ header('X-Frame-Options: GOFORIT');
 
     <div id="left-bottom" style="overflow: scroll; height: 20%" class="split split-vertical">
         <div class="col-sm-12 col-md-12">
-            <svg class="dataDistPanel" width="100%"></svg>
+            <div style='text-align: center;'>Fraction of Data Shown</div>
+            <div style='border-left: 1px solid black; border-right: 1px solid black; height: 24px;'><svg class="dataDistPanel" width="100%"></svg></div>
+            </p>
         </div>
         <div class="col-sm-12 col-md-12">
             <div class="stratAndColFilter"></div>
@@ -163,8 +165,8 @@ header('X-Frame-Options: GOFORIT');
                 <p>Moving your mouse over a bar in a bar chart or histogram will highlight that bar inside the graph. It will also highlight simultaneously the portions <b>in other graphs</b> that contain this bar.</p>
                 <h3>Data Filtering</h3>
                 <p>Next to a highlighted bar appears a filter icon. Clicking this will reduce your population <b>in this and other graphs</b> to the highlighted portion. The lower-left box keeps the record of what is being filtered.</p>
-                <h3>Parallel Sets</h3>
-                <p>Graphs can be compared in a vertical alignment by selecting more than one graph.</p>
+                <h3>Re-Binning</h3>
+                <p>Drag-and-drop labels in bar charts to combine categories. For example, with three group (A, B, and C), combining A and C - by dragging-and-dropping C into A - will produce two groups (A/C and B) with A's and C's totals combined.</p> 
             </div>
 
             <div class="col-sm-12 col-md-12 table-responsive"></div>

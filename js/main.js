@@ -121,7 +121,7 @@ require(["require","controller", "split", "global"],
         var self = this;
 
         //this will split the div of the website accordingly
-        Split(['#leftPanel', '#mainPanel'],{gutterSize: 10, sizes: [20 , 80], minSize: [410]});
+        Split(['#leftPanel', '#mainPanel'],{sizes: [20, 79], minSize: [410]});
         Split(['#left-top', '#left-bottom'],{direction: 'vertical',gutterSize: 10, sizes: [80, 20]/*, minSize: [200, 100]*/});
 	$('#main-top').css({ 'height' : '100%' });
         // Split(['#main-top-left', '#main-top-right'],{gutterSize: 10, sizes: [50, 50]});

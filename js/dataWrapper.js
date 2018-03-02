@@ -148,20 +148,20 @@ define(["jquery","require","redCapData"], function ($,require,redCapData) {
             }
             strEvent = strEvent.slice(0, -1);
 
-            self.mapInstToFields["event_name_form"] = {
-                "label"  : "Event Name",
-                "fields" : {}
-            }
-            self.mapInstToFields["event_name_form"].fields["event_name_var"] = {
-                "obj" :{
-                    field_label: "Event Name",
-                    field_name:"event_name_var",
-                    field_type:"dropdown",
-                    form_name:"event_name_form",
-                    select_choices_or_calculations:strEvent
-                },
-                "data" : eventNames
-            };
+            // self.mapInstToFields["event_name_form"] = {
+                // "label"  : "Event Name",
+                // "fields" : {}
+            // }
+            // self.mapInstToFields["event_name_form"].fields["event_name_var"] = {
+                // "obj" :{
+                    // field_label: "Event Name",
+                    // field_name:"event_name_var",
+                    // field_type:"dropdown",
+                    // form_name:"event_name_form",
+                    // select_choices_or_calculations:strEvent
+                // },
+                // "data" : eventNames
+            // };
         }
     };
 

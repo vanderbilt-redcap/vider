@@ -167,6 +167,8 @@ header('X-Frame-Options: GOFORIT');
                 <p>Next to a highlighted bar appears a filter icon. Clicking this will reduce your population <b>in this and other graphs</b> to the highlighted portion. The lower-left box keeps the record of what is being filtered.</p>
                 <h3>Re-Binning</h3>
                 <p>Drag-and-drop labels in bar charts to combine categories. For example, with three group (A, B, and C), combining A and C - by dragging-and-dropping C into A - will produce two groups (A/C and B) with A's and C's totals combined.</p> 
+                <h3>Longitudinal/Repeating-Events/Repeating-Forms</h3>
+                <p>Graphs are treated only at the form level. This means that all data from other events and other repetitions are lumped into one form's data.</p>
             </div>
 
             <div class="col-sm-12 col-md-12 table-responsive"></div>

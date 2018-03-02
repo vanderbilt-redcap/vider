@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 } else {
 	$instruments = \REDCap::getInstrumentNames();
 
-	$isLong = \REDCap::isLongitudinal();
+	$isLong = false;     // \REDCap::isLongitudinal();
 	if ($isLong) {
 		$events = \REDCap::getEventNames(false);
 	}

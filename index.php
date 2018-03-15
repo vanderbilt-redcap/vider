@@ -119,6 +119,12 @@ foreach ($metadata as $row) {
 				data: {
 					base64data : data,
 					type : '<?= $_GET['type'] ?>'
+				},
+				success: function() {
+					console.log("Success");
+				},
+				error: function(e) {
+					console.log("Error: "+JSON.stringify(e));
 				}
 			});
 		}

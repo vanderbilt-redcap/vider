@@ -2,13 +2,6 @@
 
 $pid = $_GET['pid'];
 
-if (isset($_POST['base64data'])) {
-	$data = base64_decode(preg_replace('/^data:image\/\w+;base64,/i', '', $_POST['base64data']));
-	file_put_contents($_POST['type']."img.png", $data);
-	echo $data;
-	exit;
-}
-
 # have to reset equals in GET
 $_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
 $_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
@@ -113,22 +106,7 @@ foreach ($metadata as $row) {
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>
 		function save(chart) {
-			var data = "data:image/png;base64," + chart.toBase64Image();
-			$.ajax({ 
-				type: "POST", 
-				url: '<?= $module->getUrl("index.php") ?>',
-				dataType: 'text',
-				data: {
-					base64data : data,
-					type : '<?= $_GET['type'] ?>'
-				},
-				success: function(d) {
-					console.log("Success "+d);
-				},
-				error: function(e) {
-					console.log("Error: "+JSON.stringify(e));
-				}
-			});
+			window.open("data:image/png;base64," + chart.toBase64Image());
 		}
 	</script>
 </head>

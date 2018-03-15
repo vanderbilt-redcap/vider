@@ -106,7 +106,10 @@ foreach ($metadata as $row) {
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>
 		function save(chart) {
-			window.open(chart.toBase64Image().replace(/^data:image\/png;/i, "data:application/octet-stream;"));
+			var link = document.createElement('a');
+			link.download = "vider_chart.png";
+			link.href = chart.toBase64Image().replace(/^data:image\/png;/i, "data:application/octet-stream;");
+			link.click();
 		}
 	</script>
 </head>

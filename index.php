@@ -300,7 +300,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='custom_bar'>
-				<h4>Custom Bar Chart<br>(Merge 2 Discrete Categories)</h4>
+				<h4>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</td>

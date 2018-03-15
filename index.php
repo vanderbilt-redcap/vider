@@ -119,7 +119,7 @@ foreach ($metadata as $row) {
 				dataType: 'text',
 				data: {
 					base64data : data,
-					type : $_GET['type']
+					type : '<?= $_GET['type'] ?>'
 				}
 			});
 		}

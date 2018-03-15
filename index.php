@@ -5,6 +5,7 @@ $pid = $_GET['pid'];
 if (isset($_POST['base64data'])) {
 	$data = base64_decode(preg_replace('#^data:image/\w+;base64,', '', $_POST['base64data']));
 	file_put_contents($_POST['type']."img.png", $data);
+	echo $data;
 	exit;
 }
 
@@ -121,8 +122,8 @@ foreach ($metadata as $row) {
 					base64data : data,
 					type : '<?= $_GET['type'] ?>'
 				},
-				success: function(data) {
-					console.log(data);
+				success: function(d) {
+					console.log("Success "+d);
 				},
 				error: function(e) {
 					console.log("Error: "+JSON.stringify(e));

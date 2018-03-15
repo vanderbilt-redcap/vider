@@ -5,7 +5,6 @@ $pid = $_GET['pid'];
 if (isset($_POST['base64data'])) {
 	$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
 	file_put_contents($_POST['type']."img.png", $data);
-	exit;
 }
 
 # have to reset equals in GET

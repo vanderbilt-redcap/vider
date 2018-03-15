@@ -374,7 +374,7 @@ if (!isset($_GET['type'])) {
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
 		echo "<canvas id='chart' style='width: 100%; height: 600px;'></canvas>\n";
-		echo "<script type='text/javascript' src='".\ExternalModules::getUrl("vider", "chart.js/dist/Chart.bundle.min.js")."'></script>\n";
+		echo "<script type='text/javascript' src='".\ExternalModules\ExternalModules::getUrl("vider", "chart.js/dist/Chart.bundle.min.js")."'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {
 		# 1 col continuous 
@@ -594,8 +594,8 @@ function selectHandler(e, ary) {
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = \ExternalModules::getUrl("vider", "index.php")."&iframe=iframe2";
-		$url2 = \ExternalModules::getUrl("vider", "index.php")."&iframe=iframe1";
+		$url1 = \ExternalModules\ExternalModules::getUrl("vider", "index.php")."&iframe=iframe2";
+		$url2 = \ExternalModules\ExternalModules::getUrl("vider", "index.php")."&iframe=iframe1";
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {
@@ -631,7 +631,7 @@ function selectHandler(e, ary) {
 		</iframe>
 <?php
 	} else {
-		echo "<p>I am unable to complete the request. <a href=".\ExternalModules::getUrl("vider", "index.php")."'>Please restart the process</a></p>";
+		echo "<p>I am unable to complete the request. <a href=".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."'>Please restart the process</a></p>";
 	}
 }
 

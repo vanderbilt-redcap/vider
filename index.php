@@ -100,7 +100,7 @@ foreach ($metadata as $row) {
 		td { vertical-align: middle; text-align: center; border: 1px dotted black; padding: 10px; border-radius: 10px; }
 		table { border-spacing: 20px; }
 		select { width: 200px; }
-		.red { color: #C13017; }
+		.red, a { color: #C13017; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>

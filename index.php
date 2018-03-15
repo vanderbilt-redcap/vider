@@ -311,7 +311,7 @@ if (!isset($_GET['type'])) {
 				
 				<table style='width: 100%;'><tr>
 					<td style='width: 33%; vertical-align: middle;'>
-						<h4>Scatter Plot<br>(Continuous)</h4>
+						<h4 style='margin-top: 0px; margin-bottom: 0px;'>Scatter Plot<br>(Continuous)</h4>
 					</td>
 					<td style='width: 34%; vertical-align: middle;'>
 						<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>

@@ -307,16 +307,19 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='scatter'>
-				<div style='float: left; height: 100%; width: 33%; vertical-align: middle;'>
-					<h4>Scatter Plot<br>(Continuous)</h4>
-				</div>
-				<div style='float: left; height: 100%; width: 34%; vertical-align: middle;'>
-					<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-					<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				</div>
-				<div style='float: right; height: 100%; width: 33%; vertical-align: middle;'>
-					<p><input type='submit' value='Show'></p>
-				</div>
+				
+				<table style='width: 100%;'><tr>
+					<td style='width: 33%; vertical-align: middle;'>
+						<h4>Scatter Plot<br>(Continuous)</h4>
+					</td>
+					<td style='width: 34%; vertical-align: middle;'>
+						<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+						<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+						</div>
+					<tdstyle='width: 33%; vertical-align: middle;'>
+						<p><input type='submit' value='Show'></p>
+					</td>
+				</tr></table>
 			</form></td>
 		</tr>
 		<tr>

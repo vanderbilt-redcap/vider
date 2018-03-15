@@ -113,13 +113,16 @@ if (!isset($_GET['iframe'])) {
 	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$module->getUrl("aboutus.php")."'>About Us</a></div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
 	if (isset($_GET['type'])) {
+		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
 		echo "<p style='margin-top: 0px; text-align: center;'><a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
+		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
 		echo "<h2>Select a column to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
+		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
 		echo "<h2>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}
@@ -594,7 +597,7 @@ function selectHandler(e, ary) {
 ?>
 		<script>
 			var ctx = document.getElementById("chart").getContext('2d');
-			var scatterChart = new Chart(ctx, {
+			var myChart = new Chart(ctx, {
 				type: 'scatter',
 				data: {
 					datasets: [{

@@ -20,7 +20,7 @@ foreach ($userRights[USERID]['forms'] as $form => $permission) {
 }
 
 $blank = "<option value=''>---SELECT---</option>";
-$defaultColor = 'rgba(54, 162, 235, 0.6)';
+$defaultColor = 'rgba(193, 48, 23, 0.6)';
 
 $colors = array();
 $colors[1] = array(

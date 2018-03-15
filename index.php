@@ -108,7 +108,7 @@ foreach ($metadata as $row) {
 <?php
 if (!isset($_GET['iframe'])) {
 	# header
-	echo "<div style='text-align: right; ;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Us</div>";
+	echo "<div style='text-align: right; ;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".\ExternalModules\ExternalModules::getUrl("vider", "aboutus.php")."'>About Us</div>";
 	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
 	if (isset($_GET['type'])) {
 		echo "<p style='margin-top: 0px; text-align: center;'><a href='".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid'>Design Another Graph</a></p>";

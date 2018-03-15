@@ -106,7 +106,7 @@ foreach ($metadata as $row) {
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>
 		function save(chart) {
-			window.open("data:application/octet-stream;base64," + chart.toBase64Image());
+			window.open(chart.toBase64Image().replace(/data:image\/png;/, "data:application/octet-stream;"));
 		}
 	</script>
 </head>

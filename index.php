@@ -110,16 +110,23 @@ foreach ($metadata as $row) {
 <?php
 if (!isset($_GET['iframe'])) {
 	# header
-	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$module->getUrl("aboutus.php")."'>About Us</a></div>";
+	echo "<div style='text-align: right;'>";
+	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	if (isset($_GET['type'])) {
+		echo "<a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a>".$space;
+	}
+	echo "<a href='https://www.projectredcap.org'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
+	echo "</div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
 	if (isset($_GET['type'])) {
-		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
 		echo "<p style='margin-top: 0px; text-align: center;'><a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
-		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
+		echo "<div style='position: relative'>";
+		echo "<div style='float: right; z-index: 1; position: absolute; right: 5px; top: 5px;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
 		echo "<h2>Select a column to inspect</h2>";
+		echo "</div>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
 		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";

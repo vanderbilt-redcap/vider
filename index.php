@@ -5,8 +5,6 @@ $pid = $_GET['pid'];
 $_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
 $_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
 
-use ExternalModules;
-
 # Check user rights
 $userRights = \REDCap::getUserRights(USERID);
 $validForms = array();
@@ -111,7 +109,7 @@ foreach ($metadata as $row) {
 if (!isset($_GET['iframe'])) {
 	# header
 	echo "<div style='text-align: right;'>";
-	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type'])) {
 		echo "<a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a>".$space;
 	}

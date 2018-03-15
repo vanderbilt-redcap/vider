@@ -109,7 +109,7 @@ foreach ($metadata as $row) {
 if (!isset($_GET['iframe'])) {
 	# header
 	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$module->getUrl("aboutus.php")."'>About Us</a></div>";
-	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:20%; height:10%;'></div>";
+	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:20%; height:20%;'></div>";
 	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
 	if (isset($_GET['type'])) {
 		echo "<p style='margin-top: 0px; text-align: center;'><a href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";

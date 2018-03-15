@@ -374,7 +374,7 @@ if (!isset($_GET['type'])) {
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
 		echo "<canvas id='chart' style='width: 100%; height: 600px;'></canvas>\n";
-		echo "<script type='text/javascript' src='".\ExternalModules\ExternalModules::getUrl("vider", "chart.js/dist/Chart.bundle.min.js")."'></script>\n";
+		echo "<script type='text/javascript' src='".\ExternalModules\ExternalModules::getUrl("vider", "chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {
 		# 1 col continuous 

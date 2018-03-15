@@ -411,7 +411,7 @@ if (!isset($_GET['type'])) {
 		$choices = getChoices($metadata);
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
-		echo "<canvas id='chart' style='width: 100%; height: 600px;'></canvas>\n";
+		echo "<canvas id='chart' style='width: 100%; height: 800px;'></canvas>\n";
 		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {

@@ -108,11 +108,11 @@ foreach ($metadata as $row) {
 <?php
 if (!isset($_GET['iframe'])) {
 	# header
-	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".\ExternalModules\ExternalModules::getUrl("vider", "aboutus.php")."'>About Us</a></div>";
+	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$module->getUrl("aboutus.php")."'>About Us</a></div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:20%; height:10%;'></div>";
 	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
 	if (isset($_GET['type'])) {
-		echo "<p style='margin-top: 0px; text-align: center;'><a href='".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid'>Design Another Graph</a></p>";
+		echo "<p style='margin-top: 0px; text-align: center;'><a href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
@@ -375,7 +375,7 @@ if (!isset($_GET['type'])) {
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
 		echo "<canvas id='chart' style='width: 100%; height: 600px;'></canvas>\n";
-		echo "<script type='text/javascript' src='".\ExternalModules\ExternalModules::getUrl("vider", "chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
+		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {
 		# 1 col continuous 
@@ -595,8 +595,8 @@ function selectHandler(e, ary) {
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = \ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid&iframe=iframe2";
-		$url2 = \ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid&iframe=iframe1";
+		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2";
+		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1";
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {
@@ -632,7 +632,7 @@ function selectHandler(e, ary) {
 		</iframe>
 <?php
 	} else {
-		echo "<p>I am unable to complete the request. <a href=".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid'>Please restart the process</a></p>";
+		echo "<p>I am unable to complete the request. <a href=".$module->getUrl("index.php")."&pid=$pid'>Please restart the process</a></p>";
 	}
 }
 

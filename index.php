@@ -111,7 +111,6 @@ if (!isset($_GET['iframe'])) {
 	# header
 	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$module->getUrl("aboutus.php")."'>About Us</a></div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
-	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>version 2.0</h1>";
 	if (isset($_GET['type'])) {
 		echo "<p style='margin-top: 0px; text-align: center;'><a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
 	}

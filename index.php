@@ -4,7 +4,7 @@ $pid = $_GET['pid'];
 
 if (isset($_POST['base64data'])) {
 	$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
-	file_put_contents($_POST['type'].".png", $data);
+	file_put_contents($_POST['type']."img.png", $data);
 	exit;
 }
 
@@ -143,11 +143,11 @@ if (!isset($_GET['iframe'])) {
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
-		echo "<div style='text-align: right;'><a href='javascript:;' onclick='document.location = \"data:image/png;base64,\" + myChart.toBase64Image();'>Save</a></div>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
 		echo "<h2 class='nomargin'>Select a column to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
-		echo "<div style='text-align: right;'><a href='javascript:;' onclick='document.location = \"data:image/png;base64,\" + myChart.toBase64Image();'>Save</a></div>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
 		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}

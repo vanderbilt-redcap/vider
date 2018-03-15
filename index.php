@@ -121,10 +121,8 @@ if (!isset($_GET['iframe'])) {
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
-		echo "<div style='position: relative'>";
-		echo "<div style='float: right; z-index: 1; position: absolute; right: 5px; top: 5px;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a></div>";
 		echo "<h2>Select a column to inspect</h2>";
-		echo "</div>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
 		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";

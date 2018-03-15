@@ -100,6 +100,7 @@ foreach ($metadata as $row) {
 		table { border-spacing: 20px; }
 		select { width: 200px; }
 		.red, a { color: #C13017; }
+		.nomargin { margin: 0px; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -122,11 +123,11 @@ if (!isset($_GET['iframe'])) {
 } else {
 	if ($_GET['type'] == "histogram") {
 		echo "<div style='text-align: right;'><a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a></div>";
-		echo "<h2>Select a column to inspect</h2>";
+		echo "<h2 class='nomargin'>Select a column to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
-		echo "<div style='float: right;'><a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a></div>";
-		echo "<h2>Select a bar to inspect</h2>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a></div>";
+		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}
 }
@@ -320,7 +321,7 @@ if (!isset($_GET['type'])) {
 				
 				<table style='width: 100%;'><tr>
 					<td style='width: 33%; vertical-align: middle;'>
-						<h4 style='margin-top: 0px; margin-bottom: 0px;'>Scatter Plot<br>(Continuous)</h4>
+						<h4 class='nomargin'>Scatter Plot<br>(Continuous)</h4>
 					</td>
 					<td style='width: 34%; vertical-align: middle;'>
 						<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>

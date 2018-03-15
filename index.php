@@ -97,7 +97,7 @@ foreach ($metadata as $row) {
 		.two { background-color: <?= $blue ?>; }
 		a { color: <?= $darkBlue ?>; }
 		.three { background-color: #bbbbbb; }
-		td { vertical-align: middle; text-align: center; border: 1px dotted black; padding: 10px; border-radius: 10px; }
+		td.rounded { vertical-align: middle; text-align: center; border: 1px dotted black; padding: 10px; border-radius: 10px; }
 		table { border-spacing: 20px; }
 		select { width: 200px; }
 		.red, a { color: #C13017; }
@@ -273,7 +273,7 @@ if (!isset($_GET['type'])) {
 	</head>
 	<table style='margin-left: auto; margin-right: auto;'>
 		<tr>
-			<td class='one'><form method='GET' action='index.php'>
+			<td class='rounded one'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -283,7 +283,7 @@ if (!isset($_GET['type'])) {
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='two'><form method='GET' action='index.php'>
+			<td class='rounded two'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -293,20 +293,34 @@ if (!isset($_GET['type'])) {
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='three'><form method='GET' action='index.php'>
+			<td class='rounded three'><form method='GET' action='index.php'>
+				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
+				<input type='hidden' name='type' value='custom_bar'>
+			</td>
+		<tr>
+			<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='scatter'>
-				<h4>Scatter Plot<br>(Continuous)</h4>
-				<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
+				<div style='float: left; width: 30%;'>
+					<h4>Scatter Plot<br>(Continuous)</h4>
+				</div>
+				<div style='float: left; width: 50%;'>
+					<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+					<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+				</div>
+				<div style='float: right; text-align: right; width: 20%;'>
+					<p><input type='submit' value='Show'></p>
+				</div>
 			</form></td>
 		</tr>
 		<tr>
-			<td class='three'><form method='GET' action='index.php'>
+			<td class='rounded three'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -317,7 +331,7 @@ if (!isset($_GET['type'])) {
 				<p>Select Variable 2:<br><select class='combobox' name='var2'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='one'><form method='GET' action='index.php'>
+			<td class='rounded one'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -329,7 +343,7 @@ if (!isset($_GET['type'])) {
 				<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='two'><form method='GET' action='index.php'>
+			<td class='rounded two'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>

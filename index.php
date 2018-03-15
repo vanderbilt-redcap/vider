@@ -110,8 +110,8 @@ if (!isset($_GET['iframe'])) {
 	# header
 	echo "<div style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	if (isset($_GET['type'])) {
-		echo "<a href='javascript:;' onclick='myChart.toBase64Image();'>Save</a>".$space;
+	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
+		echo "<a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a>".$space;
 	}
 	echo "<a href='https://www.projectredcap.org'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
 	echo "</div>";

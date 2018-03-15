@@ -629,7 +629,7 @@ function selectHandler(e, ary) {
 		</iframe>
 <?php
 	} else {
-		echo "<p>I am unable to complete the request. <a href=".getUrl("vider", "index.php")'>Please restart the process</a></p>";
+		echo "<p>I am unable to complete the request. <a href=".getUrl("vider", "index.php")."'>Please restart the process</a></p>";
 	}
 }
 

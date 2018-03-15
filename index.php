@@ -112,7 +112,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
-		echo "<a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a>".$space;
+		echo "<a href='javascript:;' onclick='document.location = \"data:image/png;base64,\" + myChart.toBase64Image();'>Save</a>".$space;
 	}
 	echo "<a href='https://www.projectredcap.org'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
 	echo "</div>";
@@ -122,11 +122,11 @@ if (!isset($_GET['iframe'])) {
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
-		echo "<div style='text-align: right;'><a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a></div>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='document.location = \"data:image/png;base64,\" + myChart.toBase64Image();'>Save</a></div>";
 		echo "<h2 class='nomargin'>Select a column to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
-		echo "<div style='text-align: right;'><a href='javascript:;' onclick='var url = myChart.toBase64Image(); console.log(url);'>Save</a></div>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='document.location = \"data:image/png;base64,\" + myChart.toBase64Image();'>Save</a></div>";
 		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}

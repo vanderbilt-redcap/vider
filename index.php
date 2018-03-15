@@ -108,7 +108,8 @@ foreach ($metadata as $row) {
 <?php
 if (!isset($_GET['iframe'])) {
 	# header
-	echo "<div style='text-align: right; ;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".\ExternalModules\ExternalModules::getUrl("vider", "aboutus.php")."'>About Us</div>";
+	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".\ExternalModules\ExternalModules::getUrl("vider", "aboutus.php")."'>About Us</div>";
+	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:50%; height:25%;'></div>";
 	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
 	if (isset($_GET['type'])) {
 		echo "<p style='margin-top: 0px; text-align: center;'><a href='".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid'>Design Another Graph</a></p>";

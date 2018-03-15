@@ -314,7 +314,7 @@ if (!isset($_GET['type'])) {
 					<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
 					<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				</div>
-				<div style='float: right; text-align: right; width: 33%; vertical-align: middle;'>
+				<div style='float: right; width: 33%; vertical-align: middle;'>
 					<p><input type='submit' value='Show'></p>
 				</div>
 			</form></td>

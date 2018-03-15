@@ -5,6 +5,8 @@ $pid = $_GET['pid'];
 $_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
 $_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
 
+use ExternalModules;
+
 # Check user rights
 $userRights = \REDCap::getUserRights(USERID);
 $validForms = array();

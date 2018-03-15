@@ -109,7 +109,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div style='text-align: right; ;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Us</div>";
 	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
 	if (isset($_GET['type'])) {
-		echo "<p style='margin-top: 0px; text-align: center;'><a href='vider2.php?pid=$pid'>Design Another Graph</a></p>";
+		echo "<p style='margin-top: 0px; text-align: center;'><a href='".getURL("vider", "index.php")."'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
@@ -270,22 +270,31 @@ if (!isset($_GET['type'])) {
 	</head>
 	<table style='margin-left: auto; margin-right: auto;'>
 		<tr>
-			<td class='one'><form method='GET' action='vider2.php'>
+			<td class='one'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='bar'>
 				<h4>Bar Chart<br>(Discrete)</h4>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='two'><form method='GET' action='vider2.php'>
+			<td class='two'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='histogram'>
 				<h4>Histogram<br>(Continuous)</h4>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='three'><form method='GET' action='vider2.php'>
+			<td class='three'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='scatter'>
 				<h4>Scatter Plot<br>(Continuous)</h4>
 				<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
@@ -294,16 +303,22 @@ if (!isset($_GET['type'])) {
 			</form></td>
 		</tr>
 		<tr>
-			<td class='three'><form method='GET' action='vider2.php'>
+			<td class='three'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='parallel'>
 				<h4>Parallel Sets<br>(Histograms / Bar Charts)</h4>
 				<p>Select Variable 1:<br><select class='combobox' name='var1'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
 				<p>Select Variable 2:<br><select class='combobox' name='var2'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='one'><form method='GET' action='vider2.php'>
+			<td class='one'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='parallel'>
 				<h4>Parallel Sets<br>(Chart &amp; Scatter Plot)</h4>
 				<p>Select Variable 1:<br><select class='combobox' name='var1'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
@@ -311,8 +326,11 @@ if (!isset($_GET['type'])) {
 				<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='two'><form method='GET' action='vider2.php'>
+			<td class='two'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='parallel'>
 				<h4>Parallel Sets<br>(Scatter Plots)</h4>
 				<p>Select 1st X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
@@ -574,8 +592,8 @@ function selectHandler(e, ary) {
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = "vider2.php?pid=$pid&iframe=iframe2";
-		$url2 = "vider2.php?pid=$pid&iframe=iframe1";
+		$url1 = getUrl("vider", "index.php")."&iframe=iframe2";
+		$url2 = getUrl("vider", "index.php")."&iframe=iframe1";
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {
@@ -611,7 +629,7 @@ function selectHandler(e, ary) {
 		</iframe>
 <?php
 	} else {
-		echo "<p>I am unable to complete the request. <a href='vider2.php?pid=$pid'>Please restart the process</a></p>";
+		echo "<p>I am unable to complete the request. <a href=".getUrl("vider", "index.php")'>Please restart the process</a></p>";
 	}
 }
 

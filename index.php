@@ -100,6 +100,7 @@ foreach ($metadata as $row) {
 		td { vertical-align: middle; text-align: center; border: 1px dotted black; padding: 10px; border-radius: 10px; }
 		table { border-spacing: 20px; }
 		select { width: 200px; }
+		.red { color: #C13017; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -110,9 +111,9 @@ if (!isset($_GET['iframe'])) {
 	# header
 	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".$module->getUrl("aboutus.php")."'>About Us</a></div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
-	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
+	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>version 2.0</h1>";
 	if (isset($_GET['type'])) {
-		echo "<p style='margin-top: 0px; text-align: center;'><a href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
+		echo "<p style='margin-top: 0px; text-align: center;'><a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
@@ -125,7 +126,7 @@ if (!isset($_GET['iframe'])) {
 }
 
 if (!isset($_GET['type'])) {
-	echo "<h2>What do you want to create?</h2>";
+	echo "<h2 class='red'>What do you want to create?</h2>";
 	$options = array();
 	foreach ($fields as $dataType => $fieldNames) {
 		$options[$dataType] = array();

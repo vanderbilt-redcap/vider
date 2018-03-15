@@ -1,6 +1,13 @@
 <?php
 
 $pid = $_GET['pid'];
+
+if (isset($_POST['base64data'])) {
+	$data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data));
+	file_put_contents($_POST['type'].".png", $data);
+	exit;
+}
+
 # have to reset equals in GET
 $_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
 $_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
@@ -103,6 +110,20 @@ foreach ($metadata as $row) {
 		.nomargin { margin: 0px; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script>
+		function save(chart) {
+			var data = "data:image/png;base64," + chart.toBase64Image();
+			$.ajax({ 
+				type: "POST", 
+				url: '<?= $module->getUrl("index.php") ?>',
+				dataType: 'text',
+				data: {
+					base64data : data,
+					type : $_GET['type']
+				}
+			});
+		}
+	</script>
 </head>
 <body>
 
@@ -112,7 +133,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
-		echo "<a href='javascript:;' onclick='document.location = \"data:image/png;base64,\" + myChart.toBase64Image();'>Save</a>".$space;
+		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
 	}
 	echo "<a href='https://www.projectredcap.org'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
 	echo "</div>";

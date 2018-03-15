@@ -97,7 +97,8 @@ foreach ($metadata as $row) {
 		.two { background-color: <?= $blue ?>; }
 		a { color: <?= $darkBlue ?>; }
 		.three { background-color: #bbbbbb; }
-		td.rounded { vertical-align: middle; text-align: center; border: 1px dotted black; padding: 10px; border-radius: 10px; }
+		td.rounded { border: 1px dotted black; padding: 10px; border-radius: 10px; }
+		td { vertical-align: middle; text-align: center; }
 		table { border-spacing: 20px; }
 		select { width: 200px; }
 		.red, a { color: #C13017; }

@@ -109,7 +109,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div style='text-align: right; ;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About Us</div>";
 	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
 	if (isset($_GET['type'])) {
-		echo "<p style='margin-top: 0px; text-align: center;'><a href='".getURL("vider", "index.php")."'>Design Another Graph</a></p>";
+		echo "<p style='margin-top: 0px; text-align: center;'><a href='".getUrl("vider", "index.php")."'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {

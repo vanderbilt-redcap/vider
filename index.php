@@ -106,6 +106,7 @@ foreach ($metadata as $row) {
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>
 		function save(chart) {
+			console.log("data:image/png;base64," + chart.toBase64Image());
 			window.open("data:image/png;base64," + chart.toBase64Image());
 		}
 	</script>

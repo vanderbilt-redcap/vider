@@ -269,7 +269,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='bar'>
-				<h4>Bar Chart<br>(Discrete)</h4>
+				<h4 class='nomargin'>Bar Chart<br>(Discrete)</h4>
 				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
@@ -280,7 +280,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='histogram'>
-				<h4>Histogram<br>(Continuous)</h4>
+				<h4 class='nomargin'>Histogram<br>(Continuous)</h4>
 				<p class='small'>Numbers, integers, dates, and times</p>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
@@ -291,7 +291,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='custom_bar'>
-				<h4>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
+				<h4 class='nomargin'>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
 				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>

@@ -783,7 +783,9 @@ function getFormat($validationType) {
                 $format = "m-d-Y h:i:s";
         } else if ($validationType == "datetime_seconds_dmy") {
                 $format = "d-m-Y h:i:s";
-        }
+        } else if ($validationType == "time") {
+		$format = "h:i";
+	}
 	return $format;
 }
 

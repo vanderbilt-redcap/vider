@@ -760,6 +760,7 @@ function convertToTimestamp($value, $validationType) {
 	$date = date_create($value);
 	date_format($date, $format);
 	$d = date_timestamp_get($date);
+	echo "Converted $date to $d<br>";
 	return $d;
 }
 

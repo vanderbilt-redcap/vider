@@ -84,6 +84,47 @@ foreach ($metadata as $row) {
 			link.href = chart.toBase64Image().replace(/^data:image\/png;/i, "data:application/octet-stream;");
 			link.click();
 		}
+
+		function selectHandler(e, ary) {
+			console.log("selectHandler "+ary[0]);
+<?php
+			if (isset($_GET['iframe']) && $_GET['iframe']) {
+?>
+				var otherIframe = '<?= $_GET['iframe'] ?>';
+				if (window.parent && window.parent.document.getElementById(otherIframe) && ary[0]) {
+					var idx = ary[0]['_index'];
+					var filter = filters[jsDataLabels[idx]];
+					var plainFilter = plainFilters[jsDataLabels[idx]];
+					filter = filter.replace(/=/, "%3D");
+					plainFilter = plainFilter.replace(/=/, "%3D");
+					var urlParts = window.parent.document.getElementById(otherIframe).src.split(/\?/);
+					var getParts = urlParts[1].split(/\&/);
+					var urlWithFilter = urlParts[0]+'?';
+					var urlWithoutFilter = urlParts[0]+'?';
+					for (var i=0; i < getParts.length; i++) {
+						if (i !== 0) {
+							urlWithFilter = urlWithFilter + "&";
+							urlWithoutFilter = urlWithoutFilter + "&";
+						}
+						if (getParts[i].match(/^plainFilter=/) || getParts[i].match(/^filter=/)) {
+						} else if (!getParts[i].match(/^iframe=/)) {
+							urlWithFilter = urlWithFilter + getParts[i];
+							if (!getParts[i].match(/filter=/) && !getParts[i].match(/plainFilter=/)) {
+								urlWithoutFilter = urlWithoutFilter + getParts[i];
+							}
+						} else {
+							urlWithFilter = urlWithFilter + "&iframe=";
+							urlWithoutFilter = urlWithoutFilter + "&" + getParts[i];
+						}
+					}
+					urlWithFilter = urlWithFilter + "&filter="+encodeURI(filter)+"&plainFilter="+encodeURI(plainFilter);
+					window.parent.document.getElementById(otherIframe).src = urlWithFilter;
+					document.getElementById("reset").innerHTML = "<a href='javascript:;' onclick='window.parent.document.getElementById(\""+otherIframe+"\").src = \""+urlWithoutFilter+"\"; $(this).parent().html(\"&nbsp;\");'>Reset other panel</a>";
+				}
+<?php
+			}
+?>
+		}
 	</script>
 </head>
 <body>
@@ -521,46 +562,6 @@ var myChart = new Chart(ctx, {
 	}
 });
 
-function selectHandler(e, ary) {
-		console.log("selectHandler "+ary[0]);
-<?php
-		if (isset($_GET['iframe']) && $_GET['iframe']) {
-?>
-			var otherIframe = '<?= $_GET['iframe'] ?>';
-			if (window.parent && window.parent.document.getElementById(otherIframe) && ary[0]) {
-				var idx = ary[0]['_index'];
-				var filter = filters[jsDataLabels[idx]];
-				var plainFilter = plainFilters[jsDataLabels[idx]];
-				filter = filter.replace(/=/, "%3D");
-				plainFilter = plainFilter.replace(/=/, "%3D");
-				var urlParts = window.parent.document.getElementById(otherIframe).src.split(/\?/);
-				var getParts = urlParts[1].split(/\&/);
-				var urlWithFilter = urlParts[0]+'?';
-				var urlWithoutFilter = urlParts[0]+'?';
-				for (var i=0; i < getParts.length; i++) {
-					if (i !== 0) {
-						urlWithFilter = urlWithFilter + "&";
-						urlWithoutFilter = urlWithoutFilter + "&";
-					}
-					if (getParts[i].match(/^plainFilter=/) || getParts[i].match(/^filter=/)) {
-					} else if (!getParts[i].match(/^iframe=/)) {
-						urlWithFilter = urlWithFilter + getParts[i];
-						if (!getParts[i].match(/filter=/) && !getParts[i].match(/plainFilter=/)) {
-							urlWithoutFilter = urlWithoutFilter + getParts[i];
-						}
-					} else {
-						urlWithFilter = urlWithFilter + "&iframe=";
-						urlWithoutFilter = urlWithoutFilter + "&" + getParts[i];
-					}
-				}
-				urlWithFilter = urlWithFilter + "&filter="+encodeURI(filter)+"&plainFilter="+encodeURI(plainFilter);
-				window.parent.document.getElementById(otherIframe).src = urlWithFilter;
-				document.getElementById("reset").innerHTML = "<a href='javascript:;' onclick='window.parent.document.getElementById(\""+otherIframe+"\").src = \""+urlWithoutFilter+"\"; $(this).parent().html(\"&nbsp;\");'>Reset other panel</a>";
-			}
-<?php
-		}
-?>
-	}
 </script>
 <?php
 	} else if ($proceed && $_GET['type'] == "scatter") {

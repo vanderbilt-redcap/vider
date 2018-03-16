@@ -568,7 +568,8 @@ function selectHandler(e, ary) {
 			}
 			if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
 				$yPt = convertToDate($yData[$i], $metadataRowY['text_validation_type_or_show_slider_number']);
-			}
+			} else {
+			
 			if ($xPt !== "" && $yPt !== "") {
 				if (is_int(xPt)) {
 					$xPt = intval($xPt);
@@ -583,6 +584,15 @@ function selectHandler(e, ary) {
 				$jsData[] = array("x" => $xPt, "y" => $yPt);
 			}
 		}
+		$xUnit = array();
+		$yUnit = array();
+		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
+			$xUnit = findUnit($maxX - $minX);
+		}
+		if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
+			$yUnit = findUnit($maxY - $minY);
+		}
+		$curr = floor($min / $size) * $size;
 		$jsDataStr = replaceStringDates(json_encode($jsData));
 ?>
 		<script>
@@ -599,7 +609,21 @@ function selectHandler(e, ary) {
 				options: {
 					scales: {
 						xAxes: [{
-                					type: 'time',
+<?php
+if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || ($metadataRowX['text_validation_type_or_show_slider_number'] == "time")) {
+	echo "type: 'time',\n";
+	echo "time: ".json_encode($xUnit).",\n";
+}
+?>
+                					distribution: 'linear'
+						}],
+						yAxes: [{
+<?php
+if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number']) || ($metadataRowY['text_validation_type_or_show_slider_number'] == "time")) {
+	echo "type: 'time',\n";
+	echo "time: ".json_encode($yUnit).",\n";
+}
+?>
                 					distribution: 'linear'
 						}]
 					}
@@ -894,3 +918,29 @@ function binData($data, $validationType) {
 }
 
 echo "</body></html>";
+
+function findUnit($diff) {
+	if ($diff > 3600 * 24 * 365 * 100 + 25 * 3600 * 24) {
+		# centuries
+		$unit = array("unit" => "year");
+	} else if ($diff > 3600 * 24 * 365 * 10 + 2.5 * 3600 * 24) {
+		# decades
+		$unit = array("unit" => "year");
+	} else if ($diff > 3600 * 24 * 365 + 0.25 * 3600 * 24) {
+		# years
+		$unit = array("unit" => "year");
+	} else if ($diff > 3600 * 24 * 30) {
+		# months
+		$unit = array("unit" => "month");
+	} else if ($diff > 3600 * 24) {
+		# days
+		$unit = array("unit" => "day");
+	} else if ($diff > 3600) {
+		# hours 
+		$unit = array("unit" => "hour");
+	} else {
+		# minutes
+		$unit = array("unit" => "minute");
+	}
+	return $unit;
+}

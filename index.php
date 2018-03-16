@@ -825,14 +825,9 @@ function replaceStringDates($str) {
 
 # returns array("data" => <DATA COUNT>, "labels" => <LABELS>)
 function binData($data, $validationType) {
-	if (preg_match("/^date/", $validationType)) {
+	if (preg_match("/^date/", $validationType) || ($validationType == "time")) {
 		for ($i = 0; $i < count($data); $i++) {
 			$data[$i] = convertToTimestamp($data[$i], $validationType);
-		}
-	}
-	if ($validationType == "time") {
-		for ($i = 0; $i < count($data); $i++) {
-			$data[$i] = convertToTimestamp($data[$i]);
 		}
 	}
 	foreach ($data as $d) {

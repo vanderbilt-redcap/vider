@@ -562,7 +562,7 @@ function selectHandler(e, ary) {
 			$yPt = $yData[$i];
 			if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || $metadataRowX['text_validation_type_or_show_slider_number'] == "time") {
 				$xPt = convertToDate($xData[$i], $metadataRowX['text_validation_type_or_show_slider_number']);
-				$pts['x'][] = convertToTimestamp($xData[i], $metadataRowX['text_validation_type_or_show_slider_number']);
+				$pts['x'][] = convertToTimestamp($xData[$i], $metadataRowX['text_validation_type_or_show_slider_number']);
 			} else {
 				$pts['x'][] = $xPt;
 			}

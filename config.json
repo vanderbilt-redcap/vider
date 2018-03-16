@@ -25,7 +25,7 @@
 	"links": {
         "project": [
             {
-                "name": "ViDER",
+                "name": "ViDER Visualizations",
                 "icon": "report",
                 "url": "index.php"
             }

@@ -388,7 +388,7 @@ if (!isset($_GET['type'])) {
 		$choices = getChoices($metadata);
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
-		echo "<canvas id='chart' style='width: 100%; height: 800px;'></canvas>\n";
+		echo "<canvas id='chart' style='width: 800px; height: 600px;'></canvas>\n";
 		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {
@@ -410,15 +410,6 @@ if (!isset($_GET['type'])) {
 		var ctx = document.getElementById("chart").getContext('2d');
 		var myChart = new Chart(ctx, {
 			type: 'bar',
-			data: {
-				labels: <?= json_encode($jsData['labels']) ?>,
-				datasets: [{
-					label: "<?= $metadataRow['field_label'].$plainFilterText ?>",
-					data: <?= json_encode($jsData['data']) ?>,
-					backgroundColor: '<?= $defaultColor ?>',
-					borderWidth: 1
-				}]
-			},
 			options: {
 				scales: {
 					yAxes: [{
@@ -427,6 +418,15 @@ if (!isset($_GET['type'])) {
 						}
 					}]
 				}
+			},
+			data: {
+				labels: <?= json_encode($jsData['labels']) ?>,
+				datasets: [{
+					label: "<?= $metadataRow['field_label'].$plainFilterText ?>",
+					data: <?= json_encode($jsData['data']) ?>,
+					backgroundColor: '<?= $defaultColor ?>',
+					borderWidth: 1
+				}]
 			}
 		});
 		</script>
@@ -473,15 +473,6 @@ var jsDataLabels = <?= json_encode($jsDataLabels) ?>;
 
 var myChart = new Chart(ctx, {
 	type: 'horizontalBar',
-	data: {
-		labels: jsDataLabels,
-		datasets: [{
-			label: "<?= $metadataRow['field_label'].$plainFilterText ?>",
-			data: jsData,
-			backgroundColor: '<?= $defaultColor; ?>',
-			borderWidth: 1
-		}]
-	},
 	options: {
 		scales: {
 			yAxes: [{
@@ -493,6 +484,15 @@ var myChart = new Chart(ctx, {
 		onClick: function(e, ary) {
 			selectHandler(e, ary);
 		}
+	},
+	data: {
+		labels: jsDataLabels,
+		datasets: [{
+			label: "<?= $metadataRow['field_label'].$plainFilterText ?>",
+			data: jsData,
+			backgroundColor: '<?= $defaultColor; ?>',
+			borderWidth: 1
+		}]
 	}
 });
 
@@ -599,13 +599,6 @@ function selectHandler(e, ary) {
 			var ctx = document.getElementById("chart").getContext('2d');
 			var myChart = new Chart(ctx, {
 				type: 'scatter',
-				data: {
-					datasets: [{
-						label: "<?= $metadataRowX['field_label']." vs. ".$metadataRowY['field_label'].$plainFilterText ?>",
-						backgroundColor: '<?= $defaultColor ?>',
-						data: <?= $jsDataStr ?> 
-					}]
-				},
 				options: {
 					scales: {
 						xAxes: [{
@@ -627,6 +620,13 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
                 					distribution: 'linear'
 						}]
 					}
+				},
+				data: {
+					datasets: [{
+						label: "<?= $metadataRowX['field_label']." vs. ".$metadataRowY['field_label'].$plainFilterText ?>",
+						backgroundColor: '<?= $defaultColor ?>',
+						data: <?= $jsDataStr ?> 
+					}]
 				}
 			});
 		</script>

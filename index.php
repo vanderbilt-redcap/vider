@@ -91,10 +91,10 @@ foreach ($metadata as $row) {
 <?php
 if (!isset($_GET['iframe'])) {
 	# header
-	echo "<div style='text-align: right;'>";
+	echo "<div class='small' style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type'])) {
-		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
+		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another/a>".$space;
 	}
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
 		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;

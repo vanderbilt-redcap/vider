@@ -747,7 +747,7 @@ function getFormat($validationType) {
 }
 
 function convertToDate($value, $validationType) {
-	f ($value === "") {
+	if ($value === "") {
 		return "";
 	}
 	$nodes = preg_split("/[:\-\s]/", $value);

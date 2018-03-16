@@ -831,9 +831,9 @@ function binData($data, $validationType) {
 	}
 	if ($validationType == "time") {
 		for ($i = 0; $i < count($data); $i++) {
-			echo "Time $iA: ".$time."<br>";
+			echo "Time $i"."A: ".$time."<br>";
 			$time = date("Y-m-d")." ".$time;
-			echo "Time $iB: ".$time."<br>";
+			echo "Time $i"."B: ".$time."<br>";
 			$data[$i] = strtotime($time);
 		}
 	}

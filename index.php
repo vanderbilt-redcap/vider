@@ -56,7 +56,7 @@ foreach ($metadata as $row) {
 ?>
 <html>
 <head>
-	<title>Vider 2</title>
+	<title>ViDER 2</title>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<style>
 		h1,h2,h3,h4 { text-align: center; }

@@ -94,7 +94,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div class='small' style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type'])) {
-		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another/a>".$space;
+		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
 	}
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
 		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;

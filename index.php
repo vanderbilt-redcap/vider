@@ -74,7 +74,7 @@ foreach ($metadata as $row) {
 		select { width: 200px; }
 		.red, a { color: #C13017; }
 		.nomargin { margin: 0px; }
-		.small { font-size: 12px; }
+		.small { margin-top: 0px; font-size: 12px; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>

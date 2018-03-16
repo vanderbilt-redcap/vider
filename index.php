@@ -952,7 +952,7 @@ function binData($data, $validationType) {
 echo "</body></html>";
 
 function findUnit($diff, $validationType) {
-	$unit = array();
+	$unit = array("unit" => "minute");
 	if (preg_match("/^date/", $validationType)) {
 		if ($diff > 3600 * 24 * 365 * 100 + 25 * 3600 * 24) {
 			# centuries

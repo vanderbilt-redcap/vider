@@ -831,10 +831,10 @@ function binData($data, $validationType) {
 	}
 	if ($validationType == "time") {
 		for ($i = 0; $i < count($data); $i++) {
-			echo "Time $i"."A: ".$time."<br>";
-			$time = date("Y-m-d")." ".$time;
-			echo "Time $i"."B: ".$time."<br>";
-			$data[$i] = strtotime($time);
+			if ($data[$i]) {
+				$time = date("Y-m-d")." ".$data[$i];
+				$data[$i] = strtotime($time);
+			}
 		}
 	}
 	foreach ($data as $d) {

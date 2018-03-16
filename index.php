@@ -914,28 +914,32 @@ function binData($data, $validationType) {
 
 echo "</body></html>";
 
-function findUnit($diff) {
-	if ($diff > 3600 * 24 * 365 * 100 + 25 * 3600 * 24) {
-		# centuries
-		$unit = array("unit" => "year");
-	} else if ($diff > 3600 * 24 * 365 * 10 + 2.5 * 3600 * 24) {
-		# decades
-		$unit = array("unit" => "year");
-	} else if ($diff > 3600 * 24 * 365 + 0.25 * 3600 * 24) {
-		# years
-		$unit = array("unit" => "year");
-	} else if ($diff > 3600 * 24 * 30) {
-		# months
-		$unit = array("unit" => "month");
-	} else if ($diff > 3600 * 24) {
-		# days
-		$unit = array("unit" => "day");
-	} else if ($diff > 3600) {
-		# hours 
-		$unit = array("unit" => "hour");
+function findUnit($diff, $validationType) {
+	if (preg_match("/^date/", $validationType)) {
+		if ($diff > 3600 * 24 * 365 * 100 + 25 * 3600 * 24) {
+			# centuries
+			$unit = array("unit" => "year");
+		} else if ($diff > 3600 * 24 * 365 * 10 + 2.5 * 3600 * 24) {
+			# decades
+			$unit = array("unit" => "year");
+		} else if ($diff > 3600 * 24 * 365 + 0.25 * 3600 * 24) {
+			# years
+			$unit = array("unit" => "year");
+		} else if ($diff > 3600 * 24 * 30) {
+			# months
+			$unit = array("unit" => "month");
+		} else if ($diff > 3600 * 24) {
+			# days
+			$unit = array("unit" => "day");
+		}
 	} else {
-		# minutes
-		$unit = array("unit" => "minute");
+		if ($diff > 3600) {
+			# hours 
+			$unit = array("unit" => "hour");
+		} else {
+			# minutes
+			$unit = array("unit" => "minute");
+		}
 	}
 	return $unit;
 }

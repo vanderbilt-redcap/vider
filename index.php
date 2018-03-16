@@ -412,9 +412,19 @@ if (!isset($_GET['type'])) {
 			type: 'bar',
 			options: {
 				scales: {
+					xAxes: [{
+						scaleLabel: {
+							display: true,
+							labelString: '<?= $metadataRow['field_label'] ?>'
+						}
+					}],
 					yAxes: [{
 						ticks: {
 							beginAtZero:true
+						}
+						scaleLabel: {
+							display: true,
+							labelString: 'Count'
 						}
 					}]
 				}
@@ -475,9 +485,19 @@ var myChart = new Chart(ctx, {
 	type: 'horizontalBar',
 	options: {
 		scales: {
+			xAxes: [{
+				scaleLabel: {
+					display: true,
+					labelString: '<?= $metadataRow['field_label'] ?>'
+				}
+			}],
 			yAxes: [{
 				ticks: {
 					beginAtZero:true
+				},
+				scaleLabel: {
+					display: true,
+					labelString: 'Count'
 				}
 			}]
 		},
@@ -616,7 +636,12 @@ if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_num
 	echo "time: ".json_encode($xUnit).",\n";
 }
 ?>
-                					distribution: 'linear'
+                					distribution: 'linear',
+							scaleLabel: {
+								display: true,
+								labelString: '<?= $metadataRowX['field_label'] ?>'
+							}
+
 						}],
 						yAxes: [{
 <?php
@@ -625,7 +650,12 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 	echo "time: ".json_encode($yUnit).",\n";
 }
 ?>
-                					distribution: 'linear'
+                					distribution: 'linear',
+							scaleLabel: {
+								display: true,
+								labelString: '<?= $metadataRowY['field_label'] ?>'
+							}
+
 						}]
 					}
 				},

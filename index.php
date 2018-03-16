@@ -831,10 +831,7 @@ function binData($data, $validationType) {
 	}
 	if ($validationType == "time") {
 		for ($i = 0; $i < count($data); $i++) {
-			if ($data[$i]) {
-				$time = date("Y-m-d")." ".$data[$i];
-				$data[$i] = strtotime($time);
-			}
+			$data[$i] = convertToTimestamp($data[$i]);
 		}
 	}
 	foreach ($data as $d) {

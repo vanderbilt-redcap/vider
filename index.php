@@ -777,11 +777,11 @@ function getFormat($validationType) {
                 $format = "m-d-Y h:i";
         } else if ($validationType == "datetime_dmy") {
                 $format = "d-m-Y h:i";
-        } else if ($validationType == "datetime_ymd_seconds") {
+        } else if ($validationType == "datetime_seconds_ymd") {
                 $format = "Y-m-d h:i:s";
-        } else if ($validationType == "datetime_mdy_seconds") {
+        } else if ($validationType == "datetime_seconds_mdy") {
                 $format = "m-d-Y h:i:s";
-        } else if ($validationType == "datetime_dmy_seconds") {
+        } else if ($validationType == "datetime_seconds_dmy") {
                 $format = "d-m-Y h:i:s";
         }
 	return $format;

@@ -28,41 +28,6 @@ foreach ($userRights[USERID]['forms'] as $form => $permission) {
 $blank = "<option value=''>---SELECT---</option>";
 $defaultColor = 'rgba(193, 48, 23, 0.6)';
 
-$colors = array();
-$colors[1] = array(
-			'rgba(54, 162, 235, 0.6)',
-		);
-$colors[2] = array(
-			'rgba(255, 99, 132, 0.6)',
-			'rgba(54, 162, 235, 0.6)',
-		);
-$colors[3] = array(
-			'rgba(255, 99, 132, 0.6)',
-			'rgba(54, 162, 235, 0.6)',
-			'rgba(255, 206, 86, 0.6)',
-		);
-$colors[4] = array(
-			'rgba(255, 99, 132, 0.6)',
-			'rgba(54, 162, 235, 0.6)',
-			'rgba(255, 206, 86, 0.6)',
-			'rgba(75, 192, 192, 0.6)',
-		);
-$colors[5] = array(
-			'rgba(255, 99, 132, 0.6)',
-			'rgba(54, 162, 235, 0.6)',
-			'rgba(255, 206, 86, 0.6)',
-			'rgba(75, 192, 192, 0.6)',
-			'rgba(153, 102, 255, 0.6)',
-		);
-$colors[6] = array(
-			'rgba(255, 99, 132, 0.6)',
-			'rgba(54, 162, 235, 0.6)',
-			'rgba(255, 206, 86, 0.6)',
-			'rgba(75, 192, 192, 0.6)',
-			'rgba(153, 102, 255, 0.6)',
-			'rgba(255, 159, 64, 0.6)'
-		);
-
 $metadataJSON = \REDCap::getDataDictionary($pid, 'json');
 $metadata = json_decode($metadataJSON, true);
 
@@ -109,6 +74,7 @@ foreach ($metadata as $row) {
 		select { width: 200px; }
 		.red, a { color: #C13017; }
 		.nomargin { margin: 0px; }
+		.small { font-size: 12px; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script>
@@ -130,7 +96,7 @@ if (!isset($_GET['iframe'])) {
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
 		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
 	}
-	echo "<a href='https://www.projectredcap.org'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
+	echo "<a href='<?= APP_PATH_WEBROOT."index.php?pid=$pid" ?>'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
 	echo "</div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
 	if (isset($_GET['type'])) {
@@ -304,6 +270,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='bar'>
 				<h4>Bar Chart<br>(Discrete)</h4>
+				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
@@ -314,6 +281,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='histogram'>
 				<h4>Histogram<br>(Continuous)</h4>
+				<p class='small'>Numbers, integers, dates, and times</p>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
@@ -324,6 +292,7 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='custom_bar'>
 				<h4>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
+				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</td>
@@ -338,6 +307,7 @@ if (!isset($_GET['type'])) {
 				<table style='width: 100%;'><tr>
 					<td style='width: 33%; vertical-align: middle;'>
 						<h4 class='nomargin'>Scatter Plot<br>(Continuous)</h4>
+						<p class='small'>Numbers, integers, dates, and times</p>
 					</td>
 					<td style='width: 34%; vertical-align: middle;'>
 						<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>

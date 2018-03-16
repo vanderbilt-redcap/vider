@@ -563,12 +563,12 @@ function selectHandler(e, ary) {
 		for ($i = 0; $i < count($xData) && $i < count($yData); $i++) {
 			$xPt = $xData[$i];
 			$yPt = $yData[$i];
-			if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
+			if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || $metadataRowX['text_validation_type_or_show_slider_number'] == "time") {
 				$xPt = convertToDate($xData[$i], $metadataRowX['text_validation_type_or_show_slider_number']);
 			}
-			if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
+			if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number']) || $metadataRowY['text_validation_type_or_show_slider_number'] == "time") {
 				$yPt = convertToDate($yData[$i], $metadataRowY['text_validation_type_or_show_slider_number']);
-			} else {
+			}
 			
 			if ($xPt !== "" && $yPt !== "") {
 				if (is_int(xPt)) {
@@ -707,13 +707,6 @@ function getChoices($metadata) {
 	return $choices;
 }
 
-function convertToDateFromTimestamp($value, $validationType) {
-	if ($value === "") {
-		return "";
-	}
-        $format = getFormat($validationType);
-}
-
 function convertToTimestamp($value, $validationType) {
 	if ($value === "") {
 		return "";
@@ -754,7 +747,7 @@ function getFormat($validationType) {
 }
 
 function convertToDate($value, $validationType) {
-	if ($value === "") {
+	f ($value === "") {
 		return "";
 	}
 	$nodes = preg_split("/[:\-\s]/", $value);
@@ -776,6 +769,8 @@ function convertToDate($value, $validationType) {
 		return "new Date({$nodes[2]}, ".($nodes[0]-1).", {$nodes[1]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]})";
 	} else if ($validationType == "datetime_dmy_seconds") {
 		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]})";
+	} else if ($validationType == "time") {
+		return "new Date(1970, 0, 1, {$nodes[0]}, {$nodes[1]}, 0)";
 	}
 	return $value;
 }

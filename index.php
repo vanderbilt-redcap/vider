@@ -915,6 +915,7 @@ function binData($data, $validationType) {
 echo "</body></html>";
 
 function findUnit($diff, $validationType) {
+	echo "findUnit $diff $validationType<br>";
 	$unit = array();
 	if (preg_match("/^date/", $validationType)) {
 		if ($diff > 3600 * 24 * 365 * 100 + 25 * 3600 * 24) {

@@ -519,6 +519,7 @@ var myChart = new Chart(ctx, {
 });
 
 function selectHandler(e, ary) {
+		console.log("selectHandler "+ary[0]);
 <?php
 		if (isset($_GET['iframe']) && $_GET['iframe']) {
 ?>

@@ -147,7 +147,7 @@ if (!isset($_GET['iframe'])) {
 	}
 } else if (isset($_GET['type'])) {
 	echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
-	if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter")) {
+	if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter") {
 		echo "<h2 class='nomargin'>&nbsp;</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {

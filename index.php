@@ -1,11 +1,10 @@
 <?php
 
 $pid = $_GET['pid'];
+
 # have to reset equals in GET
 $_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
 $_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
-
-use ExternalModules;
 
 # Check user rights
 $userRights = \REDCap::getUserRights(USERID);
@@ -20,7 +19,7 @@ foreach ($userRights[USERID]['forms'] as $form => $permission) {
 }
 
 $blank = "<option value=''>---SELECT---</option>";
-$defaultColor = 'rgba(54, 162, 235, 0.6)';
+$defaultColor = 'rgba(193, 48, 23, 0.6)';
 
 $colors = array();
 $colors[1] = array(
@@ -97,35 +96,53 @@ foreach ($metadata as $row) {
 		.two { background-color: <?= $blue ?>; }
 		a { color: <?= $darkBlue ?>; }
 		.three { background-color: #bbbbbb; }
-		td { vertical-align: middle; text-align: center; border: 1px dotted black; padding: 10px; border-radius: 10px; }
+		td.rounded { border: 1px dotted black; padding: 10px; border-radius: 10px; }
+		td { vertical-align: middle; text-align: center; }
 		table { border-spacing: 20px; }
 		select { width: 200px; }
+		.red, a { color: #C13017; }
+		.nomargin { margin: 0px; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script>
+		function save(chart) {
+			var link = document.createElement('a');
+			link.download = "vider_chart.png";
+			link.href = chart.toBase64Image().replace(/^data:image\/png;/i, "data:application/octet-stream;");
+			link.click();
+		}
+	</script>
 </head>
 <body>
 
 <?php
 if (!isset($_GET['iframe'])) {
 	# header
-	echo "<div style='text-align: right;'><a href='https://www.projectredcap.org'>REDCap</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='".\ExternalModules\ExternalModules::getUrl("vider", "aboutus.php")."'>About Us</a></div>";
-	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:20%; height:10%;'></div>";
-	echo "<h1 style='margin-top: 0px; margin-bottom: 0px;'>Vider 2.0</h1>";
+	echo "<div style='text-align: right;'>";
+	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
+		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
+	}
+	echo "<a href='https://www.projectredcap.org'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
+	echo "</div>";
+	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
 	if (isset($_GET['type'])) {
-		echo "<p style='margin-top: 0px; text-align: center;'><a href='".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid'>Design Another Graph</a></p>";
+		echo "<p style='margin-top: 0px; text-align: center;'><a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
 	}
 } else {
 	if ($_GET['type'] == "histogram") {
-		echo "<h2>Select a column to inspect</h2>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
+		echo "<h2 class='nomargin'>Select a column to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
-		echo "<h2>Select a bar to inspect</h2>";
+		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
+		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}
 }
 
 if (!isset($_GET['type'])) {
-	echo "<h2>What do you want to create?</h2>";
+	echo "<h2 class='red'>What do you want to create?</h2>";
 	$options = array();
 	foreach ($fields as $dataType => $fieldNames) {
 		$options[$dataType] = array();
@@ -273,7 +290,7 @@ if (!isset($_GET['type'])) {
 	</head>
 	<table style='margin-left: auto; margin-right: auto;'>
 		<tr>
-			<td class='one'><form method='GET' action='index.php'>
+			<td class='rounded one'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -283,7 +300,7 @@ if (!isset($_GET['type'])) {
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='two'><form method='GET' action='index.php'>
+			<td class='rounded two'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -293,20 +310,40 @@ if (!isset($_GET['type'])) {
 				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='three'><form method='GET' action='index.php'>
+			<td class='rounded three'><form method='GET' action='index.php'>
+				<input type='hidden' name='pid' value='<?= $pid ?>'>
+				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+				<input type='hidden' name='prefix' value='vider'>
+				<input type='hidden' name='type' value='custom_bar'>
+				<h4>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
+				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
+				<p><input type='submit' value='Show'></p>
+			</td>
+		<tr>
+			<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
 				<input type='hidden' name='type' value='scatter'>
-				<h4>Scatter Plot<br>(Continuous)</h4>
-				<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
+				
+				<table style='width: 100%;'><tr>
+					<td style='width: 33%; vertical-align: middle;'>
+						<h4 class='nomargin'>Scatter Plot<br>(Continuous)</h4>
+					</td>
+					<td style='width: 34%; vertical-align: middle;'>
+						<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+						<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+					</td>
+					<td style='width: 33%; vertical-align: middle;'>
+						<input type='submit' value='Show'>
+					</td>
+				</tr></table>
 			</form></td>
 		</tr>
 		<tr>
-			<td class='three'><form method='GET' action='index.php'>
+			<td class='rounded three'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -317,7 +354,7 @@ if (!isset($_GET['type'])) {
 				<p>Select Variable 2:<br><select class='combobox' name='var2'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='one'><form method='GET' action='index.php'>
+			<td class='rounded one'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -329,7 +366,7 @@ if (!isset($_GET['type'])) {
 				<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
 				<p><input type='submit' value='Show'></p>
 			</form></td>
-			<td class='two'><form method='GET' action='index.php'>
+			<td class='rounded two'><form method='GET' action='index.php'>
 				<input type='hidden' name='pid' value='<?= $pid ?>'>
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
@@ -374,8 +411,8 @@ if (!isset($_GET['type'])) {
 		$choices = getChoices($metadata);
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
-		echo "<canvas id='chart' style='width: 100%; height: 600px;'></canvas>\n";
-		echo "<script type='text/javascript' src='".\ExternalModules\ExternalModules::getUrl("vider", "chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
+		echo "<canvas id='chart' style='width: 100%; height: 800px;'></canvas>\n";
+		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {
 		# 1 col continuous 
@@ -573,7 +610,7 @@ function selectHandler(e, ary) {
 ?>
 		<script>
 			var ctx = document.getElementById("chart").getContext('2d');
-			var scatterChart = new Chart(ctx, {
+			var myChart = new Chart(ctx, {
 				type: 'scatter',
 				data: {
 					datasets: [{
@@ -595,8 +632,8 @@ function selectHandler(e, ary) {
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = \ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid&iframe=iframe2";
-		$url2 = \ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid&iframe=iframe1";
+		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2";
+		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1";
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {
@@ -632,7 +669,7 @@ function selectHandler(e, ary) {
 		</iframe>
 <?php
 	} else {
-		echo "<p>I am unable to complete the request. <a href=".\ExternalModules\ExternalModules::getUrl("vider", "index.php")."&pid=$pid'>Please restart the process</a></p>";
+		echo "<p>I am unable to complete the request. <a href=".$module->getUrl("index.php")."&pid=$pid'>Please restart the process</a></p>";
 	}
 }
 

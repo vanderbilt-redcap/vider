@@ -18,7 +18,7 @@
 <body>
 
 <div style="text-align: center;">
-<img src="<?= \ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png') ?>" style="width:50%;height:25%;">
+<img src="<?= $module->getUrl('img/vider.png') ?>" style="width:50%;height:25%;">
     <div style="width: 55%;margin: 0 auto; ">
 <br>ViDER is a free, web-based data visualization tool that interfaces with REDCap (Research Electronic Data CAPture) in a dynamic fashion. The purpose of ViDER is to provide quick data visualizations (histograms, bar charts, scatter plots, and word clouds) for exploration of variables captured in REDCap. Since ViDER is web-based, no special software is needed to be downloaded or installed.
 <br>
@@ -37,8 +37,8 @@
            </td>
         </tr>
         <tr>
-            <td style='vertical-align: middle;'><img src="<?= \ExternalModules\ExternalModules::getUrl('vider', 'img/ulogo-small.png') ?>"></td>
-            <td style='vertical-align: middle;'><img src="<?= \ExternalModules\ExternalModules::getUrl('vider', 'img/vumc.png') ?>"></td>
+            <td style='vertical-align: middle;'><img src="<?= $module->getUrl('img/ulogo-small.png') ?>"></td>
+            <td style='vertical-align: middle;'><img src="<?= $module->getUrl('img/vumc.png') ?>"></td>
         </tr>
     </table>
     <br><br>

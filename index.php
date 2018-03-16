@@ -422,7 +422,7 @@ if (!isset($_GET['type'])) {
 					yAxes: [{
 						ticks: {
 							beginAtZero:true
-						}
+						},
 						scaleLabel: {
 							display: true,
 							labelString: 'Count'

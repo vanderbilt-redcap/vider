@@ -3,8 +3,15 @@
 $pid = $_GET['pid'];
 
 # have to reset equals in GET
-$_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
-$_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
+if (isset({_GET['filter'])) {
+	$_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
+}
+if (isset({_GET['plainFilter'])) {
+	$_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
+	$plainFilterText = " filtered by ".$_GET['plainFilter'];
+} else {
+	$plainFilterText = "";
+}
 
 # Check user rights
 $userRights = \REDCap::getUserRights(USERID);
@@ -436,7 +443,7 @@ if (!isset($_GET['type'])) {
 			data: {
 				labels: <?= json_encode($jsData['labels']) ?>,
 				datasets: [{
-					label: "<?= $metadataRow['field_label'] ?> <?= $_GET['plainFilter'] ?>",
+					label: "<?= $metadataRow['field_label'].$plainFilterText ?>",
 					data: <?= json_encode($jsData['data']) ?>,
 					backgroundColor: '<?= $defaultColor ?>',
 					borderWidth: 1
@@ -499,7 +506,7 @@ var myChart = new Chart(ctx, {
 	data: {
 		labels: jsDataLabels,
 		datasets: [{
-			label: "<?= $metadataRow['field_label'] ?> <?= $_GET['plainFilter'] ?>",
+			label: "<?= $metadataRow['field_label'].$plainFilterText ?>",
 			data: jsData,
 			backgroundColor: '<?= $defaultColor; ?>',
 			borderWidth: 1
@@ -614,7 +621,7 @@ function selectHandler(e, ary) {
 				type: 'scatter',
 				data: {
 					datasets: [{
-						label: "<?= $metadataRowX['field_label']." vs. ".$metadataRowY['field_label']." ".$_GET['plainFilter'] ?>",
+						label: "<?= $metadataRowX['field_label']." vs. ".$metadataRowY['field_label'].$plainFilterText ?>",
 						backgroundColor: '<?= $defaultColor ?>',
 						data: <?= $jsDataStr ?> 
 					}]

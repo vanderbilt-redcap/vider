@@ -436,7 +436,7 @@ if (!isset($_GET['type'])) {
 			data: {
 				labels: <?= json_encode($jsData['labels']) ?>,
 				datasets: [{
-					label: '<?= $metadataRow['field_label'] ?> <?= $_GET['plainFilter'] ?>',
+					label: "<?= $metadataRow['field_label'] ?> <?= $_GET['plainFilter'] ?>",
 					data: <?= json_encode($jsData['data']) ?>,
 					backgroundColor: '<?= $defaultColor ?>',
 					borderWidth: 1
@@ -499,7 +499,7 @@ var myChart = new Chart(ctx, {
 	data: {
 		labels: jsDataLabels,
 		datasets: [{
-			label: '<?= $metadataRow['field_label'] ?> <?= $_GET['plainFilter'] ?>',
+			label: "<?= $metadataRow['field_label'] ?> <?= $_GET['plainFilter'] ?>",
 			data: jsData,
 			backgroundColor: '<?= $defaultColor; ?>',
 			borderWidth: 1
@@ -614,7 +614,7 @@ function selectHandler(e, ary) {
 				type: 'scatter',
 				data: {
 					datasets: [{
-						label: '<?= $metadataRowX['field_label']." vs. ".$metadataRowY['field_label']." ".$_GET['plainFilter'] ?>',
+						label: "<?= $metadataRowX['field_label']." vs. ".$metadataRowY['field_label']." ".$_GET['plainFilter'] ?>",
 						backgroundColor: '<?= $defaultColor ?>',
 						data: <?= $jsDataStr ?> 
 					}]

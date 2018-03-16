@@ -801,17 +801,17 @@ function convertToDate($value, $validationType) {
 	} else if ($validationType == "date_dmy") {
 		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]})";
 	} else if ($validationType == "datetime_ymd") {
-		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, 0)";
+		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, 0, 0)";
 	} else if ($validationType == "datetime_mdy") {
-		return "new Date({$nodes[2]}, ".($nodes[0]-1).", {$nodes[1]}, {$nodes[3]}, {$nodes[4]}, 0)";
+		return "new Date({$nodes[2]}, ".($nodes[0]-1).", {$nodes[1]}, {$nodes[3]}, {$nodes[4]}, 0, 0)";
 	} else if ($validationType == "datetime_dmy") {
-		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, 0)";
+		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, 0, 0)";
 	} else if ($validationType == "datetime_seconds_ymd") {
-		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]})";
+		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]}, 0)";
 	} else if ($validationType == "datetime_seconds_mdy") {
-		return "new Date({$nodes[2]}, ".($nodes[0]-1).", {$nodes[1]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]})";
+		return "new Date({$nodes[2]}, ".($nodes[0]-1).", {$nodes[1]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]}, 0)";
 	} else if ($validationType == "datetime_seconds_dmy") {
-		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]})";
+		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]}, 0)";
 	} else if ($validationType == "time") {
 		return "new Date(1970, 0, 1, {$nodes[0]}, {$nodes[1]}, 0, 0)";
 	}

@@ -562,13 +562,13 @@ function selectHandler(e, ary) {
 			$yPt = $yData[$i];
 			if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || $metadataRowX['text_validation_type_or_show_slider_number'] == "time") {
 				$xPt = convertToDate($xData[$i], $metadataRowX['text_validation_type_or_show_slider_number']);
-				$pts['x'][] = convertToTimestamp($xData[i], $metadataRowX['text_validation_type_or_show_slider_number']);
+				$pts['x'][] = convertToTimestamp($$xData[i], $metadataRowX['text_validation_type_or_show_slider_number']);
 			} else {
 				$pts['x'][] = $xPt;
 			}
 			if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number']) || $metadataRowY['text_validation_type_or_show_slider_number'] == "time") {
 				$yPt = convertToDate($yData[$i], $metadataRowY['text_validation_type_or_show_slider_number']);
-				$pts['y'][] = convertToTimestamp($yData[i], $metadataRowY['text_validation_type_or_show_slider_number']);
+				$pts['y'][] = convertToTimestamp($yData[$i], $metadataRowY['text_validation_type_or_show_slider_number']);
 			} else {
 				$pts['y'][] = $yPt;
 			}

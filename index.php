@@ -3,10 +3,10 @@
 $pid = $_GET['pid'];
 
 # have to reset equals in GET
-if (isset({_GET['filter'])) {
+if (isset($_GET['filter'])) {
 	$_GET['filter'] = preg_replace("/%3D/", "=", $_GET['filter']);
 }
-if (isset({_GET['plainFilter'])) {
+if (isset($_GET['plainFilter'])) {
 	$_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
 	$plainFilterText = " filtered by ".$_GET['plainFilter'];
 } else {

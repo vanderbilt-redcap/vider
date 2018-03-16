@@ -93,15 +93,15 @@ if (!isset($_GET['iframe'])) {
 	# header
 	echo "<div style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	if (isset($_GET['type'])) {
+		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
+	}
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
 		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
 	}
 	echo "<a href='".APP_PATH_WEBROOT."index.php?pid=$pid'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
 	echo "</div>";
 	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
-	if (isset($_GET['type'])) {
-		echo "<p style='margin-top: 0px; text-align: center;'><a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a></p>";
-	}
 } else {
 	if ($_GET['type'] == "histogram") {
 		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";

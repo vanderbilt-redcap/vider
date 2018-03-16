@@ -813,7 +813,7 @@ function convertToDate($value, $validationType) {
 	} else if ($validationType == "datetime_seconds_dmy") {
 		return "new Date({$nodes[0]}, ".($nodes[1]-1).", {$nodes[2]}, {$nodes[3]}, {$nodes[4]}, {$nodes[5]})";
 	} else if ($validationType == "time") {
-		return "new Date(1970, 0, 1, {$nodes[0]}, {$nodes[1]}, 0)";
+		return "new Date(1970, 0, 1, {$nodes[0]}, {$nodes[1]}, 0, 0)";
 	}
 	return $value;
 }

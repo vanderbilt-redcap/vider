@@ -556,18 +556,21 @@ function selectHandler(e, ary) {
 			$xData[] = $row[$x];
 			$yData[] = $row[$y];
 		}
-		$minX = min($xData);
-		$minY = min($yData);
-		$maxX = max($xData);
-		$maxY = max($yData);
+		$pts = array("x" => array(), "y" => array());
 		for ($i = 0; $i < count($xData) && $i < count($yData); $i++) {
 			$xPt = $xData[$i];
 			$yPt = $yData[$i];
 			if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || $metadataRowX['text_validation_type_or_show_slider_number'] == "time") {
 				$xPt = convertToDate($xData[$i], $metadataRowX['text_validation_type_or_show_slider_number']);
+				$pts['x'][] = convertToTimestamp($xData[i], $metadataRowX['text_validation_type_or_show_slider_number']);
+			} else {
+				$pts['x'][] = $xPt;
 			}
 			if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number']) || $metadataRowY['text_validation_type_or_show_slider_number'] == "time") {
 				$yPt = convertToDate($yData[$i], $metadataRowY['text_validation_type_or_show_slider_number']);
+				$pts['y'][] = convertToTimestamp($yData[i], $metadataRowY['text_validation_type_or_show_slider_number']);
+			} else {
+				$pts['y'][] = $yPt;
 			}
 			
 			if ($xPt !== "" && $yPt !== "") {
@@ -584,6 +587,11 @@ function selectHandler(e, ary) {
 				$jsData[] = array("x" => $xPt, "y" => $yPt);
 			}
 		}
+
+		$minX = min($pts['x']);
+		$minY = min($pts['y']);
+		$maxX = max($pts['x']);
+		$maxY = max($pts['y']);
 		$xUnit = array();
 		$yUnit = array();
 		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {

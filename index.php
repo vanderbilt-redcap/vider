@@ -587,10 +587,10 @@ function selectHandler(e, ary) {
 		$xUnit = array();
 		$yUnit = array();
 		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
-			$xUnit = findUnit($maxX - $minX);
+			$xUnit = findUnit($maxX - $minX, $metadataRowX['text_validation_type_or_show_slider_number']);
 		}
 		if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
-			$yUnit = findUnit($maxY - $minY);
+			$yUnit = findUnit($maxY - $minY, $metadataRowY['text_validation_type_or_show_slider_number']);
 		}
 		$curr = floor($min / $size) * $size;
 		$jsDataStr = replaceStringDates(json_encode($jsData));

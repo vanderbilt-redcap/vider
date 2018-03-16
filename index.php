@@ -932,6 +932,8 @@ function findUnit($diff, $validationType) {
 		} else if ($diff > 3600 * 24) {
 			# days
 			$unit = array("unit" => "day");
+		} else {
+			$unit = array("unit" => "day");
 		}
 	} else {
 		if ($diff > 3600) {

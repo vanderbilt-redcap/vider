@@ -562,7 +562,7 @@ function selectHandler(e, ary) {
 			$yPt = $yData[$i];
 			if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || $metadataRowX['text_validation_type_or_show_slider_number'] == "time") {
 				$xPt = convertToDate($xData[$i], $metadataRowX['text_validation_type_or_show_slider_number']);
-				$pts['x'][] = convertToTimestamp($$xData[i], $metadataRowX['text_validation_type_or_show_slider_number']);
+				$pts['x'][] = convertToTimestamp($xData[i], $metadataRowX['text_validation_type_or_show_slider_number']);
 			} else {
 				$pts['x'][] = $xPt;
 			}
@@ -590,7 +590,6 @@ function selectHandler(e, ary) {
 
 		$xUnit = array();
 		$yUnit = array();
-		echo json_encode($pts['x'])."<br>";
 		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
 			$minX = min($pts['x']);
 			$maxX = max($pts['x']);
@@ -924,7 +923,6 @@ function binData($data, $validationType) {
 echo "</body></html>";
 
 function findUnit($diff, $validationType) {
-	echo "findUnit: $diff $validationType<br>";
 	$unit = array();
 	if (preg_match("/^date/", $validationType)) {
 		if ($diff > 3600 * 24 * 365 * 100 + 25 * 3600 * 24) {

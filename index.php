@@ -588,16 +588,17 @@ function selectHandler(e, ary) {
 			}
 		}
 
-		$minX = min($pts['x']);
-		$minY = min($pts['y']);
-		$maxX = max($pts['x']);
-		$maxY = max($pts['y']);
 		$xUnit = array();
 		$yUnit = array();
 		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
+			$minX = min($pts['x']);
+			$maxX = max($pts['x']);
+			echo json_encode($pts)."<br>";
 			$xUnit = findUnit($maxX - $minX, $metadataRowX['text_validation_type_or_show_slider_number']);
 		}
 		if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
+			$minY = min($pts['y']);
+			$maxY = max($pts['y']);
 			$yUnit = findUnit($maxY - $minY, $metadataRowY['text_validation_type_or_show_slider_number']);
 		}
 		$curr = floor($min / $size) * $size;

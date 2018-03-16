@@ -293,8 +293,9 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='type' value='custom_bar'>
 				<h4 class='nomargin'>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
 				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
-				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
+				<!-- <p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
+				<p><input type='submit' value='Show'></p> -->
+				<p>Forthcoming</p>
 			</td>
 		<tr>
 			<td class='rounded three' colspan='3'><form method='GET' action='index.php'>

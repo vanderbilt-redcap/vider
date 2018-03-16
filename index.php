@@ -104,13 +104,12 @@ if (!isset($_GET['iframe'])) {
 	if (!isset($_GET['type'])) {
 		echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='width:254px; height:100px;'></div>";
 	}
-} else {
+} else if (isset($_GET['type'])) {
+	echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
 	if ($_GET['type'] == "histogram") {
-		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
 		echo "<h2 class='nomargin'>Select a column to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	} else if ($_GET['type'] == "bar") {
-		echo "<div style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
 		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}

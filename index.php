@@ -613,12 +613,12 @@ function selectHandler(e, ary) {
 
 		$xUnit = array();
 		$yUnit = array();
-		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
+		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number']) || $metadataRowX['text_validation_type_or_show_slider_number'] == "time") {
 			$minX = min($pts['x']);
 			$maxX = max($pts['x']);
 			$xUnit = findUnit($maxX - $minX, $metadataRowX['text_validation_type_or_show_slider_number']);
 		}
-		if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
+		if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number']) || $metadataRowY['text_validation_type_or_show_slider_number'] == "time") {
 			$minY = min($pts['y']);
 			$maxY = max($pts['y']);
 			$yUnit = findUnit($maxY - $minY, $metadataRowY['text_validation_type_or_show_slider_number']);

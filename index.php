@@ -590,12 +590,12 @@ function selectHandler(e, ary) {
 
 		$xUnit = array();
 		$yUnit = array();
+		echo json_encode($pts['x'])."<br>";
 		if (preg_match("/^date/", $metadataRowX['text_validation_type_or_show_slider_number'])) {
 			$minX = min($pts['x']);
 			$maxX = max($pts['x']);
 			$xUnit = findUnit($maxX - $minX, $metadataRowX['text_validation_type_or_show_slider_number']);
 		}
-		echo json_encode($pts['y']);
 		if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_number'])) {
 			$minY = min($pts['y']);
 			$maxY = max($pts['y']);

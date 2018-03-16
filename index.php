@@ -297,7 +297,7 @@ if (!isset($_GET['type'])) {
 				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
 				<!-- <p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 				<p><input type='submit' value='Show'></p> -->
-				<p>Forthcoming</p>
+				<p>Coming Soon</p>
 			</td>
 		<tr>
 			<td class='rounded three' colspan='3'><form method='GET' action='index.php'>

@@ -429,6 +429,9 @@ if (!isset($_GET['type'])) {
 							labelString: 'Count'
 						}
 					}]
+				},
+				onClick: function(e, ary) {
+					selectHandler(e, ary);
 				}
 			},
 			data: {

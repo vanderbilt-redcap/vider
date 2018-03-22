@@ -678,8 +678,8 @@ function submitSortables() {
 		} else {
 			$bins = array();
 			foreach ($_GET as $key => $value) {
-				if (preg_match("/^sortable/", $key)) {
-					$bins[preg_replace("/^sortable/", "", $key)] = json_decode($value);
+				if (preg_match("/^sortables/", $key)) {
+					$bins[preg_replace("/^sortables/", "", $key)] = json_decode($value);
 				}
 			}
 			$binTotals = array();

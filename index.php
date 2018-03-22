@@ -403,12 +403,11 @@ if (!isset($_GET['type'])) {
 				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
 				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
 				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='custom_bar'>
+				<input type='hidden' name='type' value='custom_bar_config'>
 				<h4 class='nomargin'>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
 				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
-				<!-- <p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
-				<p><input type='submit' value='Show'></p> -->
-				<p>Coming Soon</p>
+				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
+				<p><input type='submit' value='Configure'></p>
 			</td>
 		<tr>
 			<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
@@ -501,11 +500,48 @@ if (!isset($_GET['type'])) {
 		$proceed = true;
 		$choices = getChoices($metadata);
 	}
-	if ($proceed && ($_GET['type'] != "parallel")) {
+	if ($proceed && ($_GET['type'] != "parallel") && !preg_match("/_config/", $_GET['type'])) {
 		echo "<canvas id='chart' style='width: 800px; height: $canvasHeight;'></canvas>\n";
 		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
-	if ($proceed && $_GET['type'] == "histogram") {
+	if ($proceed && ($_GET['type'] != "custom_bar_config")) {
+		$var = $varsToFetch['var1'];
+		$metadataRow = array();
+		foreach ($metadata as $row) {
+			if ($row['field_name'] == $var) {
+				$metadataRow = $row;
+			}
+		}
+?>
+<script>
+	$(document).ready(function() {
+		$(".connectedSortable").sortable({
+			connectWith: ".connectedSortable",
+			cursor: "move",
+			dropOnEmpty: true
+		}).disableSelection();
+	});
+</script>
+
+<h2 style='text-align: center'>&lt;--&gt; Drag and Drop &lt;--&gt;</span></h2>
+<ul id="sortable1" class="connectedSortable">
+<?php
+		foreach ($choices[$var] as $choice => $value) {
+			echo "<li id='$var-$choice'>$value</li>";
+		}
+?>
+</ul>
+<ul id="sortable2" class="connectedSortable">
+</ul>
+<ul id="sortable3" class="connectedSortable">
+</ul>
+<ul id="sortable4" class="connectedSortable">
+</ul>
+<ul id="sortable5" class="connectedSortable">
+</ul>
+
+<?php
+	} else if ($proceed && $_GET['type'] == "histogram") {
 		# 1 col continuous 
 		$var = $varsToFetch['var1'];
 		$metadataRow = array();

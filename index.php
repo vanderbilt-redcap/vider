@@ -754,7 +754,7 @@ var myChart = new Chart(ctx, {
 <?php
 		if ($_GET['type'] == "custom_bar") {
 ?>
-			<iframe id='iframe_config'>
+			<iframe id='iframe_config' style='width: 100% height: 600px;'>
 				<p>Your browser does not support iframes.</p>
 			</iframe>
 			<script>
@@ -765,7 +765,7 @@ var myChart = new Chart(ctx, {
 				}
 				echo "var sortablesStr = encodeURI('$str');";
 ?>
-				$('#iframe_config').attr("src", buildCurrentUrl("type=custom_bar_config&focus=parent" + sortablesStr)); 
+				$('#iframe_config').attr("src", buildCurrentUrl("iframe=iframe_config&type=custom_bar_config&focus=parent" + sortablesStr)); 
 			</script>
 <?php
 		}

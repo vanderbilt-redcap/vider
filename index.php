@@ -133,7 +133,7 @@ foreach ($metadata as $row) {
 				}
 <?php
 			}
-			if (isset($_GET['type'] {
+			if (isset($_GET['type'])) {
 ?>
 				window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid={$_GET['pid']}&id=" ?>'+recordId);
 <?php

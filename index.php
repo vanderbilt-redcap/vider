@@ -626,9 +626,11 @@ var myChart = new Chart(ctx, {
 		} 
 		$xData = array();
 		$yData = array();
+		$records = array();
 		foreach ($data as $row) {
 			$xData[] = $row[$x];
 			$yData[] = $row[$y];
+			$records[] = $row["record_id"];
 		}
 		$pts = array("x" => array(), "y" => array());
 		for ($i = 0; $i < count($xData) && $i < count($yData); $i++) {
@@ -658,7 +660,7 @@ var myChart = new Chart(ctx, {
 				} else if (is_numeric($yPt)) {
 					$yPt = floatval($yPt);
 				}
-				$jsData[] = array("x" => $xPt, "y" => $yPt);
+				$jsData[] = array("x" => $xPt, "y" => $yPt, "record_id" => $records[$i]);
 			}
 		}
 

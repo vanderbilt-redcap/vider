@@ -32,6 +32,10 @@ $defaultColor = '#c03017';
 if (isset($_GET['color'])) {
 	$defaultColor = "#".$_GET['color'];
 }
+$canvasHeight = "400px";
+if (isset($_GET['canvasHeight'])) {
+	$canvasHeight = $_GET['canvasHeight']."px";
+}
 
 $metadataJSON = \REDCap::getDataDictionary($pid, 'json');
 $metadata = json_decode($metadataJSON, true);
@@ -476,7 +480,7 @@ if (!isset($_GET['type'])) {
 		$choices = getChoices($metadata);
 	}
 	if ($proceed && ($_GET['type'] != "parallel")) {
-		echo "<canvas id='chart' style='width: 800px; height: 400px;'></canvas>\n";
+		echo "<canvas id='chart' style='width: 800px; height: $canvasHeight;'></canvas>\n";
 		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 	}
 	if ($proceed && $_GET['type'] == "histogram") {
@@ -720,8 +724,8 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2&color=".preg_replace("/^#/", "", $defaultColor);
-		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1&color=".preg_replace("/^#/", "", $defaultColor);
+		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2&canvasHeight=800&color=".preg_replace("/^#/", "", $defaultColor);
+		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1&canvasHeight=800&color=".preg_replace("/^#/", "", $defaultColor);
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {

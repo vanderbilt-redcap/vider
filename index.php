@@ -132,6 +132,7 @@ foreach ($metadata as $row) {
 <?php
 			}
 			if (isset($_GET['type'])) {
+?>
 				if (ary[0]
 					&& ary[0]['_chart']
 					&& ary[0]['_chart']['data']

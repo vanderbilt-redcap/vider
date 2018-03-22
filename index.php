@@ -30,7 +30,7 @@ $blank = "<option value=''>---SELECT---</option>";
 # must be hex
 $defaultColor = '#c03017';
 if (isset($_GET['color'])) {
-	$defaultColor = $_GET['color'];
+	$defaultColor = "#".$_GET['color'];
 }
 
 $metadataJSON = \REDCap::getDataDictionary($pid, 'json');
@@ -167,7 +167,7 @@ foreach ($metadata as $row) {
 		}
 
 		$(document).ready(function() {
-			$('input[type=color]').change(function() { window.location.href = buildCurrentUrl("color="+this.value); });
+			$('input[type=color]').change(function() { window.location.href = buildCurrentUrl("color="+this.value.replace(/^\#/, "")); });
 		});
 	</script>
 </head>

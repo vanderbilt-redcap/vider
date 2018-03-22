@@ -26,7 +26,12 @@ foreach ($userRights[USERID]['forms'] as $form => $permission) {
 }
 
 $blank = "<option value=''>---SELECT---</option>";
-$defaultColor = 'rgba(193, 48, 23, 0.6)';
+
+# must be hex
+$defaultColor = '#c03017';
+if (isset($_GET['color'])) {
+	$defaultColor = $_GET['color'];
+}
 
 $metadataJSON = \REDCap::getDataDictionary($pid, 'json');
 $metadata = json_decode($metadataJSON, true);
@@ -125,6 +130,40 @@ foreach ($metadata as $row) {
 			}
 ?>
 		}
+
+		function buildCurrentUrl(paramsToChange = "") {
+			var a = window.location.split(/\?/);
+			if (a.length == 2) {
+				var ps = {};
+				ps['current'] = a[1].split(/\&/);
+				ps['new'] = paramsToChange.split(/\&/);
+				var params = {};
+				var b, i;
+				for (i = 0; i < ps['current'].length; i++) {
+					b = ps['current'][i].split(/=/);
+					if (b.length == 2) {
+						params[b[0]] = b[1];
+					}
+				}
+				for (i = 0; i < ps['new'].length; i++) {
+					b = ps['new'][i].split(/=/);
+					if (b.length == 2) {
+						params[b[0]] = b[1];
+					}
+				}
+			}
+
+			var paramStr = "";
+			for (var variable in params) {
+				if (paramStr) {
+					paramStr += "&" + variable + "=" + params[variable];
+				} else {
+					paramStr = "?" + variable + "=" + params[variable];
+				}
+			} 
+			var url = a[0] + paramStr;
+			return url;
+		}
 	</script>
 </head>
 <body>
@@ -135,6 +174,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div class='small' style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type'])) {
+		echo "<input type='color' onchange='window.location = buildCurrentUrl(\"color=\"+this.value);' value='$defaultColor' style='width: 50px;' />".$space;
 		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
 	}
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
@@ -675,8 +715,8 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2";
-		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1";
+		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2&color=$defaultColor";
+		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1&color=$defaultColor";
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {

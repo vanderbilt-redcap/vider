@@ -720,8 +720,8 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 <?php
 	} else if ($proceed && $_GET['type'] == "parallel") {
 		# 2 charts
-		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2&color=$defaultColor";
-		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1&color=$defaultColor";
+		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2&color=".preg_replace("/^#/", "", $defaultColor);
+		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1&color=".preg_replace("/^#/", "", $defaultColor)";
 		if (isset($_GET['var1'])) {
 			$url1 .= "&var1=".$_GET['var1'];
 			if (isset($fields['discrete'][$_GET['var1']])) {

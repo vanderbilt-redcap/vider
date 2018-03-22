@@ -95,8 +95,8 @@ foreach ($metadata as $row) {
 		}
 
 		function selectHandler(e, ary) {
-			var recordId = ary[0]['_chart']['data']['datasets'][0][ary[0]['_index']]['record_id'];
 			console.log(ary);
+			var recordId = ary[0]['_chart']['data']['datasets'][0][ary[0]['_index']]['record_id'];
 			console.log("selectHandler "+recordId);
 <?php
 			if (isset($_GET['iframe']) && $_GET['iframe']) {

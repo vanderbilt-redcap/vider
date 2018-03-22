@@ -162,8 +162,13 @@ foreach ($metadata as $row) {
 				}
 			} 
 			var url = a[0] + paramStr;
+			console.log(url);
 			return url;
 		}
+
+		$(document).ready(function() {
+			$('input[type=color]').change(function() { window.location = buildCurrentUrl(\"color=\"+this.value); });
+		});
 	</script>
 </head>
 <body>
@@ -174,7 +179,7 @@ if (!isset($_GET['iframe'])) {
 	echo "<div class='small' style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type'])) {
-		echo "<input type='color' onchange='window.location = buildCurrentUrl(\"color=\"+this.value);' value='$defaultColor' style='width: 50px;' />".$space;
+		echo "<input type='color' value='$defaultColor' style='width: 50px;' />".$space;
 		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
 	}
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {

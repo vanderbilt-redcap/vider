@@ -538,7 +538,7 @@ function submitSortables() {
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
 		var ary = $( "#sortable"+i ).sortable("toArray");
 		for (var j = 0; j < ary.length; j++) {
-			ary[j] = ary.replace(match, "");
+			ary[j] = ary[j].replace(match, "");
 		}
 		sortabes[i] = ary;
 	}
@@ -547,7 +547,7 @@ function submitSortables() {
 </script>
 
 <h2 style='text-align: center'>&larr; Drag and Drop &rarr;<br>
-<button onclick='submitSortables();'>Submit</button> When Ready</h2>
+Press <button onclick='submitSortables();'>Submit</button> When Ready</h2>
 <table style='margin-left: auto; margin-right: auto;'><tr><td>
 <ul id="sortable1" class="connectedSortable">
 <h4>Category 1</h4>

@@ -520,6 +520,7 @@ if ($proceed && ($_GET['type'] != "custom_bar_config")) {
 			$metadataRow = $row;
 		}
 	}
+	$numSortables = 5;
 ?>
 <script>
 $(document).ready(function() {
@@ -548,22 +549,10 @@ function submitSortables() {
 			echo "<li class='ui-state-default' id='$var-$choice'>$value</li>";
 		}
 		echo "<li class='ui-state-default' id='$var-'>[Empty]</li>";
-?>
-</ul>
-<ul id="sortable2" class="connectedSortable">
-<h4>Category 2</h4>
-</ul>
-<ul id="sortable3" class="connectedSortable">
-<h4>Category 3</h4>
-</ul>
-<ul id="sortable4" class="connectedSortable">
-<h4>Category 4</h4>
-</ul>
-<ul id="sortable5" class="connectedSortable">
-<h4>Category 5</h4>
-</ul>
-
-<?php
+		echo "</ul>";
+		for ($i = 2; $i <= $numSortables; $i++) {
+			echo "<ul id='sortable$i' class='connectedSortable'><h4>Category $i</h4></ul>";
+		}
 	} else if ($proceed && $_GET['type'] == "histogram") {
 		# 1 col continuous 
 		$var = $varsToFetch['var1'];

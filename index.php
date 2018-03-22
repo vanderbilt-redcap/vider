@@ -88,7 +88,7 @@ foreach ($types as $dataType => $fieldTypes) {
 	button { border-radius: 8px; background-color: #a6ffae; font-size: 20px; font-weight: bold; }
 
 	.connectedSortable { border: 1px solid #eee; width: 142px; min-height: 20px; list-style-type: none; margin: 0; padding: 5px 0 0 0; float: left; margin-right: 10px; }
-	.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+	.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 14px; width: 120px; }
 
 </style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -553,7 +553,7 @@ function submitSortables() {
 <h4>Category 1</h4>
 <?php
 		foreach ($choices[$var] as $choice => $value) {
-			echo "<li class='ui-state-default' id='$var-$choice'>$value</li>";
+			echo "<li class='ui-state-default drag-n-drop' id='$var-$choice'>$value</li>";
 		}
 		echo "<li class='ui-state-default' id='$var-'>[Empty]</li>";
 		echo "</ul>";

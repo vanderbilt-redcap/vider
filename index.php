@@ -417,7 +417,7 @@ foreach ($fields as $dataType => $fieldNames) {
 			<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
 			<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
 			<p><input type='submit' value='Configure'></p>
-		</td>
+		</form></td>
 	<tr>
 		<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
@@ -509,7 +509,7 @@ if (!empty($varsToFetch)) {
 	$proceed = true;
 	$choices = getChoices($metadata);
 }
-if ($proceed && ($_GET['type'] != "parallel") && !preg_match("/_config/", $_GET['type'])) {
+if ($proceed && ($_GET['type'] != "parallel") && !preg_match("/_config$/", $_GET['type'])) {
 	echo "<canvas id='chart' style='width: 800px; height: $canvasHeight;'></canvas>\n";
 	echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 }

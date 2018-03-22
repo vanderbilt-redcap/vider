@@ -756,7 +756,7 @@ var myChart = new Chart(ctx, {
 <?php
 		if ($_GET['type'] == "custom_bar") {
 ?>
-			<iframe id='iframe_config' style='width: 100% height: 600px;'>
+			<iframe id='iframe_config' style='width: 100%; height: 600px;'>
 				<p>Your browser does not support iframes.</p>
 			</iframe>
 			<script>

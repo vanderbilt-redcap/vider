@@ -133,14 +133,16 @@ foreach ($metadata as $row) {
 			}
 			if (isset($_GET['type'])) {
 ?>
+				var recordId;
 				if (ary[0]
 					&& ary[0]['_chart']
 					&& ary[0]['_chart']['data']
 					&& ary[0]['_chart']['data']['datasets']
 					&& ary[0]['_chart']['data']['datasets'][0]
+					&& ary[0]['_chart']['data']['datasets'][0]['data']
 					&& ary[0]['_index']
-					&& ary[0]['_chart']['data']['datasets'][0][ary[0]['_index']]
-					&& ary[0]['_chart']['data']['datasets'][0][ary[0]['_index']]['record_id']
+					&& ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]
+					&& ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]['record_id']
 				) {
 					recordId = ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]['record_id'];
 					console.log(recordId);

@@ -558,8 +558,6 @@ function submitSortables() {
 <h2 style='margin-bottom: 0px; text-align: center'>&larr; Drag-and-Drop Categories &rarr;</h2>
 <p style='text-align: center;'>Press <button onclick='submitSortables();'>Submit</button> When Ready</p>
 <table style='margin-left: auto; margin-right: auto;'><tr><td>
-<ul id="sortable1" class="connectedSortable">
-<h4>Category 1</h4>
 <?php
 		$hasGETData = false;
 		for ($i = 1; $i <= $numSortables; $i++) {

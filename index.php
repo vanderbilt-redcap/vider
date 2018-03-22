@@ -86,6 +86,8 @@ foreach ($metadata as $row) {
 		.small { margin-top: 0px; font-size: 12px; }
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 	<script>
 		function save(chart) {
 			var link = document.createElement('a');

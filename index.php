@@ -710,6 +710,9 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 							}
 
 						}]
+					},
+					onClick: function(e, ary) {
+						selectHandler(e, ary);
 					}
 				},
 				data: {

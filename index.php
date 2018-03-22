@@ -539,17 +539,21 @@ function submitSortables() {
 	var match = new RegExp('<?= $var ?>-', "i" );
 	var sortables = {};
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
-		var ary = $( "#sortable"+i ).sortable("toArray");
-		for (var j = 0; j < ary.length; j++) {
-			ary[j] = ary[j].replace(match, "");
-		}
-		if (ary.length > 0) {
-			sortables[i] = ary;
+		if ($("#sortable"+i+" li").length > 0) {
+			var ary = $("#sortable"+i).sortable("toArray");
+			for (var j = 0; j < ary.length; j++) {
+				ary[j] = ary[j].replace(match, "");
+			}
+			if (ary.length > 0) {
+				sortables[i] = ary;
+			}
 		}
 	}
 	var url = buildCurrentUrl("type=custom_bar");
 	for (var i in sortables) {
-		url += "&sortables"+i+"="+encodeURI(JSON.stringify(sortables[i]));
+		if (sortables[i].length > 0) {
+			url += "&sortables"+i+"="+encodeURI(JSON.stringify(sortables[i]));
+		}
 	}
 	window.location.href = url;
 }

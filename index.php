@@ -532,15 +532,20 @@ $(document).ready(function() {
 });
 
 function submitSortables() {
+	var match = new RegExp('<?= $var ?>-', "i" );
 	var sortables = {};
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
-		sortables[i] = $( "#sortable"+i ).sortable("toArray");
+		var ary = $( "#sortable"+i ).sortable("toArray");
+		for (var j = 0; j < ary.length; j++) {
+			ary[j] = ary.replace(match, "");
+		}
+		sortabes[i] = ary;
 	}
 	console.log(JSON.stringify(sortables));
 }
 </script>
 
-<h2 style='text-align: center'>Drag and Drop<br>
+<h2 style='text-align: center'>&larr; Drag and Drop &rarr;<br>
 <button onclick='submitSortables();'>Submit When Ready</button></h2>
 <ul id="sortable1" class="connectedSortable">
 <h4>Category 1</h4>

@@ -132,7 +132,7 @@ foreach ($metadata as $row) {
 		}
 
 		function buildCurrentUrl(paramsToChange = "") {
-			var a = window.location.split(/\?/);
+			var a = window.location.href.split(/\?/);
 			if (a.length == 2) {
 				var ps = {};
 				ps['current'] = a[1].split(/\&/);

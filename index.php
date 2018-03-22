@@ -96,6 +96,7 @@ foreach ($metadata as $row) {
 
 		function selectHandler(e, ary) {
 			console.log("selectHandler "+ary[0]);
+			console.log("selectHandler "+JSON.stringify(ary[0]));
 <?php
 			if (isset($_GET['iframe']) && $_GET['iframe']) {
 ?>

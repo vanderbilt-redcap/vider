@@ -30,11 +30,11 @@ $blank = "<option value=''>---SELECT---</option>";
 # must be hex
 $defaultColor = '#c03017';
 if (isset($_GET['color'])) {
-	$defaultColor = "#".$_GET['color'];
+$defaultColor = "#".$_GET['color'];
 }
 $canvasHeight = "400px";
 if (isset($_GET['canvasHeight'])) {
-	$canvasHeight = $_GET['canvasHeight']."px";
+$canvasHeight = $_GET['canvasHeight']."px";
 }
 
 $metadataJSON = \REDCap::getDataDictionary($pid, 'json');
@@ -49,490 +49,491 @@ $validationTypes['continuous'] = array("integer", "number", "date_ymd", "date_md
 $fields = array("discrete" => array(), "continuous" => array());
 
 foreach ($metadata as $row) {
-	foreach ($types as $dataType => $fieldTypes) {
-		if (in_array($row['field_type'], $fieldTypes)) {
-			if ($validationTypes[$dataType] && in_array($row['form_name'], $validForms)) {
-				if (in_array($row['text_validation_type_or_show_slider_number'], $validationTypes[$dataType])) {
-					$fields[$dataType][$row['field_name']] = $row['field_label'];
-				}
-			} else {
+foreach ($types as $dataType => $fieldTypes) {
+	if (in_array($row['field_type'], $fieldTypes)) {
+		if ($validationTypes[$dataType] && in_array($row['form_name'], $validForms)) {
+			if (in_array($row['text_validation_type_or_show_slider_number'], $validationTypes[$dataType])) {
 				$fields[$dataType][$row['field_name']] = $row['field_label'];
 			}
+		} else {
+			$fields[$dataType][$row['field_name']] = $row['field_label'];
 		}
-	} 
+	}
+} 
 }
 
 ?>
 <html>
 <head>
-	<title>ViDER 2</title>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<title>ViDER 2</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-	<style>
-		h1,h2,h3,h4 { text-align: center; }
-		body { font-family: Arial, Helvetica, sans-serif; }
-		.ui-autocomplete { font-size: 14px; }
-		input[type=submit] { border: 1px solid #bbbbbb; padding: 8px 16px; border-radius: 6px; text-align: center; box-shadow: 2px 2px; display: inline-block; font-size: 16px; margin: 4px 4px; }
-		.custom-combobox-toggle { height: 21px; }
-		.one { background-color: #eeeeee; }
-		.two { background-color: <?= $blue ?>; }
-		a { color: <?= $darkBlue ?>; }
-		.three { background-color: #bbbbbb; }
-		td.rounded { border: 1px dotted black; padding: 10px; border-radius: 10px; }
-		td { vertical-align: middle; text-align: center; }
-		table { border-spacing: 20px; }
-		select { width: 200px; }
-		.red, a { color: #C13017; }
-		.nomargin { margin: 0px; }
-		.small { margin-top: 0px; font-size: 12px; }
+<style>
+	h1,h2,h3,h4 { text-align: center; }
+	body { font-family: Arial, Helvetica, sans-serif; }
+	.ui-autocomplete { font-size: 14px; }
+	input[type=submit] { border: 1px solid #bbbbbb; padding: 8px 16px; border-radius: 6px; text-align: center; box-shadow: 2px 2px; display: inline-block; font-size: 16px; margin: 4px 4px; }
+	.custom-combobox-toggle { height: 21px; }
+	.one { background-color: #eeeeee; }
+	.two { background-color: <?= $blue ?>; }
+	a { color: <?= $darkBlue ?>; }
+	.three { background-color: #bbbbbb; }
+	td.rounded { border: 1px dotted black; padding: 10px; border-radius: 10px; }
+	td { vertical-align: middle; text-align: center; }
+	table { border-spacing: 20px; }
+	select { width: 200px; }
+	.red, a { color: #C13017; }
+	.nomargin { margin: 0px; }
+	.small { margin-top: 0px; font-size: 12px; }
 
-		.connectedSortable { border: 1px solid #eee; width: 142px; min-height: 20px; list-style-type: none; margin: 0; padding: 5px 0 0 0; float: left; margin-right: 10px; }
-		.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+	.connectedSortable { border: 1px solid #eee; width: 142px; min-height: 20px; list-style-type: none; margin: 0; padding: 5px 0 0 0; float: left; margin-right: 10px; }
+	.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
 
-	</style>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
-	<script>
-		function save(chart) {
-			var link = document.createElement('a');
-			link.download = "vider_chart.png";
-			link.href = chart.toBase64Image().replace(/^data:image\/png;/i, "data:application/octet-stream;");
-			link.click();
-		}
+<script>
+	function save(chart) {
+		var link = document.createElement('a');
+		link.download = "vider_chart.png";
+		link.href = chart.toBase64Image().replace(/^data:image\/png;/i, "data:application/octet-stream;");
+		link.click();
+	}
 
-		function selectHandler(e, ary) {
+	function selectHandler(e, ary) {
 <?php
-			if (isset($_GET['iframe']) && $_GET['iframe']) {
+		if (isset($_GET['iframe']) && $_GET['iframe']) {
 ?>
-				var otherIframe = '<?= $_GET['iframe'] ?>';
-				if (window.parent && window.parent.document.getElementById(otherIframe) && ary[0]) {
-					var idx = ary[0]['_index'];
-					var filter = filters[jsDataLabels[idx]];
-					var plainFilter = plainFilters[jsDataLabels[idx]];
-					filter = filter.replace(/=/, "%3D");
-					plainFilter = plainFilter.replace(/=/, "%3D");
-					var urlParts = window.parent.document.getElementById(otherIframe).src.split(/\?/);
-					var getParts = urlParts[1].split(/\&/);
-					var urlWithFilter = urlParts[0]+'?';
-					var urlWithoutFilter = urlParts[0]+'?';
-					for (var i=0; i < getParts.length; i++) {
-						if (i !== 0) {
-							urlWithFilter = urlWithFilter + "&";
-							urlWithoutFilter = urlWithoutFilter + "&";
+			var otherIframe = '<?= $_GET['iframe'] ?>';
+			if (window.parent && window.parent.document.getElementById(otherIframe) && ary[0]) {
+				var idx = ary[0]['_index'];
+				var filter = filters[jsDataLabels[idx]];
+				var plainFilter = plainFilters[jsDataLabels[idx]];
+				filter = filter.replace(/=/, "%3D");
+				plainFilter = plainFilter.replace(/=/, "%3D");
+				var urlParts = window.parent.document.getElementById(otherIframe).src.split(/\?/);
+				var getParts = urlParts[1].split(/\&/);
+				var urlWithFilter = urlParts[0]+'?';
+				var urlWithoutFilter = urlParts[0]+'?';
+				for (var i=0; i < getParts.length; i++) {
+					if (i !== 0) {
+						urlWithFilter = urlWithFilter + "&";
+						urlWithoutFilter = urlWithoutFilter + "&";
+					}
+					if (getParts[i].match(/^plainFilter=/) || getParts[i].match(/^filter=/)) {
+					} else if (!getParts[i].match(/^iframe=/)) {
+						urlWithFilter = urlWithFilter + getParts[i];
+						if (!getParts[i].match(/filter=/) && !getParts[i].match(/plainFilter=/)) {
+							urlWithoutFilter = urlWithoutFilter + getParts[i];
 						}
-						if (getParts[i].match(/^plainFilter=/) || getParts[i].match(/^filter=/)) {
-						} else if (!getParts[i].match(/^iframe=/)) {
-							urlWithFilter = urlWithFilter + getParts[i];
-							if (!getParts[i].match(/filter=/) && !getParts[i].match(/plainFilter=/)) {
-								urlWithoutFilter = urlWithoutFilter + getParts[i];
-							}
-						} else {
-							urlWithFilter = urlWithFilter + "&iframe=";
-							urlWithoutFilter = urlWithoutFilter + "&" + getParts[i];
-						}
+					} else {
+						urlWithFilter = urlWithFilter + "&iframe=";
+						urlWithoutFilter = urlWithoutFilter + "&" + getParts[i];
 					}
-					urlWithFilter = urlWithFilter + "&filter="+encodeURI(filter)+"&plainFilter="+encodeURI(plainFilter);
-					window.parent.document.getElementById(otherIframe).src = urlWithFilter;
-					document.getElementById("reset").innerHTML = "<a href='javascript:;' onclick='window.parent.document.getElementById(\""+otherIframe+"\").src = \""+urlWithoutFilter+"\"; $(this).parent().html(\"&nbsp;\");'>Reset other panel</a>";
 				}
-<?php
+				urlWithFilter = urlWithFilter + "&filter="+encodeURI(filter)+"&plainFilter="+encodeURI(plainFilter);
+				window.parent.document.getElementById(otherIframe).src = urlWithFilter;
+				document.getElementById("reset").innerHTML = "<a href='javascript:;' onclick='window.parent.document.getElementById(\""+otherIframe+"\").src = \""+urlWithoutFilter+"\"; $(this).parent().html(\"&nbsp;\");'>Reset other panel</a>";
 			}
-			if (isset($_GET['type'])) {
-?>
-				var recordId;
-				if (ary[0]
-					&& ary[0]['_chart']
-					&& ary[0]['_chart']['data']
-					&& ary[0]['_chart']['data']['datasets']
-					&& ary[0]['_chart']['data']['datasets'][0]
-					&& ary[0]['_chart']['data']['datasets'][0]['data']
-					&& ary[0]['_index']
-					&& ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]
-					&& ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]['record_id']
-				) {
-					recordId = ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]['record_id'];
-					console.log(recordId);
-				} else {
-					console.log(ary);
-				}
-				if (recordId) {
-					window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid={$_GET['pid']}&id=" ?>'+recordId);
-				}
 <?php
-			}
+		}
+		if (isset($_GET['type'])) {
 ?>
+			var recordId;
+			if (ary[0]
+				&& ary[0]['_chart']
+				&& ary[0]['_chart']['data']
+				&& ary[0]['_chart']['data']['datasets']
+				&& ary[0]['_chart']['data']['datasets'][0]
+				&& ary[0]['_chart']['data']['datasets'][0]['data']
+				&& ary[0]['_index']
+				&& ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]
+				&& ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]['record_id']
+			) {
+				recordId = ary[0]['_chart']['data']['datasets'][0]['data'][ary[0]['_index']]['record_id'];
+				console.log(recordId);
+			} else {
+				console.log(ary);
+			}
+			if (recordId) {
+				window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid={$_GET['pid']}&id=" ?>'+recordId);
+			}
+<?php
+		}
+?>
+	}
+
+	function buildCurrentUrl(paramsToChange = "") {
+		var a = window.location.href.split(/\?/);
+		if (a.length == 2) {
+			var ps = {};
+			ps['current'] = a[1].split(/\&/);
+			ps['new'] = paramsToChange.split(/\&/);
+			var params = {};
+			var b, i;
+			for (i = 0; i < ps['current'].length; i++) {
+				b = ps['current'][i].split(/=/);
+				if (b.length == 2) {
+					params[b[0]] = b[1];
+				}
+			}
+			for (i = 0; i < ps['new'].length; i++) {
+				b = ps['new'][i].split(/=/);
+				if (b.length == 2) {
+					params[b[0]] = b[1];
+				}
+			}
 		}
 
-		function buildCurrentUrl(paramsToChange = "") {
-			var a = window.location.href.split(/\?/);
-			if (a.length == 2) {
-				var ps = {};
-				ps['current'] = a[1].split(/\&/);
-				ps['new'] = paramsToChange.split(/\&/);
-				var params = {};
-				var b, i;
-				for (i = 0; i < ps['current'].length; i++) {
-					b = ps['current'][i].split(/=/);
-					if (b.length == 2) {
-						params[b[0]] = b[1];
-					}
-				}
-				for (i = 0; i < ps['new'].length; i++) {
-					b = ps['new'][i].split(/=/);
-					if (b.length == 2) {
-						params[b[0]] = b[1];
-					}
-				}
+		var paramStr = "";
+		for (var variable in params) {
+			if (paramStr) {
+				paramStr += "&" + variable + "=" + params[variable];
+			} else {
+				paramStr = "?" + variable + "=" + params[variable];
 			}
+		} 
+		var url = a[0] + paramStr;
+		console.log(url);
+		return url;
+	}
 
-			var paramStr = "";
-			for (var variable in params) {
-				if (paramStr) {
-					paramStr += "&" + variable + "=" + params[variable];
-				} else {
-					paramStr = "?" + variable + "=" + params[variable];
-				}
-			} 
-			var url = a[0] + paramStr;
-			console.log(url);
-			return url;
-		}
-
-		$(document).ready(function() {
-			$('input[type=color]').change(function() { window.location.href = buildCurrentUrl("color="+this.value.replace(/^\#/, "")); });
-		});
-	</script>
+	$(document).ready(function() {
+		$('input[type=color]').change(function() { window.location.href = buildCurrentUrl("color="+this.value.replace(/^\#/, "")); });
+	});
+</script>
 </head>
 <body>
 
 <?php
 if (!isset($_GET['iframe'])) {
-	# header
-	echo "<div class='small' style='text-align: right;'>";
-	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-	if (isset($_GET['type'])) {
-		echo "<input type='color' value='$defaultColor' style='width: 50px;' />".$space;
-		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
-	}
-	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
-		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
-	}
-	echo "<a href='".APP_PATH_WEBROOT."index.php?pid=$pid'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
-	echo "</div>";
-	if (!isset($_GET['type'])) {
-		echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='height:48px;'></div>";
-	}
+# header
+echo "<div class='small' style='text-align: right;'>";
+$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+if (isset($_GET['type'])) {
+	echo "<input type='color' value='$defaultColor' style='width: 50px;' />".$space;
+	echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
+}
+if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
+	echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
+}
+echo "<a href='".APP_PATH_WEBROOT."index.php?pid=$pid'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
+echo "</div>";
+if (!isset($_GET['type'])) {
+	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='height:48px;'></div>";
+}
 } else if (isset($_GET['type'])) {
-	echo "<div class='small' style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
-	if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter") {
-		echo "<h2 class='nomargin'>&nbsp;</h2>";
-		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
-	} else if ($_GET['type'] == "bar") {
-		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
-		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
-	}
+echo "<div class='small' style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
+if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter") {
+	echo "<h2 class='nomargin'>&nbsp;</h2>";
+	echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
+} else if ($_GET['type'] == "bar") {
+	echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
+	echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
+}
 }
 
 if (!isset($_GET['type'])) {
-	echo "<h2 class='red'>What do you want to create?</h2>";
-	$options = array();
-	foreach ($fields as $dataType => $fieldNames) {
-		$options[$dataType] = array();
-		foreach ($fieldNames as $fieldName => $label) {
-			$options[$dataType][] = "<option value='$fieldName'>[$fieldName] $label</option>";
-		}
+echo "<h2 class='red'>What do you want to create?</h2>";
+$options = array();
+foreach ($fields as $dataType => $fieldNames) {
+	$options[$dataType] = array();
+	foreach ($fieldNames as $fieldName => $label) {
+		$options[$dataType][] = "<option value='$fieldName'>[$fieldName] $label</option>";
 	}
+}
 ?>
-  		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script>
-			$( function() {
-				$.widget( "custom.combobox", {
-					_create: function() {
-						this.wrapper = $( "<span>" )
-							.addClass( "custom-combobox" )
-							.insertAfter( this.element );
- 
-						this.element.hide();
-						this._createAutocomplete();
-						this._createShowAllButton();
-					},
- 
-					_createAutocomplete: function() {
-						var selected = this.element.children( ":selected" ),
-							value = selected.val() ? selected.text() : "";
- 
-						this.input = $( "<input>" )
-							.appendTo( this.wrapper )
-							.val( value )
-							.attr( "title", "" )
-							.addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
-							.autocomplete({
-								delay: 0,
-								minLength: 0,
-								source: $.proxy( this, "_source" )
-							})
-							.tooltip({
-								classes: {
-									"ui-tooltip": "ui-state-highlight"
-								}
-							});
- 
-						this._on( this.input, {
-							autocompleteselect: function( event, ui ) {
-								ui.item.option.selected = true;
-								this._trigger( "select", event, {
-									item: ui.item.option
-								});
-							},
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		$( function() {
+			$.widget( "custom.combobox", {
+				_create: function() {
+					this.wrapper = $( "<span>" )
+						.addClass( "custom-combobox" )
+						.insertAfter( this.element );
 
-							autocompletechange: "_removeIfInvalid"
-						});
-					},
- 
-					_createShowAllButton: function() {
-						var input = this.input,
-							wasOpen = false;
- 
-						$( "<a>" )
-							.attr( "tabIndex", -1 )
-							.attr( "title", "Show All Items" )
-							.tooltip()
-							.appendTo( this.wrapper )
-							.button({
-								icons: {
-									primary: "ui-icon-triangle-1-s"
-								},
-								text: false
-							})
-							.removeClass( "ui-corner-all" )
-							.addClass( "custom-combobox-toggle ui-corner-right" )
-							.on( "mousedown", function() {
-								wasOpen = input.autocomplete( "widget" ).is( ":visible" );
-							})
-							.on( "click", function() {
-								input.trigger( "focus" );
+					this.element.hide();
+					this._createAutocomplete();
+					this._createShowAllButton();
+				},
 
-								// Close if already visible
-								if ( wasOpen ) {
-									return;
-								}
+				_createAutocomplete: function() {
+					var selected = this.element.children( ":selected" ),
+						value = selected.val() ? selected.text() : "";
 
-								// Pass empty string as value to search for, displaying all results
-								input.autocomplete( "search", "" );
-							});
-					},
- 
-					_source: function( request, response ) {
-						var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
-						response( this.element.children( "option" ).map(function() {
-							var text = $( this ).text();
-							if ( this.value && ( !request.term || matcher.test(text) ) )
-								return {
-									label: text,
-									value: text,
-									option: this
-								};
-						}) );
-					},
- 
-					_removeIfInvalid: function( event, ui ) {
- 
-						// Selected an item, nothing to do
-						if ( ui.item ) {
-							return;
-						}
- 
-						// Search for a match (case-insensitive)
-						var value = this.input.val(),
-							valueLowerCase = value.toLowerCase(),
-							valid = false;
-						this.element.children( "option" ).each(function() {
-							if ( $( this ).text().toLowerCase() === valueLowerCase ) {
-								this.selected = valid = true;
-								return false;
+					this.input = $( "<input>" )
+						.appendTo( this.wrapper )
+						.val( value )
+						.attr( "title", "" )
+						.addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
+						.autocomplete({
+							delay: 0,
+							minLength: 0,
+							source: $.proxy( this, "_source" )
+						})
+						.tooltip({
+							classes: {
+								"ui-tooltip": "ui-state-highlight"
 							}
 						});
- 
-						// Found a match, nothing to do
-						if ( valid ) {
-							return;
-						}
- 
-						// Remove invalid value
-						this.input
-							.val( "" )
-							.attr( "title", value + " didn't match any item" )
-							.tooltip( "open" );
-						this.element.val( "" );
-						this._delay(function() {
-							this.input.tooltip( "close" ).attr( "title", "" );
-						}, 2500 );
-						this.input.autocomplete( "instance" ).term = "";
-					},
- 
-					_destroy: function() {
-						this.wrapper.remove();
-						this.element.show();
+
+					this._on( this.input, {
+						autocompleteselect: function( event, ui ) {
+							ui.item.option.selected = true;
+							this._trigger( "select", event, {
+								item: ui.item.option
+							});
+						},
+
+						autocompletechange: "_removeIfInvalid"
+					});
+				},
+
+				_createShowAllButton: function() {
+					var input = this.input,
+						wasOpen = false;
+
+					$( "<a>" )
+						.attr( "tabIndex", -1 )
+						.attr( "title", "Show All Items" )
+						.tooltip()
+						.appendTo( this.wrapper )
+						.button({
+							icons: {
+								primary: "ui-icon-triangle-1-s"
+							},
+							text: false
+						})
+						.removeClass( "ui-corner-all" )
+						.addClass( "custom-combobox-toggle ui-corner-right" )
+						.on( "mousedown", function() {
+							wasOpen = input.autocomplete( "widget" ).is( ":visible" );
+						})
+						.on( "click", function() {
+							input.trigger( "focus" );
+
+							// Close if already visible
+							if ( wasOpen ) {
+								return;
+							}
+
+							// Pass empty string as value to search for, displaying all results
+							input.autocomplete( "search", "" );
+						});
+				},
+
+				_source: function( request, response ) {
+					var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+					response( this.element.children( "option" ).map(function() {
+						var text = $( this ).text();
+						if ( this.value && ( !request.term || matcher.test(text) ) )
+							return {
+								label: text,
+								value: text,
+								option: this
+							};
+					}) );
+				},
+
+				_removeIfInvalid: function( event, ui ) {
+
+					// Selected an item, nothing to do
+					if ( ui.item ) {
+						return;
 					}
-				});
- 
-				$( ".combobox" ).combobox();
-			} );
-		</script>
-	</head>
-	<table style='margin-left: auto; margin-right: auto;'>
-		<tr>
-			<td class='rounded one'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='bar'>
-				<h4 class='nomargin'>Bar Chart<br>(Discrete)</h4>
-				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
-				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
-			</form></td>
-			<td class='rounded two'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='histogram'>
-				<h4 class='nomargin'>Histogram<br>(Continuous)</h4>
-				<p class='small'>Numbers, integers, dates, and times</p>
-				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
-			</form></td>
-			<td class='rounded three'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='custom_bar_config'>
-				<h4 class='nomargin'>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
-				<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
-				<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
-				<p><input type='submit' value='Configure'></p>
-			</td>
-		<tr>
-			<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='scatter'>
-				
-				<table style='width: 100%;'><tr>
-					<td style='width: 33%; vertical-align: middle;'>
-						<h4 class='nomargin'>Scatter Plot<br>(Continuous)</h4>
-						<p class='small'>Numbers, integers, dates, and times</p>
-					</td>
-					<td style='width: 34%; vertical-align: middle;'>
-						<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-						<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-					</td>
-					<td style='width: 33%; vertical-align: middle;'>
-						<input type='submit' value='Show'>
-					</td>
-				</tr></table>
-			</form></td>
-		</tr>
-		<tr>
-			<td class='rounded three'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='parallel'>
-				<h4>Parallel Sets<br>(Histograms / Bar Charts)</h4>
-				<p>Select Variable 1:<br><select class='combobox' name='var1'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
-				<p>Select Variable 2:<br><select class='combobox' name='var2'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
-				<p><input type='submit' value='Show'></p>
-			</form></td>
-			<td class='rounded one'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='parallel'>
-				<h4>Parallel Sets<br>(Chart &amp; Scatter Plot)</h4>
-				<p>Select Variable 1:<br><select class='combobox' name='var1'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
-				<p>Select 2nd X Variable:<br><select class='combobox' name='var2x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
-			</form></td>
-			<td class='rounded two'><form method='GET' action='index.php'>
-				<input type='hidden' name='pid' value='<?= $pid ?>'>
-				<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-				<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
-				<input type='hidden' name='prefix' value='vider'>
-				<input type='hidden' name='type' value='parallel'>
-				<h4>Parallel Sets<br>(Scatter Plots)</h4>
-				<p>Select 1st X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p>Select 1st Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p>Select 2nd X Variable:<br><select class='combobox' name='var2x'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
-				<p><input type='submit' value='Show'></p>
-			</form></td>
-		</tr>
-	</table>
+
+					// Search for a match (case-insensitive)
+					var value = this.input.val(),
+						valueLowerCase = value.toLowerCase(),
+						valid = false;
+					this.element.children( "option" ).each(function() {
+						if ( $( this ).text().toLowerCase() === valueLowerCase ) {
+							this.selected = valid = true;
+							return false;
+						}
+					});
+
+					// Found a match, nothing to do
+					if ( valid ) {
+						return;
+					}
+
+					// Remove invalid value
+					this.input
+						.val( "" )
+						.attr( "title", value + " didn't match any item" )
+						.tooltip( "open" );
+					this.element.val( "" );
+					this._delay(function() {
+						this.input.tooltip( "close" ).attr( "title", "" );
+					}, 2500 );
+					this.input.autocomplete( "instance" ).term = "";
+				},
+
+				_destroy: function() {
+					this.wrapper.remove();
+					this.element.show();
+				}
+			});
+
+			$( ".combobox" ).combobox();
+		} );
+	</script>
+</head>
+<table style='margin-left: auto; margin-right: auto;'>
+	<tr>
+		<td class='rounded one'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='bar'>
+			<h4 class='nomargin'>Bar Chart<br>(Discrete)</h4>
+			<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
+			<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
+			<p><input type='submit' value='Show'></p>
+		</form></td>
+		<td class='rounded two'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='histogram'>
+			<h4 class='nomargin'>Histogram<br>(Continuous)</h4>
+			<p class='small'>Numbers, integers, dates, and times</p>
+			<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p><input type='submit' value='Show'></p>
+		</form></td>
+		<td class='rounded three'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='custom_bar_config'>
+			<h4 class='nomargin'>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
+			<p class='small'>Radio buttons, dropdowns, and checkboxes</p>
+			<p>Select Variable:<br><select class='combobox' name='var1'><?= $blank.implode("", $options['discrete']) ?></select></p>
+			<p><input type='submit' value='Configure'></p>
+		</td>
+	<tr>
+		<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='scatter'>
+			
+			<table style='width: 100%;'><tr>
+				<td style='width: 33%; vertical-align: middle;'>
+					<h4 class='nomargin'>Scatter Plot<br>(Continuous)</h4>
+					<p class='small'>Numbers, integers, dates, and times</p>
+				</td>
+				<td style='width: 34%; vertical-align: middle;'>
+					<p>Select X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+					<p>Select Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+				</td>
+				<td style='width: 33%; vertical-align: middle;'>
+					<input type='submit' value='Show'>
+				</td>
+			</tr></table>
+		</form></td>
+	</tr>
+	<tr>
+		<td class='rounded three'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='parallel'>
+			<h4>Parallel Sets<br>(Histograms / Bar Charts)</h4>
+			<p>Select Variable 1:<br><select class='combobox' name='var1'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
+			<p>Select Variable 2:<br><select class='combobox' name='var2'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
+			<p><input type='submit' value='Show'></p>
+		</form></td>
+		<td class='rounded one'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='parallel'>
+			<h4>Parallel Sets<br>(Chart &amp; Scatter Plot)</h4>
+			<p>Select Variable 1:<br><select class='combobox' name='var1'><?= $blank.implode("", array_merge($options['discrete'], $options['continuous'])) ?></select></p>
+			<p>Select 2nd X Variable:<br><select class='combobox' name='var2x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p><input type='submit' value='Show'></p>
+		</form></td>
+		<td class='rounded two'><form method='GET' action='index.php'>
+			<input type='hidden' name='pid' value='<?= $pid ?>'>
+			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
+			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='prefix' value='vider'>
+			<input type='hidden' name='type' value='parallel'>
+			<h4>Parallel Sets<br>(Scatter Plots)</h4>
+			<p>Select 1st X Variable:<br><select class='combobox' name='var1x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p>Select 1st Y Variable:<br><select class='combobox' name='var1y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p>Select 2nd X Variable:<br><select class='combobox' name='var2x'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p>Select 2nd Y Variable:<br><select class='combobox' name='var2y'><?= $blank.implode("", $options['continuous']) ?></select></p>
+			<p><input type='submit' value='Show'></p>
+		</form></td>
+	</tr>
+</table>
 <?php
 } else {
-	$getFields = array("var1", "var2", "var1x", "var1y", "var2x", "var2y");
-	$varsToFetch = array();
-	foreach ($getFields as $var) {
-		if (isset($_GET[$var]) && $_GET[$var]) {
-			$varsToFetch[$var] = $_GET[$var];
-		}
+$getFields = array("var1", "var2", "var1x", "var1y", "var2x", "var2y");
+$varsToFetch = array();
+foreach ($getFields as $var) {
+	if (isset($_GET[$var]) && $_GET[$var]) {
+		$varsToFetch[$var] = $_GET[$var];
 	}
-	$proceed = false;
-	$jsData = array();
-	if (!empty($varsToFetch)) {
-		$varsFields = array_merge(array("record_id"), array_values($varsToFetch));
-		$filterLogic = NULL;
-		if ($_GET['filter']) {
-			$filterLogic = $_GET['filter'];
+}
+$proceed = false;
+$jsData = array();
+if (!empty($varsToFetch)) {
+	$varsFields = array_merge(array("record_id"), array_values($varsToFetch));
+	$filterLogic = NULL;
+	if ($_GET['filter']) {
+		$filterLogic = $_GET['filter'];
 ?>
-			<script>
-				$(document).ready(function() {
-					document.getElementById('reset').innerHTML = "<?= $_GET['plainFilter'] ?>";
-				});
-			</script>
+		<script>
+			$(document).ready(function() {
+				document.getElementById('reset').innerHTML = "<?= $_GET['plainFilter'] ?>";
+			});
+		</script>
 <?php
-		}
-		$json = \REDCap::getData($pid, 'json', NULL, $varsFields, NULL, NULL, FALSE, FALSE, FALSE, $filterLogic);
-		$data = json_decode($json, true);
-		$proceed = true;
-		$choices = getChoices($metadata);
 	}
-	if ($proceed && ($_GET['type'] != "parallel") && !preg_match("/_config/", $_GET['type'])) {
-		echo "<canvas id='chart' style='width: 800px; height: $canvasHeight;'></canvas>\n";
-		echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
-	}
-	if ($proceed && ($_GET['type'] != "custom_bar_config")) {
-		$var = $varsToFetch['var1'];
-		$metadataRow = array();
-		foreach ($metadata as $row) {
-			if ($row['field_name'] == $var) {
-				$metadataRow = $row;
-			}
+	$json = \REDCap::getData($pid, 'json', NULL, $varsFields, NULL, NULL, FALSE, FALSE, FALSE, $filterLogic);
+	$data = json_decode($json, true);
+	$proceed = true;
+	$choices = getChoices($metadata);
+}
+if ($proceed && ($_GET['type'] != "parallel") && !preg_match("/_config/", $_GET['type'])) {
+	echo "<canvas id='chart' style='width: 800px; height: $canvasHeight;'></canvas>\n";
+	echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
+}
+if ($proceed && ($_GET['type'] != "custom_bar_config")) {
+	$var = $varsToFetch['var1'];
+	$metadataRow = array();
+	foreach ($metadata as $row) {
+		if ($row['field_name'] == $var) {
+			$metadataRow = $row;
 		}
+	}
 ?>
 <script>
-	$(document).ready(function() {
-		$(".connectedSortable").sortable({
-			connectWith: ".connectedSortable",
-			cursor: "move",
-			dropOnEmpty: true
-		}).disableSelection();
-	});
+$(document).ready(function() {
+	$(".connectedSortable").sortable({
+		connectWith: ".connectedSortable",
+		cursor: "move",
+		dropOnEmpty: true
+	}).disableSelection();
+});
 </script>
 
-<h2 style='text-align: center'>&lt;--&gt; Drag and Drop &lt;--&gt;</span></h2>
+<h2 style='text-align: center'>Drag and Drop</span></h2>
 <ul id="sortable1" class="connectedSortable">
+<h4>Category 1</h4>
 <?php
 		foreach ($choices[$var] as $choice => $value) {
 			echo "<li class='ui-state-default' id='$var-$choice'>$value</li>";
@@ -540,12 +541,16 @@ if (!isset($_GET['type'])) {
 ?>
 </ul>
 <ul id="sortable2" class="connectedSortable">
+<h4>Category 2</h4>
 </ul>
 <ul id="sortable3" class="connectedSortable">
+<h4>Category 3</h4>
 </ul>
 <ul id="sortable4" class="connectedSortable">
+<h4>Category 4</h4>
 </ul>
 <ul id="sortable5" class="connectedSortable">
+<h4>Category 5</h4>
 </ul>
 
 <?php

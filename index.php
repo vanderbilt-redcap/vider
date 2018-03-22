@@ -85,7 +85,7 @@ foreach ($types as $dataType => $fieldTypes) {
 	.red, a { color: #C13017; }
 	.nomargin { margin: 0px; }
 	.small { margin-top: 0px; font-size: 12px; }
-	button { border-radius: 8px; background-color: #a6ffae; font-size: 24px; font-weight: bold; }
+	button { border-radius: 8px; background-color: #a6ffae; font-size: 20px; font-weight: bold; }
 
 	.connectedSortable { border: 1px solid #eee; width: 142px; min-height: 20px; list-style-type: none; margin: 0; padding: 5px 0 0 0; float: left; margin-right: 10px; }
 	.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
@@ -546,8 +546,8 @@ function submitSortables() {
 }
 </script>
 
-<h2 style='text-align: center'>&larr; Drag and Drop &rarr;<br>
-Press <button onclick='submitSortables();'>Submit</button> When Ready</h2>
+<h2 style='text-align: center'>&larr; Drag and Drop &rarr;</h2>
+<p style='text-align: center;'>Press <button onclick='submitSortables();'>Submit</button> When Ready</p>
 <table style='margin-left: auto; margin-right: auto;'><tr><td>
 <ul id="sortable1" class="connectedSortable">
 <h4>Category 1</h4>

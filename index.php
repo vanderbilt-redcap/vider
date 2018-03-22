@@ -94,9 +94,9 @@ foreach ($metadata as $row) {
 			link.click();
 		}
 
-		function selectHandler(e, ary, recordId = "") {
-			console.log(ary[0]);
-			console.log("selectHandler "+ary[0]['_index']+" "+recordId);
+		function selectHandler(e, ary) {
+			var recordId = ary[0]['_chart']['data']['datasets'][0][ary[0]['_index']]['record_id'];
+			console.log("selectHandler "+recordId);
 <?php
 			if (isset($_GET['iframe']) && $_GET['iframe']) {
 ?>
@@ -688,7 +688,6 @@ var myChart = new Chart(ctx, {
 ?>
 		<script>
 			var ctx = document.getElementById("chart").getContext('2d');
-			var records = <?= json_encode($records) ?>;
 			var myChart = new Chart(ctx, {
 				type: 'scatter',
 				options: {
@@ -723,8 +722,8 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 						}]
 					},
 					onClick: function(e, ary) {
-						if (ary[0] && ary[0]['_index'] && records[ary[0]['_index']]) {
-							selectHandler(e, ary, records[ary[0]['_index']]);
+						if (ary[0]) {
+							selectHandler(e, ary);
 						}
 					}
 				},

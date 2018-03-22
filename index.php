@@ -67,6 +67,7 @@ foreach ($metadata as $row) {
 <head>
 	<title>ViDER 2</title>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 	<style>
 		h1,h2,h3,h4 { text-align: center; }
 		body { font-family: Arial, Helvetica, sans-serif; }
@@ -84,9 +85,14 @@ foreach ($metadata as $row) {
 		.red, a { color: #C13017; }
 		.nomargin { margin: 0px; }
 		.small { margin-top: 0px; font-size: 12px; }
+
+		.connectedSortable { border: 1px solid #eee; width: 142px; min-height: 20px; list-style-type: none; margin: 0; padding: 5px 0 0 0; float: left; margin-right: 10px; }
+		.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }
+
 	</style>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 	<script>
 		function save(chart) {
@@ -529,7 +535,7 @@ if (!isset($_GET['type'])) {
 <ul id="sortable1" class="connectedSortable">
 <?php
 		foreach ($choices[$var] as $choice => $value) {
-			echo "<li id='$var-$choice'>$value</li>";
+			echo "<li class='ui-state-default' id='$var-$choice'>$value</li>";
 		}
 ?>
 </ul>

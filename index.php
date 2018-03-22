@@ -667,7 +667,7 @@ var myChart = new Chart(ctx, {
 				} else if (is_numeric($yPt)) {
 					$yPt = floatval($yPt);
 				}
-				$jsData[] = array("x" => $xPt, "y" => $yPt, "record_id" => $record[$i]);
+				$jsData[] = array("x" => $xPt, "y" => $yPt, "record_id" => $records[$i]);
 			}
 		}
 

@@ -543,7 +543,7 @@ function submitSortables() {
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
 		var ary = $("#sortable"+i).sortable("toArray");
 		// start at 1 to eliminate intial "" from the header (Category $i)
-        var ary2 = new Array();
+		var ary2 = new Array();
 		for (var j = 1; j < ary.length; j++) {
 			ary2[j-1] = ary[j].replace(match, "");
 		}
@@ -551,13 +551,17 @@ function submitSortables() {
 			sortables[i] = ary2;
 		}
 	}
-	var url = buildCurrentUrl("type=custom_bar");
+	var url = buildCurrentUrl("type=custom_bar&focus=");
 	for (var i in sortables) {
 		if (sortables[i].length > 0) {
 			url += "&sortables"+i+"="+encodeURI(JSON.stringify(sortables[i]));
 		}
 	}
-	window.location.href = url;
+	if (window.location.href.match(/focus=parent/)) {
+		window.parent.location.href = url;
+	} else {
+		window.location.href = url;
+	}
 }
 </script>
 

@@ -541,11 +541,12 @@ function submitSortables() {
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
 		var ary = $("#sortable"+i).sortable("toArray");
 		// start at 1 to eliminate intial "" from the header (Category $i)
+        var ary2 = new Array();
 		for (var j = 1; j < ary.length; j++) {
-			ary[j] = ary[j].replace(match, "");
+			ary2[j-1] = ary[j].replace(match, "");
 		}
 		if (ary.length > 0) {
-			sortables[i] = ary;
+			sortables[i] = ary2;
 		}
 	}
 	var url = buildCurrentUrl("type=custom_bar");

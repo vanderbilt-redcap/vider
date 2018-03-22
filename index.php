@@ -546,7 +546,7 @@ function submitSortables() {
 }
 </script>
 
-<h2 style='text-align: center'>&larr; Drag and Drop &rarr;</h2>
+<h2 style='margin-bottom: 0px; text-align: center'>&larr; Drag-and-Drop Categories &rarr;</h2>
 <p style='text-align: center;'>Press <button onclick='submitSortables();'>Submit</button> When Ready</p>
 <table style='margin-left: auto; margin-right: auto;'><tr><td>
 <ul id="sortable1" class="connectedSortable">

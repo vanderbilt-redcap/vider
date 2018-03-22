@@ -546,7 +546,7 @@ function submitSortables() {
 	}
 	var url = buildCurrentUrl("type=custom_bar");
 	for (var i in sortables) {
-		url += "&sortables"+i+"=".encodeURI(JSON.stringify(sortables[i]));
+		url += "&sortables"+i+"="+encodeURI(JSON.stringify(sortables[i]));
 	}
 	window.location.href = url;
 }

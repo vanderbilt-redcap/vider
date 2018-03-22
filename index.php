@@ -529,15 +529,25 @@ $(document).ready(function() {
 		dropOnEmpty: true
 	}).disableSelection();
 });
+
+function submitSortables() {
+	var sortables = {};
+	for (var i = 1; i <= <?= $numSortables ?>; i++) {
+		sortables[i] = $( "#sortable"+i ).sortable("toArray");
+	}
+	console.log(JSON.stringify(sortables));
+}
 </script>
 
-<h2 style='text-align: center'>Drag and Drop</span></h2>
+<h2 style='text-align: center'>Drag and Drop<br>
+<button onclick='submitSortables();'>Submit When Ready</button></h2>
 <ul id="sortable1" class="connectedSortable">
 <h4>Category 1</h4>
 <?php
 		foreach ($choices[$var] as $choice => $value) {
 			echo "<li class='ui-state-default' id='$var-$choice'>$value</li>";
 		}
+		echo "<li class='ui-state-default' id='$var-'>[Empty]</li>";
 ?>
 </ul>
 <ul id="sortable2" class="connectedSortable">

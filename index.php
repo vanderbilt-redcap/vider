@@ -716,8 +716,8 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 						}]
 					},
 					onClick: function(e, ary) {
-						if (ary[0] && records[ary[0]]) {
-							selectHandler(e, ary, records[ary[0]]);
+						if (ary[0] && ary[0]['_index'] && records[ary[0]['_index']]) {
+							selectHandler(e, ary, records[ary[0]['_index']]);
 						}
 					}
 				},

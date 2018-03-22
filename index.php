@@ -12,6 +12,7 @@ if (isset($_GET['plainFilter'])) {
 } else {
 	$plainFilterText = "";
 }
+$numSortables = 5;
 
 # Check user rights
 $userRights = \REDCap::getUserRights(USERID);
@@ -210,30 +211,30 @@ foreach ($types as $dataType => $fieldTypes) {
 
 <?php
 if (!isset($_GET['iframe'])) {
-# header
-echo "<div class='small' style='text-align: right;'>";
-$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-if (isset($_GET['type'])) {
-	echo "<input type='color' value='$defaultColor' style='width: 50px;' />".$space;
-	echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
-}
-if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
-	echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
-}
-echo "<a href='".APP_PATH_WEBROOT."index.php?pid=$pid'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
-echo "</div>";
-if (!isset($_GET['type'])) {
-	echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='height:48px;'></div>";
-}
+	# header
+	echo "<div class='small' style='text-align: right;'>";
+	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+	if (isset($_GET['type'])) {
+		echo "<input type='color' value='$defaultColor' style='width: 50px;' />".$space;
+		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
+	}
+	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {
+		echo "<a href='javascript:;' onclick='save(myChart);'>Save</a>".$space;
+	}
+	echo "<a href='".APP_PATH_WEBROOT."index.php?pid=$pid'>REDCap</a>$space<a href='".$module->getUrl("aboutus.php")."'>About Us</a>";
+	echo "</div>";
+	if (!isset($_GET['type'])) {
+		echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='height:48px;'></div>";
+	}
 } else if (isset($_GET['type'])) {
-echo "<div class='small' style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
-if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter") {
-	echo "<h2 class='nomargin'>&nbsp;</h2>";
-	echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
-} else if ($_GET['type'] == "bar") {
-	echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
-	echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
-}
+	echo "<div class='small' style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
+	if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter") {
+		echo "<h2 class='nomargin'>&nbsp;</h2>";
+		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
+	} else if ($_GET['type'] == "bar" || $_GET['type'] == "custom_bar") {
+		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
+		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
+	}
 }
 
 if (!isset($_GET['type'])) {
@@ -521,7 +522,6 @@ if ($proceed && ($_GET['type'] == "custom_bar_config")) {
 			$metadataRow = $row;
 		}
 	}
-	$numSortables = 5;
 ?>
 <script>
 $(document).ready(function() {
@@ -540,9 +540,15 @@ function submitSortables() {
 		for (var j = 0; j < ary.length; j++) {
 			ary[j] = ary[j].replace(match, "");
 		}
-		sortabes[i] = ary;
+		if (ary.length > 0) {
+			sortables[i] = ary;
+		}
 	}
-	console.log(JSON.stringify(sortables));
+	var url = buildCurrentUrl("type=custom_bar");
+	for (var i in sortables) {
+		url += "&sortables"+i+"=".encodeURI(JSON.stringify(sortables[i]));
+	}
+	window.location.href = url;
 }
 </script>
 
@@ -612,7 +618,7 @@ function submitSortables() {
 		</script>
 
 <?php
-	} else if ($proceed && $_GET['type'] == "bar") {
+	} else if ($proceed && ($_GET['type'] == "bar" || $_GET['type'] == "custom_bar")) {
 		# 1 col discrete 
 		$var = $varsToFetch['var1'];
 		$metadataRow = array();

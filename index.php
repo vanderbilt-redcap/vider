@@ -539,14 +539,13 @@ function submitSortables() {
 	var match = new RegExp('<?= $var ?>-', "i" );
 	var sortables = {};
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
-		if ($("#sortable"+i+" li").length > 0) {
-			var ary = $("#sortable"+i).sortable("toArray");
-			for (var j = 0; j < ary.length; j++) {
-				ary[j] = ary[j].replace(match, "");
-			}
-			if (ary.length > 0) {
-				sortables[i] = ary;
-			}
+		var ary = $("#sortable"+i).sortable("toArray");
+		# start at 1 to eliminate intial "" from the header (Category $i)
+		for (var j = 1; j < ary.length; j++) {
+			ary[j] = ary[j].replace(match, "");
+		}
+		if (ary.length > 0) {
+			sortables[i] = ary;
 		}
 	}
 	var url = buildCurrentUrl("type=custom_bar");

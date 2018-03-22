@@ -167,7 +167,7 @@ foreach ($metadata as $row) {
 		}
 
 		$(document).ready(function() {
-			$('input[type=color]').change(function() { window.location = buildCurrentUrl("color="+this.value); });
+			$('input[type=color]').change(function() { window.location.href = buildCurrentUrl("color="+this.value); });
 		});
 	</script>
 </head>

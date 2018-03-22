@@ -540,7 +540,7 @@ function submitSortables() {
 	var sortables = {};
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
 		var ary = $("#sortable"+i).sortable("toArray");
-		# start at 1 to eliminate intial "" from the header (Category $i)
+		// start at 1 to eliminate intial "" from the header (Category $i)
 		for (var j = 1; j < ary.length; j++) {
 			ary[j] = ary[j].replace(match, "");
 		}

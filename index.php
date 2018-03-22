@@ -513,7 +513,7 @@ if ($proceed && ($_GET['type'] != "parallel") && !preg_match("/_config$/", $_GET
 	echo "<canvas id='chart' style='width: 800px; height: $canvasHeight;'></canvas>\n";
 	echo "<script type='text/javascript' src='".$module->getUrl("chart.js/dist/Chart.bundle.min.js")."&pid=$pid'></script>\n";
 }
-if ($proceed && ($_GET['type'] != "custom_bar_config")) {
+if ($proceed && ($_GET['type'] == "custom_bar_config")) {
 	$var = $varsToFetch['var1'];
 	$metadataRow = array();
 	foreach ($metadata as $row) {

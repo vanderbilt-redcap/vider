@@ -703,7 +703,7 @@ function submitSortables() {
 			}
 			foreach ($binTotals as $i => $cnt) {
 				$jsData[] = $cnt;
-				$jsDataLabels = "Category $i";
+				$jsDataLabels[] = "Category $i";
 			}
 		}
 ?>

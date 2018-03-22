@@ -568,7 +568,7 @@ function submitSortables() {
 		$hasGETData = false;
 		for ($i = 1; $i <= $numSortables; $i++) {
 			if (isset($_GET['sortables'.$i])) {
-				$sortables[$i] = json_decode($_GET['sortables']); 
+				$sortables[$i] = json_decode($_GET['sortables'.$i]); 
 				$hasGETData = true;
 			} else {
 				# empty

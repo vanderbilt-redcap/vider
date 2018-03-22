@@ -135,7 +135,9 @@ foreach ($metadata as $row) {
 			}
 			if (isset($_GET['type'])) {
 ?>
-				window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid={$_GET['pid']}&id=" ?>'+recordId);
+				if (recordId) {
+					window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid={$_GET['pid']}&id=" ?>'+recordId);
+				}
 <?php
 			}
 ?>
@@ -665,7 +667,7 @@ var myChart = new Chart(ctx, {
 				} else if (is_numeric($yPt)) {
 					$yPt = floatval($yPt);
 				}
-				$jsData[] = array("x" => $xPt, "y" => $yPt);
+				$jsData[] = array("x" => $xPt, "y" => $yPt, "record_id" => $record[$i]);
 			}
 		}
 

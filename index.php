@@ -85,7 +85,7 @@ foreach ($types as $dataType => $fieldTypes) {
 	.red, a { color: #C13017; }
 	.nomargin { margin: 0px; }
 	.small { margin-top: 0px; font-size: 12px; }
-	button { font-size: 30px; font-weight: bold; }
+	button { font-size: 24px; font-weight: bold; }
 
 	.connectedSortable { border: 1px solid #eee; width: 142px; min-height: 20px; list-style-type: none; margin: 0; padding: 5px 0 0 0; float: left; margin-right: 10px; }
 	.connectedSortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; width: 120px; }

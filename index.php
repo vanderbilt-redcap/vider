@@ -227,11 +227,16 @@ if (!isset($_GET['iframe']) || preg_match("/_config$/", $_GET['iframe'])) {
 		echo "<div style='text-align: center;'><img src='".\ExternalModules\ExternalModules::getUrl('vider', 'img/vider.png')."' style='height:48px;'></div>";
 	}
 } else if (isset($_GET['type'])) {
-	echo "<div class='small' style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
+	if (!preg_match("/_config$/", $_GET['type'])) {
+		echo "<div class='small' style='text-align: right;'><a href='javascript:;' onclick='save(myChart);'>Save</a></div>";
+	}
 	if ($_GET['type'] == "histogram" || $_GET['type'] == "scatter") {
 		echo "<h2 class='nomargin'>&nbsp;</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
-	} else if ($_GET['type'] == "bar" || $_GET['type'] == "custom_bar") {
+	} else if ($_GET['type'] == "custom_bar") {
+		echo "<h2 class='nomargin'>&nbsp;</h2>";
+		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
+	} else if ($_GET['type'] == "bar") {
 		echo "<h2 class='nomargin'>Select a bar to inspect</h2>";
 		echo "<div style='text-align: center;' id='reset'>&nbsp;</div>";
 	}
@@ -536,35 +541,61 @@ function submitSortables() {
 	var match = new RegExp('<?= $var ?>-', "i" );
 	var sortables = {};
 	for (var i = 1; i <= <?= $numSortables ?>; i++) {
-		var ary = $( "#sortable"+i ).sortable("toArray");
-		for (var j = 0; j < ary.length; j++) {
-			ary[j] = ary[j].replace(match, "");
+		var ary = $("#sortable"+i).sortable("toArray");
+		// start at 1 to eliminate intial "" from the header (Category $i)
+		var ary2 = new Array();
+		for (var j = 1; j < ary.length; j++) {
+			ary2[j-1] = ary[j].replace(match, "");
 		}
 		if (ary.length > 0) {
-			sortables[i] = ary;
+			sortables[i] = ary2;
 		}
 	}
-	var url = buildCurrentUrl("type=custom_bar");
+	var url = buildCurrentUrl("type=custom_bar&focus=");
 	for (var i in sortables) {
-		url += "&sortables"+i+"="+encodeURI(JSON.stringify(sortables[i]));
+		if (sortables[i].length > 0) {
+			url += "&sortables"+i+"="+encodeURI(JSON.stringify(sortables[i]));
+		}
 	}
-	window.location.href = url;
+	if (window.location.href.match(/focus=parent/)) {
+		window.parent.location.href = url;
+	} else {
+		window.location.href = url;
+	}
 }
 </script>
 
 <h2 style='margin-bottom: 0px; text-align: center'>&larr; Drag-and-Drop Categories &rarr;</h2>
 <p style='text-align: center;'>Press <button onclick='submitSortables();'>Submit</button> When Ready</p>
 <table style='margin-left: auto; margin-right: auto;'><tr><td>
-<ul id="sortable1" class="connectedSortable">
-<h4>Category 1</h4>
 <?php
-		foreach ($choices[$var] as $choice => $value) {
-			echo "<li class='ui-state-default drag-n-drop' id='$var-$choice'>$value</li>";
+		$hasGETData = false;
+		for ($i = 1; $i <= $numSortables; $i++) {
+			if (isset($_GET['sortables'.$i])) {
+				$sortables[$i] = json_decode($_GET['sortables'.$i]); 
+				$hasGETData = true;
+			} else {
+				# empty
+				$sortables[$i] = array();
+			}
 		}
-		echo "<li class='ui-state-default' id='$var-'>[Empty]</li>";
-		echo "</ul>";
-		for ($i = 2; $i <= $numSortables; $i++) {
-			echo "<ul id='sortable$i' class='connectedSortable'><h4>Category $i</h4></ul>";
+		if (!$hasGETData) {
+			foreach ($choices[$var] as $choice => $value) {
+				$cats[] = $choice;
+			}
+			$cats[] = "";
+			$sortables[1] = $cats;
+		}
+		for ($i = 1; $i <= $numSortables; $i++) {
+			echo "<ul id='sortable$i' class='connectedSortable'><h4>Category $i</h4>";
+			foreach ($sortables[$i] as $cat) {
+				if ($cat !== "") {
+					echo "<li class='ui-state-default' id='$var-$cat'>{$choices[$var][$cat]}</li>";
+				} else {
+					echo "<li class='ui-state-default' id='$var-'>[Empty]</li>";
+				}
+			}
+			echo "</ul>";
 		}
 		echo "</td></tr></table>";
 	} else if ($proceed && $_GET['type'] == "histogram") {
@@ -639,15 +670,47 @@ function submitSortables() {
 		$jsData = array();
 		$filters = array();
 		$plainFilters = array();
-		foreach ($colData as $value => $cnt) {
-			if ($value === "") {
-				$jsDataLabels[] = "Empty";
-			} else {
-				$jsDataLabels[] = $choices[$var][$value];
+		if ($_GET['type'] == "bar") {
+			foreach ($colData as $value => $cnt) {
+				if ($value === "") {
+					$jsDataLabels[] = "Empty";
+				} else {
+					$jsDataLabels[] = $choices[$var][$value];
+				}
+				$jsData[] = $cnt;
+				$filters[$choices[$var][$value]] = "[".$var."] = '".$value."'";
+				$plainFilters[$choices[$var][$value]] = "[".$var."] = '".$choices[$var][$value]."'";
 			}
-			$jsData[] = $cnt;
-			$filters[$choices[$var][$value]] = "[".$var."] = '".$value."'";
-			$plainFilters[$choices[$var][$value]] = "[".$var."] = '".$choices[$var][$value]."'";
+		} else {
+			$bins = array();
+			foreach ($_GET as $key => $value) {
+				if (preg_match("/^sortables/", $key)) {
+					$bins[preg_replace("/^sortables/", "", $key)] = json_decode($value);
+				}
+			}
+			$binTotals = array();
+			foreach ($colData as $value => $cnt) {
+				foreach ($bins as $i => $cats) {
+					if (in_array($value, $cats)) {
+						if (!isset($binTotals[$i])) {
+							$binTotals[$i] = 0;
+						}
+						$binTotals[$i] += $cnt;
+					}
+				}
+			}
+			foreach ($bins as $i => $cats) {
+				$fs = array();
+				foreach ($cats as $cat) {
+					$fs[] = "[".$var."] = '".$cat."'";
+				}
+				$filters[$i] = implode(" OR ", $fs);
+				$plainFilters[$i] = "[".$var."] = Category $i";
+			}
+			foreach ($binTotals as $i => $cnt) {
+				$jsData[] = $cnt;
+				$jsDataLabels[] = "Category $i";
+			}
 		}
 ?>
 <script>
@@ -676,10 +739,12 @@ var myChart = new Chart(ctx, {
 					labelString: 'Count'
 				}
 			}]
-		},
-		onClick: function(e, ary) {
-			selectHandler(e, ary);
 		}
+<?php
+		if ($_GET['type'] == "bar") {
+			echo ",\nonClick: function(e, ary) { selectHandler(e, ary); }";
+		}
+?>
 	},
 	data: {
 		labels: jsDataLabels,
@@ -691,9 +756,25 @@ var myChart = new Chart(ctx, {
 		}]
 	}
 });
-
 </script>
 <?php
+		if ($_GET['type'] == "custom_bar") {
+?>
+			<iframe id='iframe_config' style='width: 100%; height: 600px;'>
+				<p>Your browser does not support iframes.</p>
+			</iframe>
+			<script>
+<?php
+				$str = "";
+				foreach ($bins as $i => $cats) {
+					$str = "&sortable$i=".json_encode($cats);
+				}
+				echo "var sortablesStr = encodeURI('$str');";
+?>
+				$('#iframe_config').attr("src", buildCurrentUrl("iframe=iframe_config&type=custom_bar_config&focus=parent" + sortablesStr)); 
+			</script>
+<?php
+		}
 	} else if ($proceed && $_GET['type'] == "scatter") {
 		# continuous vs. continuous
 		$x = $varsToFetch['var1x'];

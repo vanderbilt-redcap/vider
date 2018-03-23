@@ -306,6 +306,7 @@ foreach ($fields as $dataType => $fieldNames) {
 						.attr( "tabIndex", -1 )
 						.attr( "title", "Show All Items" )
 						.tooltip()
+						.css({ "height" : "22px", "margin-top" : "-1px" })
 						.appendTo( this.wrapper )
 						.button({
 							icons: {

@@ -3,7 +3,7 @@
 
 	"namespace": "Vanderbilt\\ViderExternalModule",
 
-	"description": "This module extends Vanderbilt's visualization capabilities to interactive visualizations.",
+	"description": "This module extends REDCap's visualization capabilities to interactive visualizations.",
 
     "authors": [
         {

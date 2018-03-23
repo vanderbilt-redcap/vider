@@ -210,7 +210,7 @@ foreach ($types as $dataType => $fieldTypes) {
 <body>
 
 <?php
-if (!isset($_GET['iframe']) || (preg_match("/_config$/", $_GET['iframe']) && !preg_match("/_config$/", $_GET['type'))) {
+if (!isset($_GET['iframe']) || (preg_match("/_config$/", $_GET['iframe']) && !preg_match("/_config$/", $_GET['type']))) {
 	# header
 	echo "<div class='small' style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";

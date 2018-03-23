@@ -933,7 +933,7 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 		</iframe>
 <?php
 	} else {
-		echo "<p>I am unable to complete the request. <a href=".$module->getUrl("index.php")."&pid=$pid'>Please restart the process</a></p>";
+		echo "<p>I am unable to complete the request. <a href='".$module->getUrl("index.php")'>Please restart the process</a></p>";
 	}
 }
 

@@ -215,7 +215,7 @@ if (!isset($_GET['iframe']) || (preg_match("/_config$/", $_GET['iframe']) && !pr
 	echo "<div class='small' style='text-align: right;'>";
 	$space = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 	if (isset($_GET['type'])) {
-		echo "<input type='color' value='$defaultColor' style='width: 50px;' />".$space;
+		echo "Color: <input type='color' value='$defaultColor' style='width: 50px;' />".$space;
 		echo "<a class='red' href='".$module->getUrl("index.php")."&pid=$pid'>Design Another Graph</a>".$space;
 	}
 	if (isset($_GET['type']) && ($_GET['type'] != "parallel")) {

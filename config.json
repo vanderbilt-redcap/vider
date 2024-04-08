@@ -22,15 +22,22 @@
 	"permissions": [
 	],
 
-	"links": {
-        "project": [
-            {
-                "name": "ViDER Visualizations",
-                "icon": "report",
-                "url": "index.php"
-            }
-	]
-    },
+        "links": {
+            "project": [
+                {
+                    "name": "ViDER Visualizations",
+                    "icon": "report",
+                    "url": "index.php"
+                }
+            ]
+        },
+
+        "compatibility": {
+                "php-version-min": "5.6.0",
+                "php-version-max": "7.4.99",
+                "redcap-version-min": "",
+                "redcap-version-max": ""
+        },
 
 	"project-settings": [
 	]

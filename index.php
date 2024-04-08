@@ -1,6 +1,8 @@
 <?php
 
-$pid = $_GET['pid'];
+namespace Vanderbilt\ViderExternalModule;
+
+$pid = htmlspecialchars($_GET['pid'], ENT_QUOTES);
 
 # have to reset equals in GET
 if (isset($_GET['filter'])) {
@@ -8,7 +10,7 @@ if (isset($_GET['filter'])) {
 }
 if (isset($_GET['plainFilter'])) {
 	$_GET['plainFilter'] = preg_replace("/%3D/", "=", $_GET['plainFilter']);
-	$plainFilterText = " filtered by ".$_GET['plainFilter'];
+	$plainFilterText = " filtered by ".htmlspecialchars($_GET['plainFilter'], ENT_QUOTES);
 } else {
 	$plainFilterText = "";
 }
@@ -31,11 +33,11 @@ $blank = "<option value=''>---SELECT---</option>";
 # must be hex
 $defaultColor = '#c03017';
 if (isset($_GET['color'])) {
-$defaultColor = "#".$_GET['color'];
+$defaultColor = "#".htmlspecialchars($_GET['color'], ENT_QUOTES);
 }
 $canvasHeight = "400px";
 if (isset($_GET['canvasHeight'])) {
-$canvasHeight = $_GET['canvasHeight']."px";
+$canvasHeight = htmlspecialchars($_GET['canvasHeight'], ENT_QUOTES)."px";
 }
 
 $metadataJSON = \REDCap::getDataDictionary($pid, 'json');
@@ -108,7 +110,7 @@ foreach ($types as $dataType => $fieldTypes) {
 <?php
 		if (isset($_GET['iframe']) && $_GET['iframe']) {
 ?>
-			var otherIframe = '<?= $_GET['iframe'] ?>';
+			var otherIframe = '<?= htmlspecialchars($_GET['iframe'], ENT_QUOTES) ?>';
 			if (window.parent && window.parent.document.getElementById(otherIframe) && ary[0]) {
 				var idx = ary[0]['_index'];
 				var filter = filters[jsDataLabels[idx]];
@@ -160,7 +162,7 @@ foreach ($types as $dataType => $fieldTypes) {
 				console.log(ary);
 			}
 			if (recordId) {
-				window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid={$_GET['pid']}&id=" ?>'+recordId);
+				window.open('<?= APP_PATH_WEBROOT."DataEntry/record_home.php?pid=".htmlspecialchars($_GET['pid'], ENT_QUOTES)."&id=" ?>'+recordId);
 			}
 <?php
 		}
@@ -394,8 +396,8 @@ foreach ($fields as $dataType => $fieldNames) {
 	<tr>
 		<td class='rounded one'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='bar'>
 			<h4 class='nomargin'>Bar Chart<br>(Discrete)</h4>
@@ -405,8 +407,8 @@ foreach ($fields as $dataType => $fieldNames) {
 		</form></td>
 		<td class='rounded two'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='histogram'>
 			<h4 class='nomargin'>Histogram<br>(Continuous)</h4>
@@ -416,8 +418,8 @@ foreach ($fields as $dataType => $fieldNames) {
 		</form></td>
 		<td class='rounded three'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='custom_bar_config'>
 			<h4 class='nomargin'>Custom Bar Chart<br>(Merge Discrete Categories)</h4>
@@ -428,8 +430,8 @@ foreach ($fields as $dataType => $fieldNames) {
 	<tr>
 		<td class='rounded three' colspan='3'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='scatter'>
 			
@@ -451,8 +453,8 @@ foreach ($fields as $dataType => $fieldNames) {
 	<tr>
 		<td class='rounded three'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='parallel'>
 			<h4>Parallel Sets<br>(Histograms / Bar Charts)</h4>
@@ -462,8 +464,8 @@ foreach ($fields as $dataType => $fieldNames) {
 		</form></td>
 		<td class='rounded one'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='parallel'>
 			<h4>Parallel Sets<br>(Chart &amp; Scatter Plot)</h4>
@@ -474,8 +476,8 @@ foreach ($fields as $dataType => $fieldNames) {
 		</form></td>
 		<td class='rounded two'><form method='GET' action='index.php'>
 			<input type='hidden' name='pid' value='<?= $pid ?>'>
-			<input type='hidden' name='id' value='<?= $_GET['id'] ?>'>
-			<input type='hidden' name='page' value='<?= $_GET['page'] ?>'>
+			<input type='hidden' name='id' value='<?= htmlspecialchars($_GET['id'], ENT_QUOTES) ?>'>
+			<input type='hidden' name='page' value='<?= htmlspecialchars($_GET['page'], ENT_QUOTES) ?>'>
 			<input type='hidden' name='prefix' value='vider'>
 			<input type='hidden' name='type' value='parallel'>
 			<h4>Parallel Sets<br>(Scatter Plots)</h4>
@@ -493,7 +495,7 @@ $getFields = array("var1", "var2", "var1x", "var1y", "var2x", "var2y");
 $varsToFetch = array();
 foreach ($getFields as $var) {
 	if (isset($_GET[$var]) && $_GET[$var]) {
-		$varsToFetch[$var] = $_GET[$var];
+		$varsToFetch[$var] = htmlspecialchars($_GET[$var], ENT_QUOTES);
 	}
 }
 $proceed = false;
@@ -502,11 +504,11 @@ if (!empty($varsToFetch)) {
 	$varsFields = array_merge(array("record_id"), array_values($varsToFetch));
 	$filterLogic = NULL;
 	if ($_GET['filter']) {
-		$filterLogic = $_GET['filter'];
+		$filterLogic = htmlspecialchars($_GET['filter'], ENT_QUOTES);
 ?>
 		<script>
 			$(document).ready(function() {
-				document.getElementById('reset').innerHTML = "<?= $_GET['plainFilter'] ?>";
+				document.getElementById('reset').innerHTML = "<?= htmlspecialchars($_GET['plainFilter'], ENT_QUOTES) ?>";
 			});
 		</script>
 <?php
@@ -573,7 +575,11 @@ function submitSortables() {
 		$hasGETData = false;
 		for ($i = 1; $i <= $numSortables; $i++) {
 			if (isset($_GET['sortables'.$i])) {
-				$sortables[$i] = json_decode($_GET['sortables'.$i]); 
+				$ary = [];
+				foreach (json_decode($_GET['sortables'.$i]) as $item) {
+					$ary[] = htmlspecialchars($item, ENT_QUOTES);
+				}
+				$sortables[$i] = $ary; 
 				$hasGETData = true;
 			} else {
 				# empty
@@ -686,7 +692,11 @@ function submitSortables() {
 			$bins = array();
 			foreach ($_GET as $key => $value) {
 				if (preg_match("/^sortables/", $key)) {
-					$bins[preg_replace("/^sortables/", "", $key)] = json_decode($value);
+					$ary = [];
+					foreach (json_decode($value) as $item) {
+						$ary[] = htmlspecialchars($item, ENT_QUOTES);
+					}
+					$bins[preg_replace("/^sortables/", "", htmlspecialchars($key, ENT_QUOTES))] = $ary;
 				}
 			}
 			$binTotals = array();
@@ -900,7 +910,7 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 		$url1 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe2&canvasHeight=800&color=".preg_replace("/^#/", "", $defaultColor);
 		$url2 = $module->getUrl("index.php")."&pid=$pid&iframe=iframe1&canvasHeight=800&color=".preg_replace("/^#/", "", $defaultColor);
 		if (isset($_GET['var1'])) {
-			$url1 .= "&var1=".$_GET['var1'];
+			$url1 .= "&var1=".htmlspecialchars($_GET['var1'], ENT_QUOTES);
 			if (isset($fields['discrete'][$_GET['var1']])) {
 				$url1 .= "&type=bar";
 			} else {
@@ -908,12 +918,12 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 			}
 		} else {
 			# scatter plot
-			$url1 .= "&var1x=".$_GET['var1x'];
-			$url1 .= "&var1y=".$_GET['var1y'];
+			$url1 .= "&var1x=".htmlspecialchars($_GET['var1x'], ENT_QUOTES);
+			$url1 .= "&var1y=".htmlspecialchars($_GET['var1y'], ENT_QUOTES);
 			$url1 .= "&type=scatter";
 		}
 		if (isset($_GET['var2'])) {
-			$url2 .= "&var1=".$_GET['var2'];
+			$url2 .= "&var1=".htmlspecialchars($_GET['var2'], ENT_QUOTES);
 			if (isset($fields['discrete'][$_GET['var2']])) {
 				$url2 .= "&type=bar";
 			} else {
@@ -921,8 +931,8 @@ if (preg_match("/^date/", $metadataRowY['text_validation_type_or_show_slider_num
 			}
 		} else {
 			# scatter plot
-			$url2 .= "&var1x=".$_GET['var2x'];
-			$url2 .= "&var1y=".$_GET['var2y'];
+			$url2 .= "&var1x=".htmlspecialchars($_GET['var2x'], ENT_QUOTES);
+			$url2 .= "&var1y=".htmlspecialchars($_GET['var2y'], ENT_QUOTES);
 			$url2 .= "&type=scatter";
 		}
 ?>
